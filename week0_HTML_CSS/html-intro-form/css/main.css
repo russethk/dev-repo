@@ -1,9 +1,14 @@
 body {
-    background-color: lightgoldenrodyellow;
+    background-color: whitesmoke;
+  }
+
+navbar {
+    background-color: lightblue;
+    column-span:all;
   }
 
 div {
-    column-width: 600px;
+    column-width: 800px;
 }
 
 p {
