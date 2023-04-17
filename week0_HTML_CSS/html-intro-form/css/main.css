@@ -12,8 +12,9 @@ nav {
 
 .form-example {
     font-family: 'Roboto', sans-serif;
-    font-size: 14pt;
-    text-decoration: bold rgb(27, 4, 27);
+    font-size: 12pt;
+    font-weight: bold;
+    color: rgb(78, 22, 78);
 }
 
 a {
