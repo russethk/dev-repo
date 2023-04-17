@@ -3,8 +3,11 @@ body {
   }
 
 nav {
-    background-color: lightblue;
-    column-span:all;
+    background-color: #026d9c;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14pt;
+    font-weight:bold;
+    font-color: #FFFFFF;
   }
 
 div {
