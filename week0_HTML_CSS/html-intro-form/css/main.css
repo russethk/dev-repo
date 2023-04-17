@@ -27,6 +27,10 @@ a {
     color:hsl(264, 64%, 81%)
 }
 
+#article-img img {
+    width: 200px;
+}
+
 
 div {
     column-width: 600px;
