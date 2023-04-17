@@ -5,9 +5,12 @@ body {
 nav {
     background-color: hsl(263, 100%, 23%);
     line-height: 2;
+}
+
+nav a {
     font-family: 'Roboto', sans-serif;
     font-size: 14pt;
-    text-decoration: underline #ffffff bold;
+    text-decoration: underline bold #ffffff;
 }
 
 .form {
