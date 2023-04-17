@@ -10,6 +10,12 @@ nav {
     text-decoration: underline bold;
 }
 
+.form-example {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14pt;
+    text-decoration: bold rgb(27, 4, 27);
+}
+
 a {
     color:hsl(264, 64%, 81%)
 }
