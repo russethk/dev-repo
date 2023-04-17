@@ -1,5 +1,5 @@
 body {
-    background-color: #d0cfcf;
+    background-color: whitesmoke;
   }
 
 nav {
@@ -10,7 +10,7 @@ nav {
 nav a {
     font-family: 'Roboto', sans-serif;
     font-size: 14pt;
-    text-decoration: underline bold #ffffff;
+    text-decoration: underline bold whitesmoke;
 }
 
 .form {
