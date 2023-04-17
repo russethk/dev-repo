@@ -3,13 +3,13 @@ body {
   }
 
 nav {
-    background-color: hsl(263, 95%, 29%);
+    background-color: hsl(264, 64%, 81%);
     line-height: 2;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14pt;
-    color: #ffffff;
-    text-decoration: underline bold;
-  }
+    text-decoration: underline bold purple;
+}
+
 
 div {
     column-width: 800px;
