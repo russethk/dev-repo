@@ -2,7 +2,7 @@ body {
     background-color: #d0cfcf;
   }
 
-nav a {
+nav {
     background-color: hsl(263, 100%, 23%);
     line-height: 2;
     font-family: 'Roboto', sans-serif;
