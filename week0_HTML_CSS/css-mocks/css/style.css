@@ -1,0 +1,38 @@
+
+button {
+	padding: 10px 20px;
+	font-size: 16px;
+	border-radius: 5px;
+	background-color: #2483e3;
+	color: white;
+	margin: 50px auto;
+	display: block;
+  }
+
+button:focus {
+	outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #296aa6;
+  transition: color 0.3s ease-in, background-color 0.3s ease-in;
+}
+
+
+.feature {
+	width: 40%;
+	border: 1px solid grey;
+	border-radius: 10px;
+	margin: 0 auto;
+	box-shadow: 0px 2px 2px 0px #bbb;
+}
+
+.pic {
+	background-image: url("imgs/cat.png");
+	width: 100%;
+	padding-bottom: 50%;
+	background-size: cover;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+  }
