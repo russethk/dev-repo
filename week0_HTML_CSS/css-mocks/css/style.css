@@ -30,10 +30,9 @@ button:hover {
 }
 
 .pic {
-	background-image: url("imgs/cat.jpg");
- 	background-color: #eee;
+	background-image: url('catpic.jpg');
 	width: 100%;
-	padding-bottom: 50%;
+	padding-bottom: 60%;
 	background-size: cover;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
@@ -42,13 +41,13 @@ button:hover {
   .header {
 	background-color: #eee;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	font-size: 20px;
+	font-size: 22px;
 	font-weight: bold;
-	padding: 15px;
+	padding: 10px;
   }
 
   .description {
-	padding: 18px;
+	padding: 10px;
 	background-color: #eee;
 	border-top: 1px solid #ccc;
 	border-bottom-right-radius: 8px;
