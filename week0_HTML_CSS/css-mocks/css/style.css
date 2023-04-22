@@ -30,7 +30,7 @@ button:hover {
 }
 
 .pic {
-	background-image: url("cat.png");
+	background-image: url("imgs/cat.jpg");
  	background-color: #eee;
 	width: 100%;
 	padding-bottom: 50%;
@@ -48,10 +48,10 @@ button:hover {
   }
 
   .description {
-	padding: 15px;
+	padding: 18px;
 	background-color: #eee;
 	border-top: 1px solid #ccc;
 	border-bottom-right-radius: 8px;
 	border-bottom-left-radius: 8px;
-	font-size: 14px;
+	font-size: 16px;
   }
