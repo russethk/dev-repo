@@ -3,6 +3,7 @@ body {
   border: 5px solid black;
   height: 100vh;
   position: relative;
+  box-sizing: border-box;
 }
 
 .one {
@@ -27,4 +28,22 @@ body {
   width: 100px;
   height: 100px;
   background-color: blue;
+}
+
+.two {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+}
+
+.three {
+  position: absolute;
+  top: -200px;
+  right: 100px;
+}
+
+.four {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
