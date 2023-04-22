@@ -30,7 +30,7 @@ button:hover {
 }
 
 .pic {
-	background-image: url("../imgs/catpic.jpg");
+	background-image: url("https://github.com/russethk/dev-repo/tree/main/week0_HTML_CSS/css-mocks/imgs/catpic.jpg");
 	width: 100%;
 	padding-bottom: 60%;
 	background-size: cover;
