@@ -21,7 +21,8 @@ button:hover {
 
 
 .feature {
-	width: 50%;
+	width: 30%;
+	background-color: #eee;
 	border: 1px solid grey;
 	border-radius: 10px;
 	margin: 0 auto;
@@ -29,7 +30,7 @@ button:hover {
 }
 
 .pic {
-	background-image: url("imgs/cat.png");
+	background-image: url("cat.png");
  	background-color: #eee;
 	width: 100%;
 	padding-bottom: 50%;
@@ -46,12 +47,11 @@ button:hover {
 	padding: 15px;
   }
 
-  description {
+  .description {
 	padding: 15px;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	font-size: 16px;
 	background-color: #eee;
 	border-top: 1px solid #ccc;
-	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	font-size: 14px;
   }
