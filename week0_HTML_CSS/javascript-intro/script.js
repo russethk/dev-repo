@@ -3,7 +3,6 @@ alert("It's Working!");
 console.log(3 + 4);
 
 
-
 /* 
 let name = 'Karen Russeth';
 
