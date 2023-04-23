@@ -1,3 +1,7 @@
+
+alert("It's Working!");
+
+
 let name = 'Karen Russeth';
 
 // Parse the string value to and integer, then assign the integer value to the variable 'dayOfBirth' 
@@ -13,4 +17,4 @@ console.log(color);
 // String with mixed quotation marks
 "The young boy said \"I don\'t have my driver\'s license yet!"
 
-alert("It's Working!");
+
