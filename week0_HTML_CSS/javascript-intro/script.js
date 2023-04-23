@@ -1,7 +1,7 @@
 
 alert("It's Working!");
 
-console.log(4 + 2);
+console.log("It is working!");
 
 
 /* 
