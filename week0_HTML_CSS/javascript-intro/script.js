@@ -12,3 +12,5 @@ console.log(color);
 
 // String with mixed quotation marks
 "The young boy said \"I don\'t have my driver\'s license yet!"
+
+alert("It's Working!");
