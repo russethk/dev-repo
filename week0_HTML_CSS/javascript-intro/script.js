@@ -1,7 +1,13 @@
 
 alert("It's Working!");
 
-console.log("The output for the console log is working!");
+
+let num = prompt("Enter a number greater than .5"); 
+
+if ${num} Math.random(x > 0.5) { 
+    console.log('Over 0.5'); 
+else ${num} Math.random(x < 0.5) { 
+    console.log('Under 0.5'); 
 
 
 /* 
