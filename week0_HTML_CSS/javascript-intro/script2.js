@@ -1,4 +1,4 @@
-console.log("Testing JS file load.")
+console.log("Testing JS file load.");
 
 const people = ["Greg", "Mary", "Devon", "James"];
 
@@ -26,12 +26,12 @@ people.indexOf("Mary");
 // Write the command that gives the indexOf where “Mary” is located.
 people.indexOf("Foo");
 
-const people = ["Greg", "Mary", "Devon", "James"];
+const people2 = ["Greg", "Mary", "Devon", "James"];
 
 // Redefine the people variable with the value you started with. 
 // Using the splice command, remove “Devon” from the array and add “Elizabeth” and “Artie”. 
-people.splice(2,1, "Elizabeth","Artie");
+people2.splice(2,1, "Elizabeth","Artie");
 
 // Create a new variable called withBob and set it equal to the people array concatenated with the string of “Bob”.
-let withBob = people.concat("Bob");
+let withBob = people2.concat("Bob");
 
