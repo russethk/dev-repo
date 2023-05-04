@@ -1,4 +1,3 @@
-console.log("Testing JS file load.");
 
 const people = ["Greg", "Mary", "Devon", "James"];
 
