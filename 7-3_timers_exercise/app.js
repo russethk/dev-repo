@@ -16,7 +16,7 @@ function randomGame() {
     let num;
     let countTimes = 0;
     let timer = setInterval(function() {
-        num = (Math.random() * 100 / 100).toFixed(2);
+        num = (Math.random().toFixed(2));
         console.log(num);
         countTimes++;
         if(num > .75) {
