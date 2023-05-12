@@ -28,8 +28,8 @@ for (let i = 0; i < liInsideOl.length; i++) {
     liInsideOl[i].style.backgroundColor = 'green';
 }
 
-// let footer = document.querySelector('.footer');
-// footer.remove();
+let footer = document.querySelector('.footer');
+footer.remove();
 
 
 
