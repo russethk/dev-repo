@@ -9,7 +9,7 @@ form.addEventListener("submit", function(event) {
   const newCheckbox = document.createElement("INPUT");
   newCheckbox.setAttribute("type", "checkbox");
   newToDo.innerText = newTaskInput.value;
-  newButton.innerText = "Remove";
+  newButton.innerText = "x";
 
   newButton.addEventListener("click", function(event) {
     event.target.parentElement.remove();

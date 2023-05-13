@@ -1,4 +1,4 @@
-const todoForm = document.querySelector("form");
+const todoForm = document.querySelector("#newTodoForm");
 const todoList = document.querySelector("#todo-list");
 
 // retrieve from localStorage
