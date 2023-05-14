@@ -1,5 +1,5 @@
-const todoForm = document.querySelector("#newTodoForm");
-const todoList = document.querySelector("#todo-list");
+const todoForm = document.getElementById("newTodoForm");
+const todoList = document.getElementById("todoList");
 
 // retrieve from localStorage
 const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
@@ -23,12 +23,8 @@ todoForm.addEventListener("submit", function(event) {
   todoList.appendChild(newTodo);
 
   // save to localStorage
-  for (let i = 0; i < savedTodos.length; i++) {
-    if (savedTodos[i].task === clickedListItem.innerText) {
-      savedTodos[i].isCompleted = !savedTodos[i].isCompleted;
-      localStorage.setItem("todos", JSON.stringify(savedTodos));
-    }
-  }
+  savedTodos.push({ task: newTodo.innerText, isCompleted: false });
+  localStorage.setItem("todos", JSON.stringify(savedTodos));
 });
 
 todoList.addEventListener("click", function(event) {
@@ -40,5 +36,13 @@ todoList.addEventListener("click", function(event) {
   } else {
     clickedListItem.style.textDecoration = "none";
     clickedListItem.isCompleted = false;
+  }
+
+  // breaks for duplicates - another option is to have dynamic IDs
+  for (let i = 0; i < savedTodos.length; i++) {
+    if (savedTodos[i].task === clickedListItem.innerText) {
+      savedTodos[i].isCompleted = !savedTodos[i].isCompleted;
+      localStorage.setItem("todos", JSON.stringify(savedTodos));
+    }
   }
 });
