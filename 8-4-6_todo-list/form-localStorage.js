@@ -4,9 +4,9 @@ const todoList = document.getElementById("todoList");
 // retrieve from localStorage
 const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
 for (let i = 0; i < savedTodos.length; i++) {
-  let newTodo = document.createElement("li");
-  newTodo.innerText = savedTodos[i].task;
-  newTodo.isCompleted = savedTodos[i].isCompleted ? true : false;
+  let newToDo = document.createElement("li");
+  newToDo.innerText = savedTodos[i].task;
+  newToDo.isCompleted = savedTodos[i].isCompleted ? true : false;
   if (newTodo.isCompleted) {
     newTodo.style.textDecoration = "line-through";
   }
@@ -17,14 +17,18 @@ todoForm.addEventListener("submit", function(event) {
   event.preventDefault();
   let newTodo = document.createElement("li");
   let taskValue = document.getElementById("task").value;
-  newTodo.innerText = taskValue;
-  newTodo.isCompleted = false;
+  newToDo.innerText = taskValue;
+  newToDo.isCompleted = false;
   todoForm.reset();
-  todoList.appendChild(newTodo);
+  todoList.appendChild(newToDo);
 
   // save to localStorage
-  savedTodos.push({ task: newTodo.innerText, isCompleted: false });
-  localStorage.setItem("todos", JSON.stringify(savedTodos));
+  for (let i = 0; i < savedTodos.length; i++) {
+    if (savedTodos[i].task === clickedListItem.innerText) {
+      savedTodos[i].isCompleted = !savedTodos[i].isCompleted;
+      localStorage.setItem("todos", JSON.stringify(savedTodos));
+    }
+  }
 });
 
 todoList.addEventListener("click", function(event) {
@@ -36,13 +40,5 @@ todoList.addEventListener("click", function(event) {
   } else {
     clickedListItem.style.textDecoration = "none";
     clickedListItem.isCompleted = false;
-  }
-
-  // breaks for duplicates - another option is to have dynamic IDs
-  for (let i = 0; i < savedTodos.length; i++) {
-    if (savedTodos[i].task === clickedListItem.innerText) {
-      savedTodos[i].isCompleted = !savedTodos[i].isCompleted;
-      localStorage.setItem("todos", JSON.stringify(savedTodos));
-    }
-  }
+  }  
 });
