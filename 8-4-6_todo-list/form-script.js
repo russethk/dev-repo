@@ -1,5 +1,5 @@
 const form = document.querySelector("form");
-const todoList = document.querySelector("#todo-list");
+const todoList = document.querySelector("#todoList");
 
 form.addEventListener("submit", function(event) {
   event.preventDefault();
@@ -31,4 +31,3 @@ form.addEventListener("submit", function(event) {
   
 
 });
-
