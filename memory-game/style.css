@@ -1,8 +1,10 @@
  body {
   background-color: rgb(189, 236, 246);
+  margin 0 auto;
 }
 
 #container {
+  width: 95%;
   display: relative;
   margin: 0 auto;
 }
