@@ -4,7 +4,7 @@
 }
 
 #container {
-  width: 95%;
+  width: 90%;
   display: relative;
   margin: 0 auto;
 }
@@ -74,7 +74,7 @@ p {
   display: inline-block;
   border: 2px solid black;
   width: 15%;
-  height: 200px;
+  height: 110px;
   margin: 10px;
   align-items: center;
   justify-content: center;
