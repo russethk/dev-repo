@@ -4,7 +4,7 @@ const todoList = document.querySelector("#todoList");
 form.addEventListener("submit", function(event) {
   event.preventDefault();
   const newTaskInput = document.querySelector("#task");
-  const newToDo= document.createElement("li");
+  const newToDo = document.createElement("li");
   const newButton = document.createElement("button");
   const newCheckbox = document.createElement("INPUT");
   newCheckbox.setAttribute("type", "checkbox");
