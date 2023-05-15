@@ -36,14 +36,14 @@ const CARDS = [
   "purple",
   "yellow",
   "pink",
-  "violet",
+  "lime",
   "teal",
-  "brown",
+  "silver",
   "yellow",
   "pink",
-  "violet",
+  "lime",
   "teal",
-  "brown"
+  "silver"
 ];
 
 // here is a helper function to shuffle an array
