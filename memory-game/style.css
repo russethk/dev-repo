@@ -35,7 +35,7 @@
 
 #scorecard {
   position: absolute; 
-  top: 10px;
+  top: 20px;
   right: 180px;
   border: 2px solid black;
   height: 50px;
@@ -79,7 +79,7 @@ p {
   align-items: center;
   justify-content: center;
   background-color: rgb(39, 39, 39);
-  border: 2px solid slategray;
+  border: 2px solid white;
   border-radius: 8px;
   transition: all 0.8s ease-in-out;
 }
