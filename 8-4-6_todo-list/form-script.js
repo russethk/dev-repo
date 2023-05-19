@@ -15,7 +15,6 @@ form.addEventListener("submit", function(event) {
     event.target.parentElement.remove();
   });
 
-  newToDo.append(newCheckbox);
   newToDo.append(newButton);
   todoList.append(newToDo);
   form.reset();
