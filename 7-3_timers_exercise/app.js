@@ -19,9 +19,9 @@ function randomGame() {
         num = (Math.random().toFixed(2));
         console.log(num);
         countTimes++;
-        if(num > .75) {
+        if(num > .70) {
             clearInterval(timer);
-            console.log(`It took ${countTimes} try/tries to find a number greater than .75.`);
+            console.log(`It took ${countTimes} try/tries to find a number greater than .70.`);
         }
     },1000) 
 }
