@@ -48,7 +48,7 @@ function makeHtmlBoard() {
     
     for (let x = 0; x < WIDTH; x++) {
       const cell = document.createElement('td');
-      cell.setAttribute('id', `${y}-${x}`);
+      cell.setAttribute('id', `${y}-${x}`);  // set cell ID with y,x values
       row.append(cell);
     }
       board.append(row);
@@ -74,8 +74,6 @@ function placeInTable(y, x) {
   const piece = document.createElement('div');
   piece.classList.add('piece');
   piece.classList.add(`p${currPlayer}`);
-  piece.style.top = -50 * (y + 2);
-
   const spot = document.getElementById(`${y}-${x}`);
   spot.append(piece);
 }
@@ -109,9 +107,7 @@ function handleClick(evt) {
   }
 
   // check for tie
-  if (board.every(row => row.every(cell => cell))) {
-    return endGame('Tie!');
-  }
+  
   
 
   // switch players
