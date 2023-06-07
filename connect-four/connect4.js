@@ -24,18 +24,16 @@ function makeBoard() {
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-  // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
   const board = document.getElementById('board');
  
-
   // Create the board top row and add a click event listeners to the top cells
-  const top = document.createElement("tr");
-  top.setAttribute("id", "column-top");
-  top.addEventListener("click", handleClick);
+  const top = document.createElement('tr');
+  top.setAttribute('id', 'column-top');
+  top.addEventListener('click', handleClick);
 
   for (let x = 0; x < WIDTH; x++) {
-    const headCell = document.createElement("td");
-    headCell.setAttribute("id", x);
+    const headCell = document.createElement('td');
+    headCell.setAttribute('id', x);
     top.append(headCell);
   }
 board.append(top);
@@ -45,10 +43,10 @@ board.append(top);
   // and table data td cells ([x] of (board[y][x])
 
   for (let y = 0; y < HEIGHT; y++) {
-    const row = document.createElement("tr");
+    const row = document.createElement('tr');
     
     for (let x = 0; x < WIDTH; x++) {
-      const cell = document.createElement("td");
+      const cell = document.createElement('td');
       cell.setAttribute('id', `${y}-${x}`);
       row.append(cell);
     }
@@ -73,12 +71,15 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
-  const piece = document.createElement("div");
+  const piece = document.createElement('div');
   piece.classList.add('piece');
-  piece.classList.add(`p${currPlayer}}`);
+  piece.classList.add(`p${currPlayer}`);
   piece.style.top = -50 * (y + 2);
   
   const spot = document.getElementById(`${y}-${x}`);
+  document.getElementById('board').style.backgroundColor = "#4183f4";
+  document.getElementById(`${y}-${x}`).classList.add('fall');
+  
   spot.append(piece);
 }
 
@@ -111,7 +112,7 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
+  
 
   // switch players
   currPlayer = currPlayer === 1 ? 2 : 1;
@@ -137,17 +138,16 @@ function checkForWin() {
 
   // TODO: read and understand this code. Add comments to help you.
 
-  for (var y = 0; y < HEIGHT; y++) {
-    for (var x = 0; x < WIDTH; x++) {
-      var horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-      var vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-      var diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
-      var diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
+  for (let y = 0; y < HEIGHT; y++) {
+    for (let x = 0; x < WIDTH; x++) {
+      const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
+      const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
+      const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
+      const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
 
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
       }
-    }
   }
 }
 
