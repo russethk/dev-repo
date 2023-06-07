@@ -36,6 +36,7 @@ function makeHtmlBoard() {
     headCell.setAttribute('id', x);
     top.append(headCell);
   }
+
   board.append(top);
 
   // Generate main part of board
@@ -50,7 +51,7 @@ function makeHtmlBoard() {
       cell.setAttribute('id', `${y}-${x}`);
       row.append(cell);
     }
-    board.append(row);
+      board.append(row);
   }
 }
 
@@ -108,6 +109,9 @@ function handleClick(evt) {
   }
 
   // check for tie
+  if (board.every(row => row.every(cell => cell))) {
+    return endGame('Tie!');
+  }
   
 
   // switch players
@@ -144,8 +148,9 @@ function checkForWin() {
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
       }
+    }
   }
-}
+} 
 
 makeBoard();
 makeHtmlBoard();
