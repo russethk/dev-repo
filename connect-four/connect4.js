@@ -36,7 +36,7 @@ function makeHtmlBoard() {
     headCell.setAttribute('id', x);
     top.append(headCell);
   }
-board.append(top);
+  board.append(top);
 
   // Generate main part of board
   // Loop through board array and create nested array with table rows ([y] of (board[y][x])
@@ -50,7 +50,6 @@ board.append(top);
       cell.setAttribute('id', `${y}-${x}`);
       row.append(cell);
     }
-
     board.append(row);
   }
 }
@@ -75,11 +74,8 @@ function placeInTable(y, x) {
   piece.classList.add('piece');
   piece.classList.add(`p${currPlayer}`);
   piece.style.top = -50 * (y + 2);
-  
+
   const spot = document.getElementById(`${y}-${x}`);
-  document.getElementById('board').style.backgroundColor = "#4183f4";
-  document.getElementById(`${y}-${x}`).classList.add('fall');
-  
   spot.append(piece);
 }
 
