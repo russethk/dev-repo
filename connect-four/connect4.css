@@ -1,6 +1,6 @@
 #container {
-width: 35%;
-background-color: lightblue;
+width: 37%;
+background-color: blue;
 padding: 10px;
 z-index: 1;
 margin:0 auto;
@@ -46,11 +46,11 @@ margin-top: 10px;
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
 
 .piece.p1 {
-  background-color: red;
+  background-color: yellow;
 }
 
 .piece.p2 {
-  background-color: blue;
+  background-color: red;
 }
 
 /* column-top is table row of clickable areas for each column */
@@ -61,5 +61,78 @@ margin-top: 10px;
 
 #column-top td:hover {
   background-color: gold;
-  transition: color 0.5s ease-in, background-color 0.5s ease-in;
+  transition: color 0.3s ease-in, background-color 0.3s ease-in;
 }
+
+#scorecard {
+  display: block;
+  border: 2px solid black;
+  height: 25px;
+  width: 37%;
+  padding: 8px;
+  margin: 0 auto;
+  margin-left:auto;
+  margin-right: auto;
+  background-color: rgb(65, 65, 65);
+  border: 2px solid slategray;
+  border-radius: 8px;
+  font-size: 20px;
+  font-family: Montserrat;
+  color: whitesmoke;
+}
+
+button {
+  display: inline;
+  vertical-align: top;
+  margin-bottom: 10px;
+  background-color:#0a0a23;
+  color: #fff;
+  border: 2px solid white;
+  border-radius:8px;
+}
+
+button:hover {
+  display: inline;
+  vertical-align: top;
+  margin-bottom: 10px;
+  background-color: gray;
+  color: #fff;
+  border: 2px solid white;
+  border-radius:8px;
+}
+
+.dotP1 {
+  position: absolute;
+  display: inline;
+  width: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: solid 2px black;
+  z-index: 2;
+  display: inline;
+  background-color: yellow;
+}
+
+.dotP2 {
+  position: absolute;
+  display: inline;
+  width: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: solid 2px black;
+  z-index: 2;
+  display: inline;
+  background-color: Red;
+}
+
+p {
+  position: absolute;
+  display: inline;
+  font-size: 20px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: center;
+  color: White;
+}
+
+
+

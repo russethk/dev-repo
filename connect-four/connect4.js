@@ -1,3 +1,4 @@
+
 /** Connect Four
  *
  * Player 1 and 2 alternate turns. On each turn, a piece is dropped down a
@@ -14,7 +15,6 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
-
 function makeBoard() {
     for (let y = 0; y < HEIGHT; y++) {
       board.push(Array.from({length: WIDTH }));
@@ -114,6 +114,13 @@ function handleClick(evt) {
   currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
+function gameReset() {
+  const resetButton = document.createElement("button");
+  resetButton.innerText = "RESET";
+  scorecard.append(resetButton);
+  resetButton.addEventListener('click',()=>{ location.reload()})
+}
+
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
 
 function checkForWin() {
@@ -147,6 +154,6 @@ function checkForWin() {
     }
   }
 } 
-
 makeBoard();
 makeHtmlBoard();
+gameReset();
