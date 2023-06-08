@@ -119,6 +119,13 @@ function gameReset() {
   resetButton.innerText = "RESET";
   scorecard.append(resetButton);
   resetButton.addEventListener('click',()=>{ location.reload()})
+
+  const p1icon = document.createElement('div');
+  const p2icon = document.createElement('div');
+  p1icon.classList.add('p1icon');
+  p2icon.classList.add('p2icon');
+  scorecard.append(p1icon);
+  scorecard.append(p2icon);
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */

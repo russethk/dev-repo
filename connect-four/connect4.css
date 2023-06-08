@@ -40,7 +40,7 @@ margin-top: 10px;
   z-index: 2;
   margin-left:auto;
   margin-right: auto;
-  display: block;
+  display: inline-block;
 }
 
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
@@ -51,6 +51,33 @@ margin-top: 10px;
 
 .piece.p2 {
   background-color: red;
+}
+
+.p1icon {
+  width: 30px;
+  height: 30px;
+  background-color: yellow;
+  border-radius: 50%;
+  border: solid 2px black;
+  z-index: 2;
+  margin-left:auto;
+  margin-right: auto;
+  display: inline-flex;
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+
+.p2icon {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 50%;
+  border: solid 2px black;
+  z-index: 2;
+  margin-left:auto;
+  margin-right: auto;
+  display: inline-flex;
+  margin-bottom: 10px;
 }
 
 /* column-top is table row of clickable areas for each column */
@@ -101,33 +128,10 @@ button:hover {
   border-radius:8px;
 }
 
-.dotP1 {
-  position: absolute;
-  display: inline;
-  width: 30px;
-  width: 30px;
-  border-radius: 50%;
-  border: solid 2px black;
-  z-index: 2;
-  display: inline;
-  background-color: yellow;
-}
-
-.dotP2 {
-  position: absolute;
-  display: inline;
-  width: 30px;
-  width: 30px;
-  border-radius: 50%;
-  border: solid 2px black;
-  z-index: 2;
-  display: inline;
-  background-color: Red;
-}
-
 p {
   position: absolute;
   display: inline;
+  text-align: right;
   font-size: 20px;
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   text-align: center;
