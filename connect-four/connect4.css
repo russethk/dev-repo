@@ -1,10 +1,10 @@
 #container {
 width: 37%;
 background-color: blue;
-padding: 10px;
 z-index: 1;
 margin:0 auto;
 margin-top: 10px;
+padding: 10px;
 }
 
 .game {
@@ -14,7 +14,6 @@ margin-top: 10px;
   margin:0 auto;
   z-index: 2;
 }
-
 
 /* game board table */
 
@@ -32,15 +31,12 @@ margin-top: 10px;
 /* pieces are div within game table cells: draw as colored circles */
 
 .piece {
-  margin: 5px;
+  margin: 2px;
   width: 80%;
   height: 80%;
   border-radius: 50%;
   border: solid 2px black;
   z-index: 2;
-  margin-left:auto;
-  margin-right: auto;
-  display: inline-block;
 }
 
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
@@ -60,11 +56,9 @@ margin-top: 10px;
   border-radius: 50%;
   border: solid 2px black;
   z-index: 2;
-  margin-left:auto;
-  margin-right: auto;
-  display: inline-flex;
-  vertical-align: top;
-  margin-bottom: 10px;
+  margin-left: 20px;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
 .p2icon {
@@ -74,10 +68,9 @@ margin-top: 10px;
   border-radius: 50%;
   border: solid 2px black;
   z-index: 2;
-  margin-left:auto;
-  margin-right: auto;
-  display: inline-flex;
-  margin-bottom: 10px;
+  margin-left: 85px;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
 /* column-top is table row of clickable areas for each column */
@@ -94,7 +87,7 @@ margin-top: 10px;
 #scorecard {
   display: block;
   border: 2px solid black;
-  height: 25px;
+  height: 40px;
   width: 37%;
   padding: 8px;
   margin: 0 auto;
@@ -111,7 +104,7 @@ margin-top: 10px;
 button {
   display: inline;
   vertical-align: top;
-  margin-bottom: 10px;
+  margin-top: 10px;
   background-color:#0a0a23;
   color: #fff;
   border: 2px solid white;
@@ -121,7 +114,7 @@ button {
 button:hover {
   display: inline;
   vertical-align: top;
-  margin-bottom: 10px;
+  margin-top: 10px;
   background-color: gray;
   color: #fff;
   border: 2px solid white;
@@ -129,14 +122,34 @@ button:hover {
 }
 
 p {
-  position: absolute;
   display: inline;
-  text-align: right;
+  position: absolute;
+  margin: 10px;
   font-size: 20px;
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  text-align: center;
   color: White;
 }
+
+p.p1text {
+  position: absolute;
+  display: inline-flex;
+  margin: 10px;
+  vertical-align: top;
+  font-size: 20px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: White;
+}
+
+p.p2text {
+  position: absolute;
+  display: inline-flex;
+  margin: 10px;
+  vertical-align: top;
+  font-size: 20px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: White;
+}
+
 
 
 
