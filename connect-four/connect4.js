@@ -106,11 +106,10 @@ function handleClick(evt) {
     return endGame(`Player ${currPlayer} won!`);
   }
 
-  // check for tie
+  // check that board is filled and is tie game. 
   if (board.every(row => row.every(cell => cell))) {
     return endGame('Tie!');
   }
-  
   
 
   // switch players
@@ -123,8 +122,7 @@ function gameReset() {
   scorecard.append(resetButton);
   resetButton.addEventListener('click',()=>{ location.reload()})
 
-  const p1icon = document.createElement('div');
-  const p2icon = document.createElement('div');
+  const icon = document.createElement('div');
   const p1text = document.createElement('p');
   const p2text = document.createElement('p');
   
@@ -133,13 +131,10 @@ function gameReset() {
   p1text.classList.add('p1text');
   p1text.classList.add('p2text');
 
-  p1text.innerText = "Player 1";
-  p2text.innerText = "Player 2";
-  
   scorecard.append(p1icon);
-  scorecard.append(p1text);
+  p1text.innerText = "Player 1";
   scorecard.append(p2icon);
-  scorecard.append(p2text);
+  p2text.innerText = "Player 2";
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
