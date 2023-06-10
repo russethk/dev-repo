@@ -107,6 +107,8 @@ function handleClick(evt) {
   }
 
   // check that board is filled and is tie game. 
+  // use every() method to check that every row in the board returns a value (i.e. is not null)
+  // and every cell in every row returns a value (i.e. is not null)
   if (board.every(row => row.every(cell => cell))) {
     return endGame('Tie!');
   }
