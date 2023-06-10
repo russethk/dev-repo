@@ -10,6 +10,7 @@ padding: 10px;
 .game {
   display: block;
   height: 100%;
+  width: 100%;
   border: solid 3px black;
   margin:0 auto;
   z-index: 2;
