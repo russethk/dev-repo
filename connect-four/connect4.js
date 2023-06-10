@@ -122,7 +122,8 @@ function gameReset() {
   scorecard.append(resetButton);
   resetButton.addEventListener('click',()=>{ location.reload()})
 
-  const icon = document.createElement('div');
+  const p1icon = document.createElement('div');
+  const p2icon = document.createElement('div');
   const p1text = document.createElement('p');
   const p2text = document.createElement('p');
   
@@ -130,11 +131,13 @@ function gameReset() {
   p2icon.classList.add('p2icon');
   p1text.classList.add('p1text');
   p1text.classList.add('p2text');
+  p1text.innerText = "Player 1";
+  p2text.innerText = "Player 2";
 
   scorecard.append(p1icon);
-  p1text.innerText = "Player 1";
+  scorecard.append(p1text);
   scorecard.append(p2icon);
-  p2text.innerText = "Player 2";
+  scorecard.append(p2text);
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
