@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: whitesmoke;
 }
 
 #overlay {
@@ -7,8 +7,9 @@ body {
   display: flex;
   margin: 0 auto;
   padding: 10px;
+  margin-top: -5px;
   margin-left: -40px;
-  width: 45%;
+  width: 42%;
   border: solid 2px grey;
   border-radius: 8px;
   text-align: center;
@@ -55,10 +56,11 @@ button:hover {
 }
 
 #gameContainer {
-  width: 40%;
+  width: 38%;
   z-index: 1;
   margin: 0 auto;
   background-color: blue;
+  padding: 5px;
   }
 
 .game {
@@ -77,8 +79,8 @@ button:hover {
 
 #board td {
   display: relative;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border: solid 4px black;
   background-color: white;
   border-radius: 50%;
