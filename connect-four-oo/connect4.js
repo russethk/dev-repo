@@ -169,7 +169,7 @@ document.getElementById('start-game').addEventListener('click', () => {
 
 function startScreenOn() {
   document.getElementById("overlay").style.display = "block";
-  document.getElementById('overlay').innerHTML = "<p>How to Play:</p><p>Players alternate turns. On each turn, players drop a piece down a column.</p><p>The game is won when a player gets four-in-a-row.</p><p>The game is a tie when the board is filled and no one wins.</p> <button>Close</button>";
+  document.getElementById('overlay').innerHTML = "<p>HOW TO PLAY:</p><p>Players alternate turns. On each turn, players drop a piece down a column.</p><p>The game is won when a player gets four-in-a-row.</p><p>The game is a tie when the board is filled and no one wins.</p> <button>CLOSE</button>";
 }
 function startScreenOff() {
   document.getElementById("overlay").style.display = "none";
