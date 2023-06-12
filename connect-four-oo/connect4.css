@@ -2,14 +2,26 @@ body {
   background-color: black;
 }
 
-#container {
-  background-color: blue;
-  width: 40%;
-  z-index: 1;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 10px;
+#overlay {
+  position:absolute;
+  display: flex;
+  margin: 0 auto;
+  margin-left: -40px;
+  width: 45%;
+  border: solid 2px grey;
+  border-radius: 8px;
+  text-align: center;
+  color:rgb(189, 236, 246);
+  font-size: 3rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: black; 
+  z-index: 50; 
+  cursor: pointer; 
+}
+
+#overlay:hover {
+  font-size: 4rem;
+  transition: all 2000ms;
 }
 
 #inputContainer {
@@ -45,6 +57,13 @@ button:hover {
   background-color: gray;
 }
 
+#gameContainer {
+  width: 40%;
+  z-index: 1;
+  margin: 0 auto;
+  background-color: blue;
+  }
+
 .game {
   height: 100%;
   align-content: center;
@@ -52,6 +71,7 @@ button:hover {
   margin: 0 auto;
   margin-left: auto;
   margin-right: auto;
+  padding: 10px;
   z-index: 2;
 }
 
@@ -65,16 +85,16 @@ button:hover {
   border: solid 4px black;
   background-color: white;
   border-radius: 50%;
-  padding: 6px;
-  margin: 6px;
+  padding: 10px;
+  margin: 10px;
 }
 
 /* pieces are div within game table cells: draw as colored circles */
 
 .piece {
   margin: 0 auto;
-  width: 95%;
-  height: 95%;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 
@@ -102,6 +122,5 @@ h1 {
   background-color: purple;
   width: 45%;
   border-radius: 18px;
-  
 }
 

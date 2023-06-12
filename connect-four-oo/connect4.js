@@ -5,6 +5,15 @@
  * board fills (tie)
  */
 
+function startScreenOn() {
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById('overlay').innerText = "Click to Start";
+}
+function startScreenOff() {
+  document.getElementById("overlay").style.display = "none";
+}
+overlay.addEventListener("click", startScreenOff);
+
 class Game {
   constructor(p1, p2, height = 6, width = 7) {
     this.players = [p1, p2];
@@ -16,7 +25,6 @@ class Game {
     this.gameOver = false;
   }
 
-  
   makeBoard() { // create in-JS board structure:}
     this.board = [];
     for (let y = 0; y < this.height; y++) {
@@ -167,3 +175,6 @@ document.getElementById('start-game').addEventListener('click', () => {
   let p2 = new Player(document.getElementById('p2-color').value);
   new Game(p1, p2);
 });
+
+startScreenOn();
+
