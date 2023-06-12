@@ -6,23 +6,20 @@ body {
   position:absolute;
   display: flex;
   margin: 0 auto;
+  padding: 10px;
   margin-left: -40px;
   width: 45%;
   border: solid 2px grey;
   border-radius: 8px;
   text-align: center;
   color:rgb(189, 236, 246);
-  font-size: 3rem;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1rem;
+  font-family: "Righteous", sans-serif;
   background-color: black; 
   z-index: 50; 
   cursor: pointer; 
 }
 
-#overlay:hover {
-  font-size: 4rem;
-  transition: all 2000ms;
-}
 
 #inputContainer {
   width: 38%;

@@ -7,7 +7,7 @@
 
 function startScreenOn() {
   document.getElementById("overlay").style.display = "block";
-  document.getElementById('overlay').innerText = "Click to Start";
+  document.getElementById('overlay').innerText = "Players choose your color above. Player 1 and 2 alternate turns. On each turn, dropped a piece down a column. The game is over when a player gets four-in-a-row or until the board fills (tie)";
 }
 function startScreenOff() {
   document.getElementById("overlay").style.display = "none";
