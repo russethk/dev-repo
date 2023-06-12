@@ -71,6 +71,7 @@ button:hover {
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
+  margin: 10px;
   z-index: 2;
 }
 
@@ -85,7 +86,6 @@ button:hover {
   background-color: white;
   border-radius: 50%;
   padding: 10px;
-  margin: 10px;
 }
 
 /* pieces are div within game table cells: draw as colored circles */
