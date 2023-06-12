@@ -5,15 +5,6 @@
  * board fills (tie)
  */
 
-function startScreenOn() {
-  document.getElementById("overlay").style.display = "block";
-  document.getElementById('overlay').innerHTML = "<p>How to Play:</p><p>Players alternate turns. On each turn, players drop a piece down a column.</p><p>The game is won when a player gets four-in-a-row.</p><p>The game is a tie when the board is filled and no one wins.</p> <button>Close</button>";
-}
-function startScreenOff() {
-  document.getElementById("overlay").style.display = "none";
-}
-overlay.addEventListener("click", startScreenOff);
-
 class Game {
   constructor(p1, p2, height = 6, width = 7) {
     this.players = [p1, p2];
@@ -175,6 +166,15 @@ document.getElementById('start-game').addEventListener('click', () => {
   let p2 = new Player(document.getElementById('p2-color').value);
   new Game(p1, p2);
 });
+
+function startScreenOn() {
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById('overlay').innerHTML = "<p>How to Play:</p><p>Players alternate turns. On each turn, players drop a piece down a column.</p><p>The game is won when a player gets four-in-a-row.</p><p>The game is a tie when the board is filled and no one wins.</p> <button>Close</button>";
+}
+function startScreenOff() {
+  document.getElementById("overlay").style.display = "none";
+}
+overlay.addEventListener("click", startScreenOff);
 
 startScreenOn();
 
