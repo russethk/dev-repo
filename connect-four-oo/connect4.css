@@ -1,34 +1,98 @@
+#container {
+  background-color: blue;
+  width: 37%;
+  z-index: 1;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+}
+
+#inputContainer {
+  width: 37%;
+  z-index: 1;
+  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+}
+
+input {
+  width: 30%;
+  height: 30px;
+  border-radius: 6px;
+  border: solid 2px black;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+button {
+  display: inline;
+  height: 40px;
+  vertical-align: top;
+  background-color:#0a0a23;
+  color: #fff;
+  border: 2px solid white;
+  margin-left: 5px;
+  border-radius:6px;
+}
+
+button:hover {
+  background-color: gray;
+}
+
+.game {
+  height: 100%;
+  align-content: center;
+  border: solid 3px black;
+  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 2;
+}
+
+
 /* game board table */
 
 #board td {
+  display: relative;
   width: 50px;
   height: 50px;
-  border: solid 1px #666;
+  border: solid 4px black;
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
 }
 
 /* pieces are div within game table cells: draw as colored circles */
 
 .piece {
-  margin: 5px;
-  width: 80%;
-  height: 80%;
+  margin: 0 auto;
+  width: 90%;
+  height: 90%;
   border-radius: 50%;
 }
 
-.piece.p1 {
-  background-color: red;
-}
-
-.piece.p2 {
-  background-color: blue;
-}
 
 /* column-top is table row of clickable areas for each column */
 
 #column-top td {
-  border: dashed 1px lightgray;
+  border: dashed 2px black;
 }
 
 #column-top td:hover {
   background-color: gold;
+  transition: color 0.3s ease-in, background-color 0.3s ease-in;
 }
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0;
+  font-size: 6rem;
+  font-family: Righteous;
+  color: purple;
+  text-shadow: 2px 2px 2px #666;
+  background-image: linear-gradient(lightgrey, white);
+}
+
