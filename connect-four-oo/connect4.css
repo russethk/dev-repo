@@ -99,7 +99,7 @@ button:hover {
 }
 
 @keyframes drop {
-  0% { transform: translateY(-800px); }
+  0% { transform: translateY(-400px); }
   100% { transform: translateY(0px); }
 }
 
