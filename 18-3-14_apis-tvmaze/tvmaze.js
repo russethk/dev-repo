@@ -1,6 +1,6 @@
 "use strict";
 
-const MISSING_IMAGE_URL = "https://tinyurl.com/missing-tv";
+const MISSING_IMAGE_URL = "https://tinyurl.com/tv-missing";
 const TVMAZE_API_URL = "https://api.tvmaze.com/";
 
 const $showsList = $("#showsList");
@@ -35,7 +35,7 @@ async function getShowsByTerm(term) {
       id: show.id,
       name: show.name,
       summary: show.summary,
-      image: show.image ? show.image.large : MISSING_IMAGE_URL
+      image: show.image ? show.image.medium : MISSING_IMAGE_URL
     };
   });
 }
