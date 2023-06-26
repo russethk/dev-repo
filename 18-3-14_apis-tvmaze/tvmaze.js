@@ -53,9 +53,7 @@ function populateShows(shows) {
            <div class="media-body">
              <h5 class="text-primary">${show.name}</h5>
              <div><small>${show.summary}</small></div>
-             <button class="btn btn-outline-light btn-sm Show-getEpisodes">
-              Episodes
-             </button>
+              <button class="btn btn-primary btn-sm Show-getEpisodes">Episodes</button>
            </div>
          </div>
        </div>
