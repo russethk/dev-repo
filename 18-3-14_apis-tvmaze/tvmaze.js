@@ -55,9 +55,9 @@ function populateShows(shows) {
          <div class="media">
            <img src="${show.image}" alt="${show.name}" class="w-25 me-3">
            <div class="media-body">
-             <h5 class="text-primary">${show.name}</h5>
-             <h6 class="text-primary">${show.premiered}</h5>
-             <h6 class="text-primary">${show.ended}</h5>
+             <h4 class="text-primary">${show.name}</h4>
+             <h6 class="text-primary">Premiered: ${show.premiered}</h6>
+             <h6 class="text-primary">Ended: ${show.ended}</h6>
              <div><small>${show.summary}</small></div>
               <button class="btn btn-primary btn-sm Show-getEpisodes">Episodes</button>
            </div>
