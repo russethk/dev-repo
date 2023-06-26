@@ -1,13 +1,12 @@
 "use strict";
 
 const MISSING_IMAGE_URL = "https://tinyurl.com/tv-missing";
-const TVMAZE_API_URL = "https://api.tvmaze.com/";
+const TVMAZE_API_URL = "https://api.tvmaze.com";
 
 const $showsList = $("#showsList");
 const $episodesList = $("#episodesList");
 const $episodesArea = $("#episodesArea");
 const $searchForm = $("#searchForm");
-
 
 /** Given a search term, search for tv shows that match that query.
  *
@@ -122,7 +121,7 @@ function populateEpisodes(episodes) {
 
 /** Handle click of episodes list: show details */
 async function getEpisodesAndDisplay(evt) {
-  const showId = $(evt.target).closest(".Show").data("show-id");
+  const showId = $(evt.target).closest("[data-show-id]").data("show-id");
   const episodes = await getEpisodesOfShow(showId);
   populateEpisodes(episodes);
 }
