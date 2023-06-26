@@ -8,8 +8,6 @@ const $episodesList = $("#episodesList");
 const $episodesArea = $("#episodesArea");
 const $searchForm = $("#searchForm");
 
-
-
 /** Given a search term, search for tv shows that match that query.
  *
  *  Returns (promise) array of show objects: [show, show, ...].
@@ -108,19 +106,16 @@ function populateEpisodes(episodes) {
   $episodesList.empty();
 
   for (let episode of episodes) {
-    const $episodesTable = $(
-      ` <tr class="d-flex">
-          <td class="col-1">${episode.season}</td>
-          <td class="col-4">${episode.name}</td>
-          <td class="col-1">${episode.number}</td>
-        </tr>
-      `
-    );
-    $episodesList.append($episodesTable);
+    const $item = $(
+      `<li>
+          ${episode.name}
+          (season ${episode.season}, episode ${episode.number})
+        </li>
+      `);
+    $episodesList.append($item);
   }
   $episodesArea.show();
 }
-
 
 /** Handle click of episodes list: show details */
 async function getEpisodesAndDisplay(evt) {
