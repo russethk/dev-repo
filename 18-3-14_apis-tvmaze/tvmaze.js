@@ -35,6 +35,8 @@ async function getShowsByTerm(term) {
     return {
       id: show.id,
       name: show.name,
+      premiered: show.premiered,
+      ended: show.ended,
       summary: show.summary,
       image: show.image ? show.image.medium : MISSING_IMAGE_URL
     };
@@ -54,6 +56,8 @@ function populateShows(shows) {
            <img src="${show.image}" alt="${show.name}" class="w-25 me-3">
            <div class="media-body">
              <h5 class="text-primary">${show.name}</h5>
+             <h6 class="text-primary">${show.premiered}</h5>
+             <h6 class="text-primary">${show.ended}</h5>
              <div><small>${show.summary}</small></div>
               <button class="btn btn-primary btn-sm Show-getEpisodes">Episodes</button>
            </div>
