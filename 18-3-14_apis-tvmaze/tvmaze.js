@@ -114,8 +114,8 @@ function populateEpisodes(episodes) {
   for (let episode of episodes) {
     const $episodesTable = $(
       ` <tr class="d-flex">
-          <td class="col-1">${episode.season}</td>
           <td class="col-4">${episode.name}</td>
+          <td class="col-1">${episode.season}</td>
           <td class="col-1">${episode.number}</td>
         </tr>
       `
