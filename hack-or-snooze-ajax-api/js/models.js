@@ -24,8 +24,7 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    // UNIMPLEMENTED: complete this function!
-    return new URL(this.url).hostname;
+    return new URL(this.url).host;
   }
 }
 
@@ -53,9 +52,9 @@ class StoryList {
     //  class directly. Why doesn't it make sense for getStories to be an
     //  instance method?
 
-    // ANSWER: A static method (or static function) is a method defined as a member of an object 
-    // but is accessible directly from an API object's constructor, rather than from an object instance created via the constructor.
-    // In a Web API, a static method is one which is defined by an interface but can be called 
+    // ANSWER: Because A static method (or static function) is an object method but is accessible 
+    // directly from an API object's constructor, rather than from an object instance 
+    // In a Web API, a static method is is defined by the interface and can be called 
     // without instantiating an object of that type first.
 
     // query the /stories endpoint (no auth required)
@@ -95,6 +94,26 @@ class StoryList {
     user.ownStories.unshift(story);
 
     return story;
+  }
+
+  // Delete story from API and remove from the story lists.
+  //  - user: the current User instance
+  //  - storyId: the ID of the story you want to remove
+
+  async removeStory(user, storyId) {
+    const token = user.loginToken;
+    const response = await axios({
+      method: "DELETE",
+      url: `${BASE_URL}/stories/${storyId}`,
+      data: { token: user.loginToken },
+    });
+
+    // remove the story from the list
+    this.stories = this.stories.filter(s => s.storyId !== storyId);
+    // remove the story from the user's list
+    user.ownStories = user.ownStories.filter(s => s.storyId !== storyId);
+    // remove the story from the user's favorites list
+    user.favorites = user.favorites.filter(s => s.storyId !== storyId);
   }
 
 /******************************************************************************
