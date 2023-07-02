@@ -24,7 +24,7 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    return new URL(this.url).host;
+    return new URL(this.url).hostname;
   }
 }
 
@@ -102,19 +102,20 @@ class StoryList {
 
   async removeStory(user, storyId) {
     const token = user.loginToken;
-    const response = await axios({
+    await axios({
       method: "DELETE",
       url: `${BASE_URL}/stories/${storyId}`,
-      data: { token: user.loginToken },
+      data: { token: user.loginToken }
     });
 
     // remove the story from the list
-    this.stories = this.stories.filter(s => s.storyId !== storyId);
+    this.stories = this.stories.filter(story => story.storyId !== storyId);
     // remove the story from the user's list
     user.ownStories = user.ownStories.filter(s => s.storyId !== storyId);
     // remove the story from the user's favorites list
     user.favorites = user.favorites.filter(s => s.storyId !== storyId);
   }
+}
 
 /******************************************************************************
  * User: a user in the system (only used to represent the current user)
