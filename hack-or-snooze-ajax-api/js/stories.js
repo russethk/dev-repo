@@ -19,7 +19,7 @@ async function getAndShowStoriesOnStart() {
  */
 
 function generateStoryMarkup(story, showDeleteBtn = false) {
-  // console.debug("generateStoryMarkup", story);
+  console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
   const showStar = Boolean(currentUser);
@@ -84,32 +84,30 @@ async function deleteStory(evt) {
 
   await storyList.removeStory(currentUser, storyId);
 
-  // re-generate story list
-  await putUserStoriesOnPage();
+  // REVIEW await re-generate story list
+  putUserStoriesOnPage();
 }
 $ownStories.on("click", ".trash-can", deleteStory);
 
 // Handle submitting the new story form
 
 async function submitNewStory(evt) {
-  console.degbug("submitNewStory");
+  console.debug("submitNewStory");
   evt.preventDefault();
 
-  // grab the author, title, and url
+  // grab all info from form
   const title = $("#create-title").val();
   const url = $("#create-url").val();
   const author = $("#create-author").val();
-  const username = currentUser.username;
-  const storyData = { title, url, author, username };
+  const username = currentUser.username
+  const storyData = {title, url, author, username };
 
-  // submit the story calling the addStory method on the storyList instance
   const story = await storyList.addStory(currentUser, storyData);
 
-  // generate markup for the new story
   const $story = generateStoryMarkup(story);
-
-  // append the new story to the DOM and show it
   $allStoriesList.prepend($story);
+
+  // hide the form and reset it
   $submitForm.slideUp("slow");
   $submitForm.trigger("reset");
 }

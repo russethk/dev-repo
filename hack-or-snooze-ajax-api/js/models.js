@@ -86,11 +86,8 @@ class StoryList {
       data: { token, story: { title, author, url } },
     });
 
-     // create a new Story instance from the API response
     const story = new Story(response.data.story);
-     // add the story to the beginning of the list
     this.stories.unshift(story);
-    // add the story to the beginning of the user's list
     user.ownStories.unshift(story);
 
     return story;
