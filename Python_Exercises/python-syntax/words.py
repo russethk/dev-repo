@@ -11,23 +11,9 @@ def print_upper_words(words):
 
     for word in words:
         print(word.upper())
-    
-        
-print_upper_words(["hello", "hey", "goodbye", "yo", "yes"])
 
-def print_upper_words2(words):
-    """Print each word on seperate line, uppercased.
 
-        >>> print_upper_words(["hello", "hey", "goodbye", "yo", "yes"]
-        HELLO
-        HEY
-        GOODBYE
-        YO
-        YES
-    """
 
-    for word in words:
-        print(word.upper())
     
         
 def print_upper_words2(words):
@@ -47,6 +33,9 @@ def print_upper_words2(words):
         
 
 print_upper_words2(["Eagle", "frog", "elephant", "giraffe", "Excellent"])
+
+
+
 
 
 def print_upper_words3(words, must_start_with):
