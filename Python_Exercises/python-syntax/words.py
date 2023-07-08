@@ -40,7 +40,7 @@ print_upper_words2(["Eagle", "frog", "elephant", "giraffe", "Excellent"])
 
 def print_upper_words3(words, must_start_with):
 
-    """Print only the words that start with e, each on a separate line, in uppercase.
+    """Print each word on a separate line, in uppercase, if it starts with one of given letters
 
         >>> print_upper_words3(["hello", "hey", "goodbye", "yo", "yes"],
                    must_start_with={"h", "y"})
