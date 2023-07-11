@@ -21,3 +21,11 @@ def two_oldest_ages(ages):
     # you may find it helpful to research the `sorted(iter)` function, which
     # can take *any* type of list-like-thing, and returns a new, sorted list
     # from it.
+
+    
+
+    newlist = set(ages)
+        # sort newlist and splice from start position -2 to the end
+    oldest = sorted(newlist)[-2:]
+        # use constructor function to make tuple from iterable
+    return tuple(oldest)
