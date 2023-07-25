@@ -1,4 +1,4 @@
-from flask import Flask, session, request, render_template, redirect, make_response, flash
+from flask import Flask, session, request, render_template, redirect, flash, make_response
 from flask_debugtoolbar import DebugToolbarExtension
 from surveys import surveys
 
@@ -64,7 +64,7 @@ def handle_question():
     survey = surveys[survey_code]
 
     if (len(responses) == len(survey.questions)):
-        # They've answered all the questions! Thank them.
+        # Send user to thank you page
         return redirect("/complete")
 
     else:
@@ -83,7 +83,7 @@ def show_question(qid):
         return redirect("/")
 
     if (len(responses) == len(survey.questions)):
-        # They've answered all the questions! Thank them.
+        # All questions answered. Send user to thank you page. 
         return redirect("/complete")
 
     if (len(responses) != qid):
