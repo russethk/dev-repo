@@ -10,12 +10,6 @@
   width: 400px;
 }
 
-#message-box {
-  margin: 0 auto;
-  width: 200px;
-  border: 1px solid black;
-}
-
 .board {
   margin: 0 auto;
   text-align: center;
