@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="static/boggle.css"> 
+  <title> Boggle Game </title>
+ 
+</head>
+<body>
+
+  <div class="container">
+    <h1>Boggle</h1>
+    <div class="high-score">
+      <h3>High score: <span>{{session['highscore']}} in {{session['nplays']}} play(s)</span></h3>
+    </div>
+    <ul>
+      <li>Find as many words as you can in 60 seconds.</li>
+      <li>Words must be in the dictionary.</li>
+      <li>Score is based on word length.</li>
+    </ul>
+  </div>
+    <section id="boggle">
+        <table class="board">
+          <tbody>
+            {% for row in board %}
+            <tr>
+              {% for cell in row %}
+              <td>{{ cell }}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        
+        <p>
+          Score: <b class="score">0</b>
+          Seconds Left: <b class="timer"></b>
+        </p>
+
+        <form method="POST" class="add-word">
+          <input name="word" class="word" autofocus placeholder="Type word and press enter">
+          <button>Enter</button> 
+        </form>
+        <a href="/"><button>NEW GAME</button></a>
+        
+        <p class="msg">
+          <!-- our JS will put messages here dynamically -->
+        </p>
+  
+        <ul class="words">
+          <!-- our JS will words here as they score -->   
+        </ul>
+  
+      </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/static/boggle.js"></script>
+    <script>
+        let game = new BoggleGame("boggle", 60);
+      </script>
+    
+</body>
+</html>

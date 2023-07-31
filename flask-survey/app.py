@@ -104,6 +104,8 @@ def say_thanks():
     survey_id = session[CURRENT_SURVEY_KEY]
     survey = surveys[survey_id]
     responses = session[RESPONSES_KEY]
+    print(responses)
+    
 
     html = render_template("completion.html", survey=survey, responses=responses)
 
