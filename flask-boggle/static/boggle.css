@@ -5,7 +5,7 @@
     font-family: monospace;
     font-weight: bold;
     font-size: 250%;
-    width: 350px;
+    width: 340px;
 }
 
 .board td {
@@ -61,24 +61,24 @@ button {
   h1 {
     display: relative ;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 3.5rem;
+    font-size: 4rem;
     color: #0a0a23;
     margin-top: 0px;
     margin-bottom: 6px;
   }
 
   h3 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 18px;
     color: white;
     margin-top: 0px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 18px;
     color: #0a0a23;
     margin-bottom: 10px;
   }
@@ -86,14 +86,14 @@ button {
   .high-score {
     display: absolute;
     margin-left: 210px;
-    margin-top: -60px;
+    margin-top: -75px;
     margin-bottom: 0;
-    width: 120px;
-    font-family: Arial, Helvetica, sans-serif;
+    width: 110px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 16px;
     color: #fff;
     background-color: purple;
     border: solid 2px black;
-    padding: 4px;
+    padding: 5px;
     border-radius: 10px;
   }

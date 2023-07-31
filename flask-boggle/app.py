@@ -10,6 +10,7 @@ app.debug = True
 boggle_game = Boggle()
 
 toolbar = DebugToolbarExtension(app)
+
 @app.route("/")
 def homepage():
     """Show board."""
