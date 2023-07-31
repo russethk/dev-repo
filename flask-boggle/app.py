@@ -1,5 +1,5 @@
 
-from flask import Flask, request, render_template, jsonify, session
+from flask import Flask, request, render_template, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from boggle import Boggle
 
@@ -45,6 +45,21 @@ def post_score():
     session['highscore'] = max(score, highscore)
 
     return jsonify(brokeRecord=score > highscore)
+
+@app.route(("/restart"), methods=["POST"])
+def restart():
+    """Restart the game."""
+
+    session['board'] = boggle_game.make_board()
+
+    return jsonify({'result': 'ok'})
+
+
+
+
+
+
+
 
 
 
