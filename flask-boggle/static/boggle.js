@@ -27,6 +27,7 @@ class BoggleGame {
 
   }
 
+  
   /* show a status message */
   showMessage(msg, cls) {
     $(".msg", this.board)
@@ -94,4 +95,18 @@ class BoggleGame {
       this.showMessage(`Final score: ${this.score}`, "ok");
     }
   }
+
+  async restartGame() {
+    const resp = await axios.get("/restart-game");
+    this.score = 0;
+    this.words = new Set();
+    this.secs = 60;
+    this.showScore();
+    this.showTimer();
+    $(".words", this.board).empty();
+    $(".add-word", this.board).show();
+    this.timer = setInterval(this.tick.bind(this), 1000);
+  }
+
+
 }

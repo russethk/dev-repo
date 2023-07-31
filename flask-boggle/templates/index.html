@@ -12,7 +12,7 @@
 <body>
 
   <nav class="navbar">
-    <a href="#">BOGGLE</a><a href="/">New Game</a>
+    <a href="#">BOGGLE</a><a href="/">Restart</a>
   </nav>
 
 <div class="container">
@@ -32,34 +32,32 @@
             {% endfor %}
           </tbody>
         </table>
-        
-        <p>
-          Score: <b class="score">0</b>
-          Seconds Left: <b class="timer"></b>
-        </p>
+
+        <div class="scoreboard">
+          <p>Score: <b class="score">0</b></p>
+          <p>Seconds Left: <b class="timer"></b></p>
+        </div>
 
         <div class="high-score">
-          <h4>High score: <span>{{session['highscore']}}  in {{session['nplays']}} play(s)</span></h4>
+          <p>High score: <span>{{session['highscore']}} in {{session['nplays']}} play(s)</span></p>
         </div>
 
         <form method="POST" class="add-word">
           <input name="word" class="word" autofocus placeholder="Type word and press enter">
           <button>Enter</button> 
         </form>
-        
-        <p class="msg">
-          <!-- our JS will put messages here dynamically -->
-        </p>
-  
-        <ul class="words">
-          <!-- our JS will words here as they score -->   
-        </ul>
-  
-      </section>
- </div>
 
- <div class="footer">
-  <h4>&copy;2023 - karen russeth</h4>
+    <p class="msg">
+        <!-- our JS will put messages here dynamically -->
+     </p>
+    <ul class="words">
+        <!-- our JS will words here as they score -->   
+    </ul> 
+  </section> 
+</div>
+
+ <footer class="footer">
+  <h3>&copy; 2023 russeth designs</h3>
 </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
