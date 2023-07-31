@@ -1,11 +1,26 @@
+.container {
+    margin: 0 auto;
+    width: 100%;
+    background-color:aliceblue;
+}
+
+#boggle {
+  margin: 0 auto;
+  text-align: center;
+  width: 400px;
+}
 
 .board {
-    border: solid 2px black;
-    padding: 5px;
-    font-family: monospace;
-    font-weight: bold;
-    font-size: 250%;
-    width: 340px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  border: solid 2px black;
+  padding: 5px;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 250%;
+  background-color: #fff;
+  width: 320px;
 }
 
 .board td {
@@ -15,20 +30,24 @@
 }
 
 .container {
+    margin: 0 auto;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 10px;
-    display: inline-block;
-  }
+    display: inline;
+    width: 400px;
+}
 
 input {
   display: inline;
-  width: 200px;
+  width: 240px;
   height: 25px;
 }
 
 .msg {
-    padding: 1em;
-    max-width: 300px;
+  margin: 0 auto;
+  text-align:left;
+  max-width: 400px;
+  padding: 1em;
 }
 
 .msg.ok {
@@ -60,40 +79,75 @@ button {
 
   h1 {
     display: relative ;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: "Righteous", cursive;
     font-size: 4rem;
     color: #0a0a23;
     margin-top: 0px;
     margin-bottom: 6px;
   }
 
-  h3 {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-weight: bold;
-    font-size: 18px;
+  h4 {
+    font-family: "Righteous", cursive;
+    font-size: 16px;
     color: white;
     margin-top: 0px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 
   p {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     color: #0a0a23;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    max-width: 400px;
   }
 
-  .high-score {
-    display: absolute;
-    margin-left: 210px;
-    margin-top: -75px;
-    margin-bottom: 0;
-    width: 110px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  li {
+    font-family: Arial, Helvetica, sans-serif
     font-size: 16px;
-    color: #fff;
+    color: black;
+    text-align: left;
+    max-width: 400px;
+  }
+
+
+  .high-score {
+    margin: 0 auto;
+    width: 220px;
     background-color: purple;
     border: solid 2px black;
-    padding: 5px;
     border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 3px;
+  }
+
+  .navbar {
+    background-color: black;
+    overflow: hidden;
+  }
+
+  .navbar a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: "Righteous", cursive;
+    font-weight: bold;
+    font-size: 17px;
+  }
+  
+  .navbar a:hover {
+    background-color: grey;
+    color: black;
+  }
+  
+  .footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 10px;
   }

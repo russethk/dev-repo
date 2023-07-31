@@ -5,21 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="static/boggle.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
   <title> Boggle Game </title>
  
 </head>
 <body>
 
-  <div class="container">
-    <h1>Boggle</h1>
-    <div class="high-score">
-      <h3>High score: <span>{{session['highscore']}}  in {{session['nplays']}} play(s)</span></h3>
-    </div>
-    <div>
-      <p>Find as many words as you can in 60 seconds.</p>
-    </div>
-  </div>
+  <nav class="navbar">
+    <a href="#">BOGGLE</a><a href="/">New Game</a>
+  </nav>
+
+<div class="container">
     <section id="boggle">
+      <h1>Boggle</h1>
+      <div>
+        <p>Find as many words as you can in 60 seconds.</p>
+      </div>
         <table class="board">
           <tbody>
             {% for row in board %}
@@ -37,11 +38,14 @@
           Seconds Left: <b class="timer"></b>
         </p>
 
+        <div class="high-score">
+          <h4>High score: <span>{{session['highscore']}}  in {{session['nplays']}} play(s)</span></h4>
+        </div>
+
         <form method="POST" class="add-word">
           <input name="word" class="word" autofocus placeholder="Type word and press enter">
           <button>Enter</button> 
         </form>
-        <a href="/"><button>NEW GAME</button></a>
         
         <p class="msg">
           <!-- our JS will put messages here dynamically -->
@@ -52,13 +56,18 @@
         </ul>
   
       </section>
+ </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/static/boggle.js"></script>
-    <script>
-        let game = new BoggleGame("boggle", 60);
-      </script>
+ <div class="footer">
+  <h4>&copy;2023 - karen russeth</h4>
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="static/boggle.js"></script>
+  <script>
+      let game = new BoggleGame("boggle", 60);
+    </script>
     
 </body>
 </html>
