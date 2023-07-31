@@ -26,7 +26,6 @@ class BoggleGame {
     $(".score", this.board).text(this.score);
 
   }
-
   
   /* show a status message */
   showMessage(msg, cls) {
@@ -90,23 +89,10 @@ class BoggleGame {
     $(".add-word", this.board).hide();
     const resp = await axios.post("/post-score", { score: this.score });
     if (resp.data.brokeRecord) {
-      this.showMessage(`New record: ${this.score}`, "ok");
+      this.showMessage(`GAME OVER! New record: ${this.score}`, "ok");
     } else {
-      this.showMessage(`Final score: ${this.score}`, "ok");
+      this.showMessage(`GAME OVER! Final score: ${this.score}`, "ok");
     }
   }
-
-  async restartGame() {
-    const resp = await axios.get("/restart-game");
-    this.score = 0;
-    this.words = new Set();
-    this.secs = 60;
-    this.showScore();
-    this.showTimer();
-    $(".words", this.board).empty();
-    $(".add-word", this.board).show();
-    this.timer = setInterval(this.tick.bind(this), 1000);
-  }
-
 
 }
