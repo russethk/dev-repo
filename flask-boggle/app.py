@@ -22,9 +22,7 @@ def homepage():
     highscore = session.get("highscore", 0)
     nplays = session.get("nplays", 0)
 
-    return render_template("index.html", board=board,
-                           highscore=highscore,
-                           nplays=nplays)
+    return render_template("index.html", board=board, highscore=highscore, nplays=nplays)
 
 @app.route('/check-word')
 def check_word():
@@ -49,13 +47,6 @@ def post_score():
 
     return jsonify(brokeRecord=score > highscore)
 
-@app.route(("/restart"), methods=["POST"])
-def restart():
-    """Restart the game."""
-
-    session['board'] = boggle_game.make_board()
-
-    return jsonify({'result': 'ok'})
 
 
 
