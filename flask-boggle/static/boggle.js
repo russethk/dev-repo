@@ -94,18 +94,4 @@ class BoggleGame {
       this.showMessage(`GAME OVER! Final score: ${this.score}`, "ok");
     }
   }
-
-  async restartGame() {
-    const resp = await axios.get("/restart");
-    this.score = 0;
-    this.words = new Set();
-    this.secs = 60;
-    this.showScore();
-    this.showMessage("Game restarted!", "ok");
-    this.showTimer();
-    $(".words", this.board).empty();
-    $(".add-word", this.board).show();
-    this.timer = setInterval(this.tick.bind(this), 1000);
-  }
-
 }
