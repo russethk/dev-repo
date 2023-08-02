@@ -11,10 +11,13 @@ boggle_game = Boggle()
 
 toolbar = DebugToolbarExtension(app)
 
-
-  
 @app.route("/")
 def homepage():
+    """"Show home page with game instructions and a button to start game"""
+    return render_template("index.html")
+  
+@app.route("/board")
+def gameBoard():
     """Show board."""
 
     board = boggle_game.make_board()
@@ -22,7 +25,7 @@ def homepage():
     highscore = session.get("highscore", 0)
     nplays = session.get("nplays", 0)
 
-    return render_template("index.html", board=board, highscore=highscore, nplays=nplays)
+    return render_template("board.html", board=board, highscore=highscore, nplays=nplays)
 
 @app.route('/check-word')
 def check_word():
@@ -46,18 +49,3 @@ def post_score():
     session['highscore'] = max(score, highscore)
 
     return jsonify(brokeRecord=score > highscore)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

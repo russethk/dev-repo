@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+<!-- display the board in a Jinja template -->
+<!-- You will be generating a board on the backend using a function from the boggle.py file and sending that to your Jinja template -->
+{% block content %}
+
+<div class="container">
+  <section id="boggle">
+    <div class="row">
+      <div class="col-md-6">
+          <table class="board">
+            <tbody>
+              {% for row in board %}
+              <tr>
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+              {% endfor %}
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="scoreboard">
+          <p>Score: <b class="score">0</b></p>
+          <p>Seconds Left: <b class="timer"></b></p>
+        </div>
+
+        <div class="high-score">
+          <p>High score: <span>{{session['highscore']}} in {{session['nplays']}} plays</span></p>
+        </div>
+
+        <form method="POST" class="add-word">
+          <input name="word" class="word" autofocus placeholder="Type word and press enter">
+          <button type="submit" class="btn btn-primary">Enter</button>
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <div class="message-container">
+          <h3>Messages:</h3>
+          <p class="msg">
+            <!-- our JS will put messages here dynamically -->
+          </p>
+          <h3>Words Found:</h3>
+          <ul class="words">
+            <!-- our JS will words here as they score -->   
+          </ul> 
+          
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+{% endblock %}
