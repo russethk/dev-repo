@@ -9,6 +9,14 @@ body {
     width: 100%;
 }
 
+.instructions {
+  margin: 0 auto;
+  border: solid 1px black;
+  background-color: #fff;
+  width: 100%;
+  padding: 30px;
+}
+
 .jumbotron {
     margin: 0 auto;
     width: 100%;
@@ -109,7 +117,6 @@ button {
     font-size: 16px;
     color: black;
     margin-top: 0px;
-    margin-bottom: 6px;
   }
 
   li {
@@ -126,7 +133,7 @@ button {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 180px;
+    width: 190px;
     background-color: lightgrey;
     border: solid 2px black;
     border-radius: 10px;
