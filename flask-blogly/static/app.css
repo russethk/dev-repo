@@ -10,7 +10,7 @@ body {
 	margin: 40px;
 }
 .navbar {
-	background-color: black;
+	background-color: rgb(255, 0, 255);
 	overflow: hidden;
 }
 .navbar a {
