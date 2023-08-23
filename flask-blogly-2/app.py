@@ -17,9 +17,17 @@ connect_db(app)
 
 @app.route('/')
 def root():
-    """Redirects to list of users."""
+    """Show list of users and recent posts."""
 
-    return redirect("/users")
+    users = User.query.order_by(User.last_name, User.first_name).all()
+    posts = Post.query.order_by(Post.created_at.desc()).limit(5).all()
+    return render_template('homepage.html', users=users, posts=posts)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """404 NOT FOUND page."""
+
+    return render_template('404.html'), 404
 
 
 ############ User routes  ############
@@ -120,10 +128,17 @@ def posts_show(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('posts/show.html', post=post)
 
-
-@app.route('/posts/<int:post_id>/edit', methods=["POST"])
+@app.route('/posts/<int:post_id>/edit')
 def posts_edit(post_id):
     """Show form to edit an existing post."""
+
+    post = Post.query.get_or_404(post_id)
+    return render_template('posts/edit.html', post=post)
+
+
+@app.route('/posts/<int:post_id>/edit', methods=["POST"])
+def posts_update(post_id):
+    """Handle form submission for updating an existing post."""
 
     post = Post.query.get_or_404(post_id)
     post.title = request.form['title']

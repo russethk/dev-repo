@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %} Blogly {% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-4 no-padding"> <!-- add no-padding -->
+    <div class="jumbotron text-left">
+       <div class="container">
+
+        <h3>Users</h2>
+        <ul class="list-unstyled">
+        {% for user in users %}
+          <li>
+            <a href="/users/{{ user.id }}">{{user.full_name }}</a>
+          </li>
+        {% endfor %}
+        </ul>
+        <p>
+          <a class="btn btn-sm btn-secondary" href="/users/new">Add user</a>
+        </p>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-8 no-padding"> <!-- add no-padding -->
+    <div class="jumbotron text-left">
+       <div class="container">
+          <h3>Blogly Recent Posts</h2>
+          {% for post in posts %}
+          <hr
+          <h5 class="mt-2">
+            <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+          </h5>
+          <p> {{ post.content }}</p>
+          <p><i>By {{ post.user.full_name }} on {{ post.friendly_date }}
+           </i></p>
+          {% endfor %}
+        </div>  
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
