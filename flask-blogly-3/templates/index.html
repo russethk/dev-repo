@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} Blogly {% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-3 no-padding"> <!-- add no-padding -->
+    <div class="jumbotron text-left">
+      <div class="container">
+        <h4>Tags</h4>
+        <UL class="list-unstyled">
+        {% for tag in tags %}
+          <li>
+            <a href="/tags/{{ tag.id }}"><i class="badge badge-primary">{{ tag.name }}</i></a>
+          </li>
+        {% endfor %}
+        </UL>
+        <p>
+            <a class="btn btn-sm btn-secondary" href="/tags/new">Add Tag</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9 no-padding mt-4"> <!-- add no-padding -->
+      <div class="container">
+        <h4>Blogly Recent Posts</h4>
+          {% for post in posts %}
+          <hr>
+          <h5 class="mt-4">
+            <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+          </h5>
+          <p> {{ post.content }}</p>
+          <p><small>By {{ post.user.full_name }} on {{ post.friendly_date }}</small></p>
+          
+           {% if post.tags %}
+          <p>
+            <b>Tags:</b>
+              {% for tag in post.tags %}
+                  <a href="/tags/{{ tag.id }}"><i class="badge badge-primary"> {{ tag.name }}</i></a>
+              {% endfor %}
+          </p>
+          {% endif %}
+          
+          {% endfor %}
+      </div>  
+  </div>
+</div>
+
+{% endblock %}

@@ -27,7 +27,7 @@
         <h4>Blogly Recent Posts</h4>
           {% for post in posts %}
           <hr>
-          <h5 class="mt-2">
+          <h5>
             <a href="/posts/{{ post.id }}">{{ post.title }}</a>
           </h5>
           <p> {{ post.content }}</p>
