@@ -3,6 +3,8 @@
 {% block content %}
 
 <h1>{{ pet.name }}</h1>
+<h5><b>Species:</b> {{ pet.species }}</h5>
+<h5><b>Age:</b>  {{ pet.age }}</h5>
 
 {% if pet.photo_url %}
 <img class="img-fluid" src="{{ pet.photo_url }}">
