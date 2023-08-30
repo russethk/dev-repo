@@ -1,6 +1,7 @@
 from flask import Flask, url_for, render_template, redirect, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 
+
 from models import db, connect_db, Pet
 from forms import AddPetForm, EditPetForm
 
@@ -12,6 +13,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///petadopt_db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 connect_db(app)
+
 
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 toolbar = DebugToolbarExtension(app)
@@ -41,8 +43,8 @@ def add_pet():
 
     else:
         return render_template("pet_add.html", form=form)
-
-
+    
+    
 @app.route("/<int:pet_id>", methods=["GET", "POST"])
 def edit_pet(pet_id):
     """Edit pet."""
@@ -60,6 +62,8 @@ def edit_pet(pet_id):
     else:
         # failed; re-present form for editing
         return render_template("pet_edit.html", form=form, pet=pet)
+    
+    
 @app.route("/api/pets/<int:pet_id>", methods=["GET"])
 def get_pet(pet_id):
     """Get pet by id"""

@@ -5,6 +5,7 @@ from wtforms import StringField, IntegerField, SelectField, TextAreaField, Boole
 from wtforms.validators import InputRequired, Optional, Length, NumberRange, URL
 
 
+
 class AddPetForm(FlaskForm):
     """Form for adding pets."""
 
@@ -20,5 +21,18 @@ class EditPetForm(FlaskForm):
     photo_url = StringField("Photo URL", validators=[Optional(), URL()])
     notes = TextAreaField("Comments", validators=[Optional(), Length(min=10)])
     available = BooleanField("Available?")
+
+
+    
+
+    
+
+
+
+
+
+
+
+    
 
 
