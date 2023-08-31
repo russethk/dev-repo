@@ -69,5 +69,4 @@ def get_pet(pet_id):
     """Get pet by id"""
 
     pet = Pet.query.get_or_404(pet_id)
-    info = {"name": pet.name, "age": pet.age}
-    return jsonify(info)
+    return jsonify(pet=pet.serialize())
