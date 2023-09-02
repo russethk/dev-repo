@@ -1,0 +1,15 @@
+.container {
+  margin: 0 auto;
+}
+
+#all-cupcakes {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+
+
+/* Path: static/app.js */

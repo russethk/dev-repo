@@ -1,68 +1,79 @@
-const BASE_URL = "http://localhost:5000/api";
+"use strict";
+
+const $allCupcakesListArea = $("#all-cupcakes");
+const $addCupcakeForm = $("#add-new-cupcake");
+
+/** TODO: make a global const for base url */
 
 
-/** given data about a cupcake, generate html */
+/** Display a single cupcake
+ * Takes as input a single cupcake {id, flavor, size...}
+*/
 
-function generateCupcakeHTML(cupcake) {
-  return `
-    <div data-cupcake-id=${cupcake.id}>
-      <li>
-        ${cupcake.flavor} / ${cupcake.size} / ${cupcake.rating}
-        <button class="delete-button">X</button>
-      </li>
-      <img class="Cupcake-img"
-            src="${cupcake.image}"
-            alt="(no image provided)">
-    </div>
-  `;
+function displayOneCupcake(cupcake) {
+  const $newCupcakeArea = $("<div>");
+
+  const $newCupcakeImage = $("<img>")
+    .attr({ "src": cupcake.image, "alt": `An image for cupcake ${cupcake.id}` })
+    .css("max-width", "200px");
+  const $newCupcakeFlavor = $("<p> Flavor:").text(cupcake.flavor);
+  const $newCupcakeSize = $("<p>").text(cupcake.size);
+  const $newCupcakeRating = $("<p>").text(cupcake.rating);
+
+  $newCupcakeArea.append(
+    [$newCupcakeImage, $newCupcakeFlavor, $newCupcakeSize, $newCupcakeRating]
+  );
+
+  $allCupcakesListArea.append($newCupcakeArea);
 }
 
+/** TODO: make the axios call (get cupcake data) and displaying data diff functions */
 
-/** put initial cupcakes on page. */
+/** Queries the API to get the cupcakes and adds to the list on the homepage. */
 
-async function showInitialCupcakes() {
-  const response = await axios.get(`${BASE_URL}/cupcakes`);
+async function displayAllCupcakes() {
+  const response = await axios.get("/api/cupcakes");
+  const cupcakes = response.data.cupcakes;
 
-  for (let cupcakeData of response.data.cupcakes) {
-    let newCupcake = $(generateCupcakeHTML(cupcakeData));
-    $("#cupcakes-list").append(newCupcake);
+  for (let cupcake of cupcakes) {
+    displayOneCupcake(cupcake);
   }
 }
 
 
-/** handle form for adding of new cupcakes */
+/** TODO: write a function for handling the form submit */
 
-$("#new-cupcake-form").on("submit", async function (evt) {
-  evt.preventDefault();
+/** Handles form submission to let the API know about the new cupcake and
+ * updates the list on the homepage to display it. */
 
-  let flavor = $("#form-flavor").val();
-  let rating = $("#form-rating").val();
-  let size = $("#form-size").val();
-  let image = $("#form-image").val();
+$addCupcakeForm.on("submit", async function (event) {
+  event.preventDefault();
 
-  const newCupcakeResponse = await axios.post(`${BASE_URL}/cupcakes`, {
+  const flavor = $("#flavor").val();
+  const size = $("#size").val();
+  const rating = $("#rating").val();
+  const image = $("#image").val();
+
+  const new_cupcake = {
     flavor,
-    rating,
     size,
+    rating,
     image
-  });
+  };
 
-  let newCupcake = $(generateCupcakeHTML(newCupcakeResponse.data.cupcake));
-  $("#cupcakes-list").append(newCupcake);
-  $("#new-cupcake-form").trigger("reset");
+  try {
+    const response = await axios.post("/api/cupcakes", new_cupcake);
+
+    displayOneCupcake(response.data.cupcake);
+  }
+  catch (error) {
+    if (error.reponse) {
+      /** TODO: add alert for the user -- can even add diff errors depending on status code */
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    }
+  }
 });
 
-
-/** handle clicking delete: delete cupcake */
-
-$("#cupcakes-list").on("click", ".delete-button", async function (evt) {
-  evt.preventDefault();
-  let $cupcake = $(evt.target).closest("div");
-  let cupcakeId = $cupcake.attr("data-cupcake-id");
-
-  await axios.delete(`${BASE_URL}/cupcakes/${cupcakeId}`);
-  $cupcake.remove();
-});
-
-
-$(showInitialCupcakes);
+displayAllCupcakes();
