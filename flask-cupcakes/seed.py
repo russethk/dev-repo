@@ -3,7 +3,7 @@ from models import db, Cupcake
 
 
 db.drop_all()
-db.create_all()
+with app.app_context(): db.create_all()
 
 c1 = Cupcake(
     flavor="cherry",
