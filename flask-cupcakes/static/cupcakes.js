@@ -15,7 +15,7 @@ function displayOneCupcake(cupcake) {
 
   const $newCupcakeImage = $("<img>")
     .attr({ "src": cupcake.image, "alt": `An image for cupcake ${cupcake.id}` })
-    .css("max-width", "200px");
+    .css("max-width", "100px");
   const $newCupcakeFlavor = $("<p> Flavor:").text(cupcake.flavor);
   const $newCupcakeSize = $("<p>").text(cupcake.size);
   const $newCupcakeRating = $("<p>").text(cupcake.rating);
