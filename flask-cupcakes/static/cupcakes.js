@@ -13,15 +13,17 @@ const $addCupcakeForm = $("#add-new-cupcake");
 function displayOneCupcake(cupcake) {
   const $newCupcakeArea = $("<div>");
 
-  const $newCupcakeImage = $("<img>")
-    .attr({ "src": cupcake.image, "alt": `An image for cupcake ${cupcake.id}` })
-    .css("max-width", "160px")
-  const $newCupcakeFlavor = $("<p>").text(cupcake.flavor);
-  const $newCupcakeSize = $("<p>").text(cupcake.size);
-  const $newCupcakeRating = $("<p>").text(cupcake.rating);
+  const $newCupcake = $(`<li>
+  <p><img class="Cupcake-img"
+  src="${cupcake.image}"
+  alt="(no image provided)"></p>
+  ${cupcake.flavor} / ${cupcake.size} / ${cupcake.rating}
+  <button class="delete-button">x</button>
+  </li>
+  `)
 
   $newCupcakeArea.append(
-    [$newCupcakeImage, $newCupcakeFlavor, $newCupcakeSize, $newCupcakeRating]
+    [$newCupcake]
   );
 
   $allCupcakesListArea.append($newCupcakeArea);
@@ -77,5 +79,5 @@ $addCupcakeForm.on("submit", async function (event) {
 });
 
 
-
 displayAllCupcakes();
+
