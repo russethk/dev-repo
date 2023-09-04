@@ -18,7 +18,6 @@ function displayOneCupcake(cupcake) {
   src="${cupcake.image}"
   alt="(no image provided)"></p>
   ${cupcake.flavor} / ${cupcake.size} / ${cupcake.rating}
-  <button class="delete-button">x</button>
   </li>
   `)
 
