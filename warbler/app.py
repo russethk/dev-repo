@@ -23,8 +23,9 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 toolbar = DebugToolbarExtension(app)
 
-connect_db(app)
 load_dotenv()
+connect_db(app)
+
 
 
 ##############################################################################
