@@ -1,12 +1,12 @@
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 from dotenv import load_dotenv
-
-load_dotenv()
-
 
 
 from forms import UserAddForm, LoginForm, MessageForm
@@ -15,6 +15,8 @@ from models import db, connect_db, User, Message
 CURR_USER_KEY = "curr_user"
 
 app = Flask(__name__)
+
+load_dotenv()
 
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
