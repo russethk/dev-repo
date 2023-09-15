@@ -1,12 +1,11 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
-
-from dotenv import load_dotenv
-load_dotenv()
-
 
 
 from forms import UserAddForm, LoginForm, MessageForm
