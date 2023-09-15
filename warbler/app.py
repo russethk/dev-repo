@@ -3,7 +3,6 @@ import os
 from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
-from dotenv import load_dotenv
 
 
 from forms import UserAddForm, LoginForm, MessageForm
@@ -24,7 +23,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
-load_dotenv()
+
 
 
 ##############################################################################
