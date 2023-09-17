@@ -147,7 +147,7 @@ def users_show(user_id):
     # user.messages won't be in order by default
     messages = (Message
                 .query
-                .filter(Message.follower_id == user_id)
+                .filter(Message.user_id == user_id)
                 .order_by(Message.timestamp.desc())
                 .limit(100)
                 .all())
@@ -314,8 +314,11 @@ def homepage():
     """
 
     if g.user:
+
+        following_ids = [user.id for user in g.user.following] + [g.user.id]
         messages = (Message
                     .query
+                    .filter(Message.user_id.in_(following_ids))
                     .order_by(Message.timestamp.desc())
                     .limit(100)
                     .all())
