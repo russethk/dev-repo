@@ -208,7 +208,7 @@ def stop_following(follow_id):
 
     return redirect(f"/users/{g.user.id}/following")
 
-app.route('/users/<int:user_id>/likes', methods=["GET"])
+@app.route('/users/<int:user_id>/likes', methods=["GET"])
 def show_likes(user_id):
     """Show list of messages this user has liked."""
 
@@ -219,7 +219,7 @@ def show_likes(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('users/likes.html', user=user, likes=user.likes)
 
-app.route("/messages/<int:message_id>/like", methods=["POST"])
+@app.route("/messages/<int:message_id>/like", methods=["POST"])
 def add_like(message_id):
     """Add a like for the currently-logged-in user."""
 
@@ -362,8 +362,10 @@ def homepage():
                     .order_by(Message.timestamp.desc())
                     .limit(100)
                     .all())
+        
+        liked_msg_ids = [msg.id for msg in g.user.likes]
 
-        return render_template('home.html', messages=messages)
+        return render_template('home.html', messages=messages, likes=liked_msg_ids)
 
     else:
         return render_template('home-anon.html')
