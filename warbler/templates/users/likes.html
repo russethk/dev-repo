@@ -6,7 +6,7 @@
         <ul class="list-group" id="messages">
           {% for msg in likes %}
             <li class="list-group-item">
-              <a href="/messages/{{ msg.id  }}" class="message-link"/>
+              <a href="/messages/{{ msg.id  }}" class="message-link">
               <a href="/users/{{ msg.user.id }}">
                 <img src="{{ msg.user.image_url }}" alt="" class="timeline-image">
               </a>
@@ -22,7 +22,7 @@
                   btn-sm 
                   {{'btn-primary'}}"
                 >
-                  <i class="fa fa-thumbs-up"></i> 
+                  <i class="fa fa-star"></i> 
                 </button>
               </form>
               {% endif %}
