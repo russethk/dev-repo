@@ -48,6 +48,7 @@ class Likes(db.Model):
     )
 
 
+
 class User(db.Model):
     """User in the system."""
 
