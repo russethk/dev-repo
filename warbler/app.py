@@ -147,7 +147,7 @@ def users_show(user_id):
     # user.messages won't be in order by default
     messages = (Message
                 .query
-                .filter(Message.user_id == user_id)
+                .filter(Message.followers.any(id=user_id)
                 .order_by(Message.timestamp.desc())
                 .limit(100)
                 .all())
