@@ -64,6 +64,9 @@ def signup():
     and re-present form.
     """
     
+    if CURR_USER_KEY in session:
+        del session[CURR_USER_KEY]
+        
     form = UserAddForm()
 
     if form.validate_on_submit():
@@ -151,7 +154,9 @@ def users_show(user_id):
                 .order_by(Message.timestamp.desc())
                 .limit(100)
                 .all())
+    likes = [message.id for message in user.likes]
     return render_template('users/show.html', user=user, messages=messages, likes=likes)
+
 
 
 @app.route('/users/<int:user_id>/following')
