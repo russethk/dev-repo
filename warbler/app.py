@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, flash, redirect, session, g, abort
+from flask import Flask, render_template, request, flash, redirect, session, g, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
@@ -209,40 +209,16 @@ def stop_following(follow_id):
 
     return redirect(f"/users/{g.user.id}/following")
 
-@app.route('/users/<int:user_id>/likes', methods=["GET"])
+@app.route('/users/<int:user_id>/likes')
 def show_likes(user_id):
-    """Show list of messages this user has liked."""
+    """Show list of user's likes"""
 
-    if not g.user:
-        flash("Access unauthorized.", "danger")
-        return redirect("/")
-    
+
     user = User.query.get_or_404(user_id)
-    return render_template('users/likes.html', user=user, likes=user.likes)
 
-@app.route("/messages/<int:message_id>/like", methods=["POST"])
-def add_like(message_id):
-    """Add a like for the currently-logged-in user."""
+    return render_template('users/likes.html', user=user)
 
-    if not g.user:
-        flash("Access unauthorized.", "danger")
-        return redirect("/")
-    
-    liked_message = Message.query.get_or_404(message_id)
-    if liked_message.user_id == g.user.id:
-        return abort(403)
-    
-    user_likes = g.user.likes
 
-    if liked_message in user_likes:
-        g.user.likes = [like for like in user_likes if like != liked_message]
-    else:
-        g.user.likes.append(liked_message)
-
-    db.session.commit()
-
-    return redirect("/")
-    
 @app.route('/users/profile', methods=["GET", "POST"])
 def edit_profile():
     """Update profile for current user."""
@@ -290,29 +266,6 @@ def delete_user():
 ##############################################################################
 # Messages routes:
 
-@app.route('/messages/new', methods=["GET", "POST"])
-def messages_add():
-    """Add a message:
-
-    Show form if GET. If valid, update message and redirect to user page.
-    """
-
-    if not g.user:
-        flash("Access unauthorized.", "danger")
-        return redirect("/")
-
-    form = MessageForm()
-
-    if form.validate_on_submit():
-        msg = Message(text=form.text.data)
-        g.user.messages.append(msg)
-        db.session.commit()
-
-        return redirect(f"/users/{g.user.id}")
-
-    return render_template('messages/new.html', form=form)
-
-
 @app.route('/messages/<int:message_id>', methods=["GET"])
 def messages_show(message_id):
     """Show a message."""
@@ -325,20 +278,55 @@ def messages_show(message_id):
 def messages_destroy(message_id):
     """Delete a message. users only allowed to delete their own messages. """
 
-    if not g.user:
-        flash("Access unauthorized.", "danger")
-        return redirect("/")
-
     msg = Message.query.get_or_404(message_id)
-    if msg.user_id != g.user.id:
+
+    if g.user != msg.user:
         flash("Access unauthorized.", "danger")
-        return redirect("/")
+        return redirect("/"), 403
     
     db.session.delete(msg)
     db.session.commit()
 
     return redirect(f"/users/{g.user.id}")
 
+# MESSAGE API's
+
+@app.route('/api/messages/new', methods=["POST"])
+def messages_add():
+    """Add a message:
+
+    Show form if GET. If valid, update message and redirect to user page.
+    """
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return jsonify({'result': 'fail'}), 403
+
+    text = request.json["text"]
+    msg = Message(text=text)
+    g.user.messages.append(msg)
+    db.session.commit()
+
+    return jsonify({'result': 'success',
+                    'msg': msg.serialize(),
+                    'user': g.user.serialize()})
+
+@app.route('/api/messages/<int:message_id>/like', methods=["POST"])
+def messages_toggle_like(message_id):
+    """ Like a message """
+
+    if not g.user:
+        return jsonify({'result': 'fail'}), 403
+
+    msg = Message.query.get_or_404(message_id)
+
+    if msg in g.user.likes:
+        g.user.likes.remove(msg)
+    else:
+        g.user.likes.append(msg)
+    db.session.commit()
+
+    return jsonify({'result': 'success'}), 200
 
 
 
@@ -365,9 +353,7 @@ def homepage():
                     .limit(100)
                     .all())
 
-        liked_msg_ids = [msg.id for msg in g.user.likes]
-
-        return render_template('home.html', messages=messages, likes=liked_msg_ids)
+        return render_template('home.html', messages=messages)
 
     else:
         return render_template('home-anon.html')
