@@ -1,10 +1,10 @@
 import os
 
-from flask import Flask, render_template, request, flash, redirect, session, g, jsonify, abort
+from flask import Flask, render_template, request, flash, redirect, session, g, abort
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
-from forms import UserAddForm, UserEditForm, LoginForm, MessageForm 
+from forms import UserAddForm, UserEditForm, LoginForm, MessageForm
 from models import db, connect_db, User, Message
 
 CURR_USER_KEY = "curr_user"
@@ -38,10 +38,12 @@ def add_user_to_g():
     else:
         g.user = None
 
+
 def do_login(user):
     """Log in user."""
 
     session[CURR_USER_KEY] = user.id
+
 
 def do_logout():
     """Logout user."""
@@ -63,7 +65,6 @@ def signup():
     """
     if CURR_USER_KEY in session:
         del session[CURR_USER_KEY]
-
     form = UserAddForm()
 
     if form.validate_on_submit():
@@ -113,7 +114,8 @@ def logout():
     """Handle logout of user."""
 
     do_logout()
-    flash("You have been logged out.", "success")
+
+    flash("You have successfully logged out.", 'success')
     return redirect("/login")
 
 
@@ -142,7 +144,6 @@ def users_show(user_id):
     """Show user profile."""
 
     user = User.query.get_or_404(user_id)
-
     # snagging messages in order from the database;
     # user.messages won't be in order by default
     messages = (Message
@@ -217,95 +218,6 @@ def show_likes(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('users/likes.html', user=user, likes=user.likes)
 
-@app.route('/users/profile', methods=["GET", "POST"])
-def edit_profile():
-    """Update profile for current user."""
-
-    if not g.user:
-        flash("Access unauthorized.", "danger")
-        return redirect("/")
-    
-    user = g.user
-    form = UserEditForm(obj=user)
-
-    if form.validate_on_submit():
-        if User.authenticate(user.username, form.password.data):
-            user.username = form.username.data
-            user.email = form.email.data
-            user.image_url = form.image_url.data or "/static/images/default-pic.png"
-            user.header_image_url = form.header_image_url.data or "/static/images/warbler-hero.jpg"
-            user.bio = form.bio.data
-
-            db.session.commit()
-            return redirect(f"/users/{user.id}")
-
-        flash("Wrong password, please try again.", 'danger')
-
-    return render_template('users/edit.html', form=form, user_id=user.id, user=user)
-
-
-
-@app.route('/users/delete', methods=["POST"])
-def delete_user():
-    """Delete user."""
-
-    if not g.user:
-        flash("Access unauthorized.", "danger")
-        return redirect("/")
-
-    do_logout()
-
-    db.session.delete(g.user)
-    db.session.commit()
-
-    return redirect("/signup")
-
-
-##############################################################################
-# Messages routes:
-
-@app.route('/messages/<int:message_id>', methods=["GET"])
-def messages_show(message_id):
-    """Show a message."""
-
-    msg = Message.query.get(message_id)
-    return render_template('messages/show.html', message=msg)
-
-
-@app.route('/messages/<int:message_id>/delete', methods=["POST"])
-def messages_destroy(message_id):
-    """Delete a message. users only allowed to delete their own messages. """
-
-    msg = Message.query.get_or_404(message_id)
-
-    if g.user != msg.user:
-        flash("Access unauthorized.", "danger")
-        return redirect("/"), 403
-    
-    db.session.delete(msg)
-    db.session.commit()
-
-    return redirect(f"/users/{g.user.id}")
-
-@app.route('/messages/new', methods=["POST"])
-def messages_add():
-    """Add a message:
-
-    Show form if GET. If valid, update message and redirect to user page.
-    """
-
-    if not g.user:
-        flash("Access unauthorized.", "danger")
-        return jsonify({'result': 'fail'}), 403
-
-    text = request.json["text"]
-    msg = Message(text=text)
-    g.user.messages.append(msg)
-    db.session.commit()
-
-    return jsonify({'result': 'success',
-                    'msg': msg.serialize(),
-                    'user': g.user.serialize()})
 
 @app.route('/messages/<int:message_id>/like', methods=['POST'])
 def add_like(message_id):
@@ -331,6 +243,101 @@ def add_like(message_id):
     return redirect("/")
 
 
+@app.route('/users/profile', methods=["GET", "POST"])
+def edit_profile():
+    """Update profile for current user."""
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    user = g.user
+    form = UserEditForm(obj=user)
+
+    if form.validate_on_submit():
+        if User.authenticate(user.username, form.password.data):
+            user.username = form.username.data
+            user.email = form.email.data
+            user.image_url = form.image_url.data or "/static/images/default-pic.png"
+            user.header_image_url = form.header_image_url.data or "/static/images/warbler-hero.jpg"
+            user.bio = form.bio.data
+
+            db.session.commit()
+            return redirect(f"/users/{user.id}")
+
+        flash("Wrong password, please try again.", 'danger')
+
+    return render_template('users/edit.html', form=form, user_id=user.id)
+
+
+@app.route('/users/delete', methods=["POST"])
+def delete_user():
+    """Delete user."""
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    do_logout()
+
+    db.session.delete(g.user)
+    db.session.commit()
+
+    return redirect("/signup")
+
+
+##############################################################################
+# Messages routes:
+
+@app.route('/messages/new', methods=["GET", "POST"])
+def messages_add():
+    """Add a message:
+
+    Show form if GET. If valid, update message and redirect to user page.
+    """
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    form = MessageForm()
+
+    if form.validate_on_submit():
+        msg = Message(text=form.text.data)
+        g.user.messages.append(msg)
+        db.session.commit()
+
+        return redirect(f"/users/{g.user.id}")
+
+    return render_template('messages/new.html', form=form)
+
+
+@app.route('/messages/<int:message_id>', methods=["GET"])
+def messages_show(message_id):
+    """Show a message."""
+
+    msg = Message.query.get_or_404(message_id)
+    return render_template('messages/show.html', message=msg)
+
+
+@app.route('/messages/<int:message_id>/delete', methods=["POST"])
+def messages_destroy(message_id):
+    """Delete a message."""
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    msg = Message.query.get_or_404(message_id)
+    if msg.user_id != g.user.id:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    db.session.delete(msg)
+    db.session.commit()
+
+    return redirect(f"/users/{g.user.id}")
+
 
 ##############################################################################
 # Homepage and error pages
@@ -345,7 +352,6 @@ def homepage():
     """
 
     if g.user:
-
         following_ids = [f.id for f in g.user.following] + [g.user.id]
 
         messages = (Message
@@ -355,12 +361,14 @@ def homepage():
                     .limit(100)
                     .all())
 
-        return render_template('home.html', messages=messages)
+        liked_msg_ids = [msg.id for msg in g.user.likes]
+
+        return render_template('home.html', messages=messages, likes=liked_msg_ids)
 
     else:
         return render_template('home-anon.html')
 
-    
+
 @app.errorhandler(404)
 def page_not_found(e):
     """404 NOT FOUND page."""

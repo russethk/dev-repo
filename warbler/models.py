@@ -27,21 +27,26 @@ class Follows(db.Model):
     )
 
 
-class Like(db.Model):
+class Likes(db.Model):
+    """Mapping user likes to warbles."""
 
-    __tablename__ = 'likes'
+    __tablename__ = 'likes' 
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
 
     user_id = db.Column(
         db.Integer,
-        db.ForeignKey('users.id', ondelete='CASCADE'),
-        primary_key=True
+        db.ForeignKey('users.id', ondelete='cascade')
     )
 
     message_id = db.Column(
         db.Integer,
-        db.ForeignKey('messages.id', ondelete='CASCADE'),
-        primary_key=True
+        db.ForeignKey('messages.id', ondelete='cascade')
     )
+
 
 
 class User(db.Model):
