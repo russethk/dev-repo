@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, flash, redirect, session, g, jsonify
+from flask import Flask, render_template, request, flash, redirect, session, g, jsonify, abort
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
@@ -208,15 +208,14 @@ def stop_following(follow_id):
 
     return redirect(f"/users/{g.user.id}/following")
 
-@app.route('/users/<int:user_id>/likes')
+@app.route('/users/<int:user_id>/likes', methods=["GET"])
 def show_likes(user_id):
-    """Show list of user's likes"""
-
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
 
     user = User.query.get_or_404(user_id)
-
-    return render_template('users/likes.html', user=user)
-
+    return render_template('users/likes.html', user=user, likes=user.likes)
 
 @app.route('/users/profile', methods=["GET", "POST"])
 def edit_profile():
@@ -288,9 +287,7 @@ def messages_destroy(message_id):
 
     return redirect(f"/users/{g.user.id}")
 
-# MESSAGE API's
-
-@app.route('/api/messages/new', methods=["POST"])
+@app.route('/messages/new', methods=["POST"])
 def messages_add():
     """Add a message:
 
@@ -310,22 +307,28 @@ def messages_add():
                     'msg': msg.serialize(),
                     'user': g.user.serialize()})
 
-@app.route('/api/messages/<int:message_id>/like', methods=["POST"])
-def messages_toggle_like(message_id):
-    """ Like a message """
+@app.route('/messages/<int:message_id>/like', methods=['POST'])
+def add_like(message_id):
+    """Toggle a liked message for the currently-logged-in user."""
 
     if not g.user:
-        return jsonify({'result': 'fail'}), 403
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
 
-    msg = Message.query.get_or_404(message_id)
+    liked_message = Message.query.get_or_404(message_id)
+    if liked_message.user_id == g.user.id:
+        return abort(403)
 
-    if msg in g.user.likes:
-        g.user.likes.remove(msg)
+    user_likes = g.user.likes
+
+    if liked_message in user_likes:
+        g.user.likes = [like for like in user_likes if like != liked_message]
     else:
-        g.user.likes.append(msg)
+        g.user.likes.append(liked_message)
+
     db.session.commit()
 
-    return jsonify({'result': 'success'}), 200
+    return redirect("/")
 
 
 
