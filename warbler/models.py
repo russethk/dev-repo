@@ -44,7 +44,8 @@ class Likes(db.Model):
 
     message_id = db.Column(
         db.Integer,
-        db.ForeignKey('messages.id', ondelete='cascade')
+        db.ForeignKey('messages.id', ondelete='cascade'),
+        unique=True
     )
 
 
@@ -198,10 +199,6 @@ class Message(db.Model):
     )
 
     user = db.relationship('User')
-
-    def __repr__(self):
-        return f"<Message #{self.id} by {self.user_id} on {self.timestamp}: {self.text}>"
-
 
 
 def connect_db(app):
