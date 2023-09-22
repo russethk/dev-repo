@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField
+from wtforms import StringField, PasswordField, TextAreaField, PasswordField
 from wtforms.validators import DataRequired, Email, Length
 
 
@@ -33,6 +33,16 @@ class LoginForm(FlaskForm):
 
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[Length(min=6)])
+
+class ChangePasswordForm(FlaskForm):
+    """ Edit a user's info form """
+
+    New_password1 = PasswordField('New Password', validators=[Length(min=6)])
+    New_password2 = PasswordField('Confirm New Password', validators=[Length(min=6)])
+    password = PasswordField('Password', validators=[Length(min=6)])
+
+class CSRFProtectionForm(FlaskForm):
+    """ form for CSRF protection """
 
 
 

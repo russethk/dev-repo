@@ -81,7 +81,7 @@ class UserModelTestCase(TestCase):
         )
 
         u2 = User(
-            email="test2@test.com,
+            email="test2@test.com",
             username="testuser2",
             password="HASHED_PASSWORD"
         )
@@ -106,7 +106,7 @@ class UserModelTestCase(TestCase):
         )
 
         u2 = User(
-            email="test2@test.com,
+            email="test2@test.com",
             username="testuser2",
             password="HASHED_PASSWORD"
         )

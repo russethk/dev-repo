@@ -130,6 +130,15 @@ class User(db.Model):
 
         found_user_list = [user for user in self.following if user == other_user]
         return len(found_user_list) == 1
+    
+    @classmethod
+    def hash_password(cls, password):
+        """ Returns hashed password for changing user password"""
+
+        hashed_pwd = bcrypt.generate_password_hash(password).decode('UTF-8')
+
+        return hashed_pwd
+    
 
     @classmethod
     def signup(cls, username, email, password, image_url):
@@ -169,6 +178,8 @@ class User(db.Model):
                 return user
 
         return False
+    
+    
 
 
 class Message(db.Model):

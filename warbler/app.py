@@ -1,11 +1,16 @@
 import os
 
-from flask import Flask, render_template, request, flash, redirect, session, g
+from dotenv import load_dotenv
+
+from flask import Flask, render_template, request, flash, redirect, session, g, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import or_
 
-from forms import UserAddForm, UserEditForm, LoginForm, MessageForm
+from forms import UserAddForm, UserEditForm, LoginForm, MessageForm, ChangePasswordForm, CSRFProtectionForm
 from models import db, connect_db, User, Message, Likes
+
+load_dotenv()
 
 CURR_USER_KEY = "curr_user"
 
@@ -38,6 +43,12 @@ def add_user_to_g():
 
     else:
         g.user = None
+
+@app.before_request
+def generate_CSRF_form():
+    """ instantiates CSRF form """
+
+    g.csrf_form = CSRFProtectionForm()
 
 
 def do_login(user):
@@ -184,6 +195,7 @@ def users_followers(user_id):
     return render_template('users/followers.html', user=user)
 
 
+
 @app.route('/users/<int:user_id>/likes')
 def users_likes(user_id):
     """Show list of followers of this user."""
@@ -246,21 +258,34 @@ def edit_profile():
 
     return render_template('users/edit.html', form=form, user_id=user.id)
 
-
-@app.route('/users/delete', methods=["POST"])
-def delete_user():
-    """Delete user."""
+@app.route('/users/changepwd', methods=["GET", "POST"])
+def change_pwd():
+    """Change the password for current user."""
 
     if not g.user:
-        flash("Access unauthorized.", "danger")
         return redirect("/")
 
-    do_logout()
+    form = ChangePasswordForm(obj=g.user)
 
-    db.session.delete(g.user)
-    db.session.commit()
+    if form.validate_on_submit():
 
-    return redirect("/signup")
+
+        if not User.authenticate(g.user.username, form.data.get("password")):
+            form.password.errors = ["Incorrect password"]
+        else:
+            password1 = form.New_password1.data
+            password2 = form.New_password2.data
+            if not password1 == password2:
+                form.New_password2.errors = ["New passwords do not match."]
+
+            else:
+                g.user.password = User.hash_password(password1)
+
+                db.session.commit()
+                return redirect(f"/users/{g.user.id}")
+
+    return render_template("users/edit.html", form=form)
+
 
 @app.route('/users/<int:user_id>/likes', methods=["GET"])
 def show_likes(user_id):
@@ -292,6 +317,21 @@ def like_message(message_id):
     
 
     return redirect("/")
+
+@app.route('/users/delete', methods=["POST"])
+def delete_user():
+    """Delete user."""
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    do_logout()
+
+    db.session.delete(g.user)
+    db.session.commit()
+
+    return redirect("/signup")
 
 
 ##############################################################################
