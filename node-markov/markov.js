@@ -53,7 +53,7 @@ class MarkovMachine {
   }
 }
 
-module.exports = {
-  MarkovMachine
+module.exports = { 
+  MarkovMachine 
 };
 
