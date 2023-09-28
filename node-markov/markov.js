@@ -50,10 +50,12 @@ class MarkovMachine {
       out.push(key);
       key = MarkovMachine.choice(this.chains.get(key));
     }
+
+    return out.join(" ");
   }
 }
 
 module.exports = { 
-  MarkovMachine 
+  MarkovMachine, 
 };
 
