@@ -6,7 +6,7 @@ const { convertAndValidateNumsArray, findMode, findMean, findMedian } = require(
 
 app.get('/mean', function(req, res, next) {
     if (!req.query.nums) {
-        throw new ExpressError('Not a number. You must pass in a comma-separated list of numbers.', 400)
+        throw new ExpressError('Invalid number. You must pass in a comma-separated list of numbers.', 400)
     }
     let numsAsStrings = req.query.nums.split(',');
     // check if anything bad was put in
@@ -25,7 +25,7 @@ app.get('/mean', function(req, res, next) {
 
 app.get('/median', function(req, res, next) {
     if (!req.query.nums) {
-        throw new ExpressError('Not a number. You must pass in a comma-separated list of numbers.', 400)
+        throw new ExpressError('Invalid number. You must pass in a comma-separated list of numbers.', 400)
     }
     let numsAsStrings = req.query.nums.split(',');
     // check if anything bad was put in
@@ -45,7 +45,7 @@ app.get('/median', function(req, res, next) {
 
 app.get('/mode', function(req, res, next) {
     if (!req.query.nums) {
-        throw new ExpressError('Not a number. You must pass in a comma-separated list of numbers.', 400)
+        throw new ExpressError('Invalid number. You must pass in a comma-separated list of numbers.', 400)
     }
     let numsAsStrings = req.query.nums.split(',');
     // check if anything bad was put in
