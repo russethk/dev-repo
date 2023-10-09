@@ -1,8 +1,10 @@
 process.env.NODE_ENV = "test";
+// npm packages
 const request = require("supertest");
+// app imports
+const app = require("../app");
 
-const app = require("./app") // this also takes care of importing app's dependencies
-const items  = require("./fakeDb.js");
+let items = require("../fakeDb")
 
 beforeEach(function() {
     let tomatoes = {name: "tomatoes", price: 12.00}
