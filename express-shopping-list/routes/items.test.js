@@ -1,105 +1,86 @@
 process.env.NODE_ENV = "test";
-// npm packages
 const request = require("supertest");
-// app imports
-const app = require("../app");
 
-let items = require("../fakeDb")
+const app = require("./app") // this also takes care of importing app's dependencies
+const items  = require("./fakeDb.js");
 
-let item = { name: "popsicle", price:200 }
+beforeEach(function() {
+    let tomatoes = {name: "tomatoes", price: 12.00}
+    let apples = {name: "apples", price: 3.50}
+    let bread = {name: "bread", price: 2.99}
 
-beforeEach(async () => {
-  items.push(item)
-});
+    items.push(tomatoes);
+    items.push(apples);
+    items.push(bread);
+})
 
-afterEach(async () => {
-  items = []
-});
-// end afterEach
+afterEach(function() {
+    items.length = 0;
+})
 
-/** GET /items - returns `{items: [item, ...]}` */
+describe("GET /items", function() {
+    test("Get all items", async function() {
+        const res = await request(app).get("/items");
+        expect(res.status).toEqual(200);
+        expect(res.body).toEqual([{name: "tomatoes", price: 12.00}, {name: "apples", price: 3.50}, {name: "bread", price: 2.99} ])
+    })
+})
 
-describe("GET /items", async function () {
-  test("Gets a list of items", async function () {
-    const response = await request(app).get(`/items`);
-    const { items } = response.body;
-    expect(response.statusCode).toBe(200);
-    expect(items).toHaveLength(1);
-  });
-});
-// end
+describe("POST /items", function() {
+    test("Post correctly-formatted item to items arr", async function() {
+        const res = await request(app).post("/items").send({name: "grapes", price: 8.25})
+        expect(res.status).toEqual(200);
+        expect(res.body).toEqual({added: {name: "grapes", price: 8.25}})
+    })
+    test("Post item with missing info", async function() {
+        const res = await request(app).post("/items").send({name: "flowers"}) // missing price
+        expect(res.status).toEqual(400);
+        expect(res.body).toEqual({error: "Missing information in request. Need values for body and price"})
+    })
+})
 
+describe("GET /items/itemName", function() {
+    test("Get info on one item that exists in database", async function() {
+        const res = await request(app).get("/items/bread");
+        expect(res.status).toEqual(200);
+        expect(res.body).toEqual({name: "bread", price: 2.99})
+    })
+    test("Get info route when item doesn't exist", async function() {
+        const res = await request(app).get("/items/pizza");
+        expect(res.status).toEqual(404);
+        expect(res.body).toEqual({error: "Item not found"})
+    })
+})
 
-/** GET /items/[name] - return data about one item: `{item: item}` */
+describe("PATCH /items/itemName", function() {
+    test("Patch info on found item", async function() {
+        const res = await request(app).patch("/items/bread").send({price: 1.23})
+        expect(res.status).toEqual(200);
+        expect(res.body).toEqual({updated: {name: "bread", price: 1.23} })
+    })
+    test("Return error message when patching non-existing item", async function() {
+        const res = await request(app).patch("/items/peaches").send({price: 3.33})
+        expect(res.status).toEqual(404);
+        expect(res.body).toEqual({error: "Item not found"})
+    })
+})
 
-describe("GET /items/:name", async function () {
-  test("Gets a single item", async function () {
-    const response = await request(app).get(`/items/${item.name}`);
-    expect(response.statusCode).toBe(200);
-    expect(response.body.item).toEqual(item);
-  });
+describe("DELETE /items/itemName", function() {
+    test("Delete item if items exists in database", async function() {
+        const res = await request(app).delete("/items/apples");
+        expect(res.status).toEqual(200);
+        expect(res.body).toEqual({message: "deleted item"})
+    })
+    test("Return error message if item not found", async function() {
+        const res = await request(app).delete("/items/milk");
+        expect(res.status).toEqual(404);
+        expect(res.body).toEqual({error: "Item not found"})
+    })
+})
 
-  test("Responds with 404 if can't find item", async function () {
-    const response = await request(app).get(`/items/0`);
-    expect(response.statusCode).toBe(404);
-  });
-});
-// end
-
-
-/** POST /items - create item from data; return `{item: item}` */
-
-describe("POST /items", async function () {
-  test("Creates a new item", async function () {
-    const response = await request(app)
-      .post(`/items`)
-      .send({
-        name: "Cheerios",
-        price: 340
-      });
-    expect(response.statusCode).toBe(200);
-    expect(response.body.item).toHaveProperty("name");
-    expect(response.body.item).toHaveProperty("price");
-    expect(response.body.item.name).toEqual("Cheerios");
-    expect(response.body.item.price).toEqual(340);
-  });
-});
-// end
-
-
-/** PATCH /items/[name] - update item; return `{item: item}` */
-
-describe("PATCH /items/:name", async function () {
-  test("Updates a single item", async function () {
-    const response = await request(app)
-      .patch(`/items/${item.name}`)
-      .send({
-        name: "New Popsicle"
-      });
-    expect(response.statusCode).toBe(200);
-    expect(response.body.item).toEqual({
-      name: "New Popsicle"
-    });
-  });
-
-  test("Responds with 404 if can't find item", async function () {
-    const response = await request(app).patch(`/items/0`);
-    expect(response.statusCode).toBe(404);
-  });
-});
-// end
-
-
-/** DELETE /items/[name] - delete item, 
- *  return `{message: "item deleted"}` */
-
-describe("DELETE /items/:name", async function () {
-  test("Deletes a single a item", async function () {
-    const response = await request(app)
-      .delete(`/items/${item.name}`);
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual({ message: "Deleted" });
-  });
-});
-// end
-
+describe("Get 404 status if route hit that isn't defined", function() {
+    test("Return 404 error", async function() {
+        const res = await request(app).get("/dogs");
+        expect(res.status).toEqual(404);
+    })
+})
