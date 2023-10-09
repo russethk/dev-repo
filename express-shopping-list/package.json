@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests": "supertest routes/items.tests.js"
+    "test": "jest",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
