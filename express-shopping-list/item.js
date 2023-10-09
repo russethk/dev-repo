@@ -12,7 +12,7 @@ class Item {
   }
 
   static findAll() {
-    return items;
+    return items
   }
 
   static update(name, data) {
@@ -28,20 +28,20 @@ class Item {
 
     /** Find & return item with matching name. */
   static find(name) {
-    const foundItem = items.find(item => item.name === name);
+    const foundItem = items.find(v=> v.name === name);
     if (foundItem === undefined) {
       throw { message: "Not Found", status: 404 };
     }
-    return foundItem;
+    return foundItem
   }
 
   // update item with matching name to data
 
   
   static remove(name) {
-    const foundIdx = items.findIndex(item => item.name === name);
+    const foundIdx = items.findIndex(v => v.name === name);
     if (foundIdx === -1) {
-      throw { message: "Not Found", status: 404 };
+      throw { message: "Not Found", status: 404 }
     }
     items.splice(foundIdx, 1);
   }
