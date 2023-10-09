@@ -5,15 +5,16 @@ const request = require("supertest");
 const app = require("../app");
 let items = require("../fakeDb");
 
-let item = { name: "popsicle", price:1.45 };
+let item = { name: "popsicle", price:145 };
 
-beforeEach(async () =>{
-  items.push(item);
-});
-
-afterEach(async () =>{
-  items []
-});
+beforeEach(async () => {
+    items.push(item)
+  });
+  
+  afterEach(async () => {
+    items = []
+  });
+  // end afterEach
 
 /** GET /items - returns `{items: [item, ...]}` */
 
