@@ -6,7 +6,7 @@ const app = require("../app");
 
 let items = require("../fakeDb")
 
-let item = { name: "silly", price:200 }
+let item = { name: "popsicle", price:1.85 }
 
 beforeEach(async () => {
   items.push(item)
@@ -54,13 +54,13 @@ describe("POST /items", function () {
     const response = await request(app)
       .post(`/items`)
       .send({
-        name: "Taco",
+        name: "Cheerios",
         price: 0
       });
     expect(response.statusCode).toBe(200);
     expect(response.body.item).toHaveProperty("name");
     expect(response.body.item).toHaveProperty("price");
-    expect(response.body.item.name).toEqual("Taco");
+    expect(response.body.item.name).toEqual("Cheerios");
     expect(response.body.item.price).toEqual(0);
   });
 });
@@ -74,11 +74,11 @@ describe("PATCH /items/:name", function () {
     const response = await request(app)
       .patch(`/items/${item.name}`)
       .send({
-        name: "Troll"
+        name: "Bread"
       });
     expect(response.statusCode).toBe(200);
     expect(response.body.item).toEqual({
-      name: "Troll"
+      name: "Bread"
     });
   });
 
