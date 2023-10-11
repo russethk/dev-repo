@@ -6,7 +6,7 @@ const app = require("../app");
 
 let items = require("../fakeDb")
 
-let item = { name: "popsicle", price:1.85 }
+let item = { name: "silly", price:1.45 }
 
 beforeEach(async () => {
   items.push(item)
@@ -24,7 +24,7 @@ describe("GET /items", function () {
     const response = await request(app).get(`/items`);
     const { items } = response.body;
     expect(response.statusCode).toBe(200);
-    expect(items).toHaveLength(1);
+    expect(items).toHaveLength(2);
   });
 });
 // end
