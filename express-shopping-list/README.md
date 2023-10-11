@@ -1,4 +1,4 @@
-# expressShoppingList
+# express-shopping-list
 ## About
 Simple shopping list application with the purpose of practicing integration testing with supertest
 ## More info
