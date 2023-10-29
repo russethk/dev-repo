@@ -31,9 +31,11 @@ router.get('/:code', async (req, res, next) => {
   try {
     let code = req.params.code;
 
+    // query to get company info
     const compResults = await db.query('SELECT code, name, description FROM companies WHERE code = $1', 
     [code]);
 
+    // query to get invoices for company
     const invResults = await db.query('SELECT id FROM invoices WHERE comp_code = $1',
     [code]);
     
@@ -44,6 +46,7 @@ router.get('/:code', async (req, res, next) => {
     const company = compResults.rows[0];
     const invoices = invResults.rows;
 
+    // add invoices to company object
     company.invoices = invoices.map(inv => inv.id);
 
     return res.json({ "company": company });
@@ -83,7 +86,9 @@ router.put('/:code', async (req, res, next) => {
         let { name, description } = req.body;
         let code = req.params.code;
 
-        const results = await db.query('UPDATE companies SET name=$1, description=$2 WHERE code=$3 RETURNING code, name, description', 
+        const results = await db.query(
+          `UPDATE companies SET name=$1, description=$2 
+          WHERE code=$3 RETURNING code, name, description`, 
         [name, description, code]);
 
         if (results.rows.length === 0) {
@@ -105,7 +110,8 @@ router.put('/:code', async (req, res, next) => {
 router.delete('/:code', async (req, res, next) => {
     try {
         let code = req.params.code;
-        const results = await db.query('DELETE FROM companies WHERE code=$1 RETURNING code', 
+        const results = await db.query(`
+        DELETE FROM companies WHERE code=$1 RETURNING code`, 
         [code]);
 
         if (results.rows.length === 0) {
