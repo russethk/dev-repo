@@ -2,11 +2,19 @@
 
 
 const express = require("express");
-
-const app = express();
 const ExpressError = require("./expressError")
 
+const app = express();
+
+// Parse request bodies for JSON
 app.use(express.json());
+
+// Import routes
+const cRoutes = require("./routes/companies");
+app.use("/companies", cRoutes);
+
+const iRoutes = require("./routes/invoices");
+app.use("/invoices", iRoutes);
 
 
 /** 404 handler */
