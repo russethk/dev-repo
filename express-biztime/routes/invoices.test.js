@@ -35,7 +35,7 @@ describe("GET /1", () => {
           "invoice": {
             id: 1,
             amt: 100,
-            add_date: '2018-01-01T08:00:00.000Z',
+            add_date: '2018-01-01T05:00:00.000Z',
             paid: false,
             paid_date: null,
             company: {
@@ -48,7 +48,7 @@ describe("GET /1", () => {
     );
   });
 
-  test("It should return 404 for no-such-invoice", async () => {
+  test("It should return 404 for no-such-invoice", async function () {
     const response = await request(app).get("/invoices/999");
     expect(response.status).toEqual(404);
   })
@@ -97,16 +97,15 @@ describe('PUT /', () => {
     );
   });
 
-
-  test('It should return 404 for no-such-invoice', async () => {
+  test("It should return 404 for no-such-invoice", async () => {
     const response = await request(app)
-        .put("/invoices/9999")
+        .put("/invoices/999")
         .send({amt: 1000});
 
     expect(response.status).toEqual(404);
   });
 
-  test('It should return 500 for missing data', async () => {
+  test("It should return 500 for missing data", async () => {
     const response = await request(app)
         .put("/invoices/1")
         .send({});
