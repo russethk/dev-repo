@@ -46,6 +46,28 @@ router.post("/add/", async function(req, res, next) {
   }
 });
 
+/** handle a search for customers by name */
+router.get('/search', async function(req, res, next){
+  try{
+    const terms = req.query.terms;
+    const customers = await Customer.searchForCustomer(terms);
+
+    return res.render('customer_search_results.html', { customers });
+  }catch(err){
+    return next(err);
+  }
+});
+
+/** finds top 10 customers ordered by most reservations */
+router.get('/best-customers', async function(req,res,next){
+  try{
+    const customers = await Customer.getTopTenBestCustomers();
+    return res.render("best_list.html", { customers });
+  } catch(err){
+    return next(err);
+  }
+});
+
 /** Show a customer, given their ID. */
 
 router.get("/:id/", async function(req, res, next) {
@@ -59,6 +81,8 @@ router.get("/:id/", async function(req, res, next) {
     return next(err);
   }
 });
+
+
 
 /** Show form to edit a customer. */
 
@@ -111,5 +135,46 @@ router.post("/:id/add-reservation/", async function(req, res, next) {
     return next(err);
   }
 });
+
+/** Show a reservation, given their ID. */
+
+router.get("/reservation/:id", async function(req, res, next) {
+  try {
+    const reservation = await Reservation.get(req.params.id);
+
+    return res.render("reservation_detail.html", { reservation });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+
+/** Show form to edit a reservation */
+router.get("/edit-reservation/:id", async function(req, res, next){
+  try {
+    const reservation = await Reservation.get(req.params.id);
+
+    res.render("reservation_edit_form.html", { reservation });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+/** Handle edit a reservation */
+router.post("/edit-reservation/:id", async function(req,res,next){
+  try {
+    const reservation = await Reservation.get(req.params.id);
+    console.log(req.body)
+    reservation.startAt = req.body.startAt;
+    reservation.numGuests = req.body.numGuests;
+    reservation.notes = req.body.notes;
+    await reservation.save();
+
+    return res.redirect(`/${reservation.id}/`);
+  } catch (err) {
+    return next(err);
+  }
+});
+
 
 module.exports = router;

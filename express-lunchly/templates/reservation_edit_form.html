@@ -1,36 +1,15 @@
 {% extends 'base.html' %}
-{% block title %}{{ customer.firstName }} {{ customer.lastName }}{% endblock %}
+{% block title %}{{ customer.fullName }}{% endblock %}
 
 {% block content %}
 
 
-<h1>{{ customer.fullName }}</h1>
 
 <div class="row">
 
   <div class="col-6">
-
-    <p><b>Phone: </b> {{ customer.phone }}</p>
-    <p><b>Notes: </b>{{ customer.notes }}</p>
-
-    <p><a class="btn btn-primary" href="/{{ customer.id }}/edit/">Edit</a></p>
-
-    <h2>Reservations</h2>
-    {% if reservations %}
-    <ul>
-      {% for reservation in reservations %}
-      <li><b>{{ reservation.getformattedStartAt() }}</b> for {{ reservation.numGuests }}</li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>None!</p>
-    {% endif %}
-
-  </div>
-
-  <div class="col-6">
-    <h3>New Reservation</h3>
-    <form action="/{{ customer.id }}/add-reservation/" method="POST">
+    <h3>Edit Reservation</h3>
+    <form action="/edit-reservation/{{ reservation.id }}" method="POST">
       <div class="form-group">
         <label for="start">Start</label>
         <input id="start"
