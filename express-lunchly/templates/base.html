@@ -36,12 +36,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/add/">Add a Customer</a>
         </li>
-        <li class="ml-5">
-          <form action="/search">
-            <input name='terms' type="text" placeholder='Search...'>
-            <button class='btn btn-primary'>Search</button>
-          </form>
-        </li>
+        <form class="d-flex" action="/search">
+          <input class="form-control me-sm-2 fa" name='terms' type="search" placeholder="&#xf007;  Search customers">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
       </ul>
     </div>
   </nav>
