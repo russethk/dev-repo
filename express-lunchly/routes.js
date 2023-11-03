@@ -59,15 +59,15 @@ router.get('/search', async function(req, res, next){
 });
 
 /** finds top 10 customers ordered by most reservations */
-router.get('/best-customers', async function(req,res,next){
+router.get('/top', async function(req,res,next){
   try{
-    const customers = await Customer.getTopTenBestCustomers();
-    return res.render("best_list.html", { customers });
-  } catch(err){
+    const customers = await Customer.topTenCustomers();
+
+    return res.render('customer_top_ten.html', { customers });
+  }catch(err){
     return next(err);
   }
 });
-
 
 /** Show a customer, given their ID. */
 

@@ -101,22 +101,24 @@ class Customer {
     return response.rows.map(c => new Customer(c));
   }
 
-  static async getTopTenBestCustomers(){
+  /** get top 10 customers with most reservations */
+
+  static async topTenCustomers() {
     let response = await db.query(
       `SELECT c.id, 
-      c.first_name AS "firstName",  
-      c.last_name AS "lastName",
-      c.phone, 
-      c.notes
-      FROM customers c
-      LEFT JOIN reservations r
-      ON c.id = r.customer_id
-      GROUP BY c.id
-      ORDER BY COUNT(r.id) DESC
-      LIMIT 10`
+          c.first_name AS "firstName",  
+          c.last_name AS "lastName",
+          c.phone, 
+          c.notes 
+        FROM customers AS c
+        JOIN reservations AS r
+        ON c.id = r.customer_id
+        GROUP BY c.id
+        ORDER BY COUNT(r.id) DESC
+        LIMIT 10`
     );
-    console.log(response.rows)
-  return response.rows.map(c => new Customer(c))
+
+    return response.rows.map(c => new Customer(c));
   }
 
   /** get all reservations for this customer. */

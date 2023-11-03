@@ -65,6 +65,7 @@ class Reservation {
   get customerId() {
     return this._customerId;
   }
+  
   /** given a customer id, find their reservations. */
 
   static async getReservationsForCustomer(customerId) {
