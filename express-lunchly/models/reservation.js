@@ -15,55 +15,59 @@ class Reservation {
     this.startAt = startAt;
     this.notes = notes;
   }
-
-/** validate notes */
-get notes(){
-  return this._notes;
-}
-set notes(val){
-  if (!val){
-    this._notes = "";
+  /** validate notes */
+  get notes(){
+    return this._notes;
   }
-  else {
-    this._notes = val;
+  set notes(val){
+    if (!val){
+      this._notes = "";
+    }
+    else {
+      this._notes = val;
+    }
   }
-}
 /** validate number of guests */
-get numGuests(){
-  return this._numGuests;
-}
-set numGuests(val){
-  if (val < 1) {
-    throw new Error ("Please put at least one guest");
+  get numGuests(){
+    return this._numGuests;
   }
-  this._numGuests = val;
-}
+  set numGuests(val){
+    if (val < 1) {
+      throw new Error ("Please put at least one guest");
+    }
+    this._numGuests = val;
+  }
 /** validate the date  */
-get startAt(){
-  return this._startAt;
-}
-set startAt(val){
-  if (val !== "Invalid Date") {
-    this._startAt = val;
+  get startAt(){
+    return this._startAt;
   }
-  else {
-    throw new Error ("Please put a valid date");
+  set startAt(val){
+    if (val !== "Invalid Date") {
+      this._startAt = val;
+    }
+    else {
+      throw new Error ("Please put a valid date");
+    }
   }
-}
-/** validate customer Id */
-get customerId(){
-  return this._customerId;
-}
-set customerId(val){
-    this._customerId = val;
-}
+  /** validate customer Id */
+  get customerId(){
+    return this._customerId;
+  }
+  set customerId(val){
+    // console.log('customer id ..........',this._customerId, '.....val....', val)
+    // if (val !== undefined) {
+      this._customerId = val;
+    // }
+    // else
+    // throw new Error ("You cannot reassign this reservation to someone else");
+  }
 
-/** formatter for startAt */
+  /** formatter for startAt */
 
-getformattedStartAt() {
-  return moment(this.startAt).format('MMMM Do YYYY, h:mm a');
-}
-  
+  getformattedStartAt() {
+    return moment(this.startAt).format('MMMM Do YYYY, h:mm a');
+  }
+
   /** given a customer id, find their reservations. */
 
   static async getReservationsForCustomer(customerId) {
@@ -81,32 +85,19 @@ getformattedStartAt() {
     return results.rows.map(row => new Reservation(row));
   }
 
-  /** find a reservation by id. */
-
-  static async get(id) {
-    const results = await db.query(
-          `SELECT id, 
-           customer_id AS "customerId", 
-           num_guests AS "numGuests", 
-           start_at AS "startAt", 
-           notes AS "notes"
-         FROM reservations 
-         WHERE id = $1`,
-        [id]
+  static async get(id){
+    const result = await db.query(
+      `SELECT id, 
+      customer_id AS "customerId", 
+      num_guests AS "numGuests", 
+      start_at AS "startAt", 
+      notes AS "notes"
+    FROM reservations 
+    WHERE id = $1`,
+   [id]
     );
-
-    let reservation = results.rows[0];
-
-    if (reservation === undefined) {
-      const err = new Error(`No such reservation: ${id}`);
-      err.status = 404;
-      throw err;
-    }
-
-    return new Reservation(reservation);
+    return  new Reservation(result.rows[0]);
   }
-
-  /** save this reservation.  */
 
   async save() {
     if (this.id === undefined) {

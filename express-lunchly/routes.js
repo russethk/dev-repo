@@ -138,7 +138,7 @@ router.post("/:id/add-reservation/", async function(req, res, next) {
 });
 
 /** Show form to edit a reservation */
-router.get("/reservation/:id/edit/", async function(req, res, next){
+router.get("/:id/edit-reservation/", async function(req, res, next){
   try {
     const reservation = await Reservation.get(req.params.id);
 
@@ -149,7 +149,7 @@ router.get("/reservation/:id/edit/", async function(req, res, next){
 });
 
 /** Handle edit a reservation */
-router.post("/reservation/:id/edit/", async function(req,res,next){
+router.post("/:id/edit-reservation/", async function(req,res,next){
   try {
     const reservation = await Reservation.get(req.params.id);
     console.log(req.body)
@@ -158,7 +158,7 @@ router.post("/reservation/:id/edit/", async function(req,res,next){
     reservation.notes = req.body.notes;
     await reservation.save();
 
-    return res.redirect(`/${reservation.id}/`);
+    return res.redirect(`/${reservation.customerId}/`);
   } catch (err) {
     return next(err);
   }
@@ -166,7 +166,7 @@ router.post("/reservation/:id/edit/", async function(req,res,next){
 
 /** Show a reservation, given their ID. */
 
-router.get("/reservation/:id", async function(req, res, next) {
+router.get("/reservation/:id/", async function(req, res, next) {
   try {
     const reservation = await Reservation.get(req.params.id);
 
@@ -175,6 +175,5 @@ router.get("/reservation/:id", async function(req, res, next) {
     return next(err);
   }
 });
-
 
 module.exports = router;

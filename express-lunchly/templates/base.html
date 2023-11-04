@@ -6,8 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
+  <script src="https://unpkg.com/popper"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  
+  <link rel="stylesheet" href="/static/style.css">
+
   <title>Lunch.ly {% block title %}{% endblock %}</title>
  
 </head>
@@ -15,7 +17,7 @@
 
 <div class="container-fixed">
 
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="/">Lunch.ly</a>
     <button class="navbar-toggler"
             type="button"
@@ -39,10 +41,14 @@
         <li class="nav-item">
           <a class="nav-link" href="/add/">Add a Customer</a>
         </li>
+        <li class="nav-item">
+        <div id="search-container">
         <form class="d-flex" action="/search">
           <input class="form-control me-sm-2 fa" name='terms' type="search" placeholder="&#xf007;  Search customers">
           <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
+        </div>
+      </li>
       </ul>
     </div>
   </nav>

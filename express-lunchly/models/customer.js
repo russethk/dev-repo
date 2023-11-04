@@ -135,12 +135,11 @@ class Customer {
     return response.rows.map(c => new Customer(c));
   }
 
-   /** get all reservations for this customer. */
+  /** get all reservations for this customer. */
 
-   async getReservations() {
+  async getReservations() {
     return await Reservation.getReservationsForCustomer(this.id);
   }
-
 
   /** save this customer. */
 
@@ -162,5 +161,4 @@ class Customer {
     }
   }
 }
-
 module.exports = Customer;
