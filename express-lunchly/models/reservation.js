@@ -26,21 +26,13 @@ class Reservation {
   get numGuests() {
     return this._numGuests;
   }
+  
 
-  /** methods for setting/getting startAt time */
+   /** formatter for startAt */
 
-  set startAt(val) {
-    if (val instanceof Date && !isNaN(val)) this._startAt = val;
-    else throw new Error("Not a valid startAt.");
-  }
-
-  get startAt() {
-    return this._startAt;
-  }
-
-  get formattedStartAt() {
-    return moment(this.startAt).format("MMMM Do YYYY, h:mm a");
-  }
+   getformattedStartAt() {
+    return moment(this.startAt).format('MMMM Do YYYY, h:mm a');
+   }
 
   /** methods for setting/getting notes (keep as a blank string, not NULL) */
 
