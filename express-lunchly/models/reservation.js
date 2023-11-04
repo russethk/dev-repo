@@ -31,17 +31,15 @@ class Reservation {
 
   set startAt(val) {
     if (val instanceof Date && !isNaN(val)) this._startAt = val;
-    else throw new Error('Not a valid startAt.');
+    else throw new Error("Not a valid startAt.");
   }
 
   get startAt() {
     return this._startAt;
   }
 
-  /** formatter for startAt */
-
-  getformattedStartAt() {
-    return moment(this.startAt).format('MMMM Do YYYY, h:mm a');
+  get formattedStartAt() {
+    return moment(this.startAt).format("MMMM Do YYYY, h:mm a");
   }
 
   /** methods for setting/getting notes (keep as a blank string, not NULL) */
