@@ -14,24 +14,38 @@ class Customer {
     this.notes = notes;
   }
 
-  /** methods for getting/setting notes (keep as empty string, not NULL) */
-
-  set notes(val) {
-    this._notes = val || "";
+  /** validate firstName */
+  get firstName(){
+    return this._firstName;
+  }
+  set firstName(val){
+    if(!val){
+      throw new Error("please put a First Name")
+    }
+    this._firstName = val;
   }
 
-  get notes() {
+   /** validate lastName */
+   get lastName(){
+    return this._lastName;
+  }
+  set lastName(val){
+    if(!val){
+      throw new Error("please put a Last Name")
+    }
+    this._lastName = val;
+  }
+  /** validate notes */
+  get notes(){
     return this._notes;
   }
-
-  /** methods for getting/setting phone #. */
-
-  set phone(val) {
-    this._phone = val || null;
-  }
-
-  get phone() {
-    return this._phone;
+  set notes(val){
+    if (!val){
+      this._notes = "";
+    }
+    else {
+      this._notes = val;
+    }
   }
 
   /** find all customers. */

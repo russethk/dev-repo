@@ -16,53 +16,53 @@ class Reservation {
     this.notes = notes;
   }
 
- /** methods for getting/setting number of guests */
-
- set numGuests(val) {
-  if (val < 1) throw new Error("Cannot have fewer than 1 guest.");
-  this._numGuests = val;
+/** validate notes */
+get notes(){
+  return this._notes;
 }
-
-get numGuests() {
+set notes(val){
+  if (!val){
+    this._notes = "";
+  }
+  else {
+    this._notes = val;
+  }
+}
+/** validate number of guests */
+get numGuests(){
   return this._numGuests;
 }
-
-/** methods for setting/getting startAt time */
-
-set startAt(val) {
-  if (val instanceof Date && !isNaN(val)) this._startAt = val;
-  else throw new Error("Not a valid startAt.");
+set numGuests(val){
+  if (val < 1) {
+    throw new Error ("Please put at least one guest");
+  }
+  this._numGuests = val;
 }
-
-get startAt() {
+/** validate the date  */
+get startAt(){
   return this._startAt;
 }
-
-get formattedStartAt() {
-  return moment(this.startAt).format("MMMM Do YYYY, h:mm a");
+set startAt(val){
+  if (val !== "Invalid Date") {
+    this._startAt = val;
+  }
+  else {
+    throw new Error ("Please put a valid date");
+  }
+}
+/** validate customer Id */
+get customerId(){
+  return this._customerId;
+}
+set customerId(val){
+    this._customerId = val;
 }
 
-  /** methods for setting/getting notes (keep as a blank string, not NULL) */
+/** formatter for startAt */
 
-  set notes(val) {
-    this._notes = val || '';
-  }
-
-  get notes() {
-    return this._notes;
-  }
-
-  /** methods for setting/getting customer ID: can only set once. */
-
-  set customerId(val) {
-    if (this._customerId && this._customerId !== val)
-      throw new Error('Cannot change customer ID');
-    this._customerId = val;
-  }
-
-  get customerId() {
-    return this._customerId;
-  }
+getformattedStartAt() {
+  return moment(this.startAt).format('MMMM Do YYYY, h:mm a');
+}
   
   /** given a customer id, find their reservations. */
 
@@ -111,17 +111,17 @@ get formattedStartAt() {
   async save() {
     if (this.id === undefined) {
       const result = await db.query(
-          `INSERT INTO reservations (customer_id, num_guests, start_at, notes)
-           VALUES ($1, $2, $3, $4)
-           RETURNING id`,
-          [this.customerId, this.numGuests, this.startAt, this.notes]
+        `INSERT INTO reservations (customer_id, start_at, num_guests, notes)
+             VALUES ($1, $2, $3, $4)
+             RETURNING id`,
+        [this.customerId, this.startAt, this.numGuests, this.notes]
       );
       this.id = result.rows[0].id;
     } else {
       await db.query(
-          `UPDATE reservations SET num_guests=$1, start_at=$2, notes=$3
-           WHERE id=$4`,
-          [this.numGuests, this.startAt, this.notes, this.id]
+        `UPDATE reservations SET customer_id=$1, start_at=$2, num_guests=$3, notes=$4
+             WHERE id=$5`,
+             [this.customerId, this.startAt, this.numGuests, this.notes, this.id]
       );
     }
   }
