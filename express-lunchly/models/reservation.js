@@ -16,23 +16,31 @@ class Reservation {
     this.notes = notes;
   }
 
-  /** methods for getting/setting number of guests */
+ /** methods for getting/setting number of guests */
 
-  set numGuests(val) {
-    if (val < 1) throw new Error('Cannot have fewer than 1 guest.');
-    this._numGuests = val;
-  }
+ set numGuests(val) {
+  if (val < 1) throw new Error("Cannot have fewer than 1 guest.");
+  this._numGuests = val;
+}
 
-  get numGuests() {
-    return this._numGuests;
-  }
-  
+get numGuests() {
+  return this._numGuests;
+}
 
-   /** formatter for startAt */
+/** methods for setting/getting startAt time */
 
-   getformattedStartAt() {
-    return moment(this.startAt).format('MMMM Do YYYY, h:mm a');
-   }
+set startAt(val) {
+  if (val instanceof Date && !isNaN(val)) this._startAt = val;
+  else throw new Error("Not a valid startAt.");
+}
+
+get startAt() {
+  return this._startAt;
+}
+
+get formattedStartAt() {
+  return moment(this.startAt).format("MMMM Do YYYY, h:mm a");
+}
 
   /** methods for setting/getting notes (keep as a blank string, not NULL) */
 
