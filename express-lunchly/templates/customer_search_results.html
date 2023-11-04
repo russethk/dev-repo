@@ -2,7 +2,7 @@
 {% block title %}Customers{% endblock %}
 {% block content %}
 
-<h1>Customers</h1>
+<h2>Customers</h2>
 <ul style="column-count: 4">
   {% for customer in customers %}
   <li><a href="/{{ customer.id }}/">{{ customer.fullName }}</a></li>
