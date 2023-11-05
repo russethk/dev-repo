@@ -1,4 +1,5 @@
 /** Express app for message.ly. */
+/** Pulls in user routes, messages routes, and auth routes */
 
 
 const express = require("express");
