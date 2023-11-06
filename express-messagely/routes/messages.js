@@ -1,6 +1,7 @@
 const Router = require("express").Router;
 const router = new Router();
 
+const User = require("../models/user")
 const Message = require("../models/message");
 const {ensureLoggedIn} = require("../middleware/auth");
 const ExpressError = require("../expressError");
@@ -50,7 +51,9 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
         to_username: req.body.to_username,
         body: req.body.body
         });
-    
+        
+        let { phone } = await User.get(req.body.to_username);
+        Message.sendSMS(phone, body);
         return res.json({message: msg});
     }
     

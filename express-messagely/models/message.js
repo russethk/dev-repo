@@ -3,7 +3,7 @@
 const db = require("../db");
 const ExpressError = require("../expressError");
 
-const { accountSid, authToken, TWILIO_PHONE, MY_PHONE } = require("../config");
+const { accountSid, authToken, fromNumber } = require("../config");
 const client = require("twilio")(accountSid, authToken);
 
 
@@ -29,11 +29,17 @@ class Message {
     return result.rows[0];
   }
 
-  // Can get message ID from route, get message details, then pass in
-  // from/to phone numbers and/or usernames, and message body from DB
-  static async sendSMS(body) {
-    const message = await client.messages
-      .create({ body: body, from: TWILIO_PHONE, to: MY_PHONE });
+  /** send text message (body) to phone # (phone)
+   * where phone is a string
+   */
+  static sendSMS(phone, body) {
+    client.messages
+      .create({
+        body: body,
+        from: fromNumber,
+        to: phone
+      })
+      .then(message => console.log(message.sid));
   }
 
   /** Update read_at for message */
