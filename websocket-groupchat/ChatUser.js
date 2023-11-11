@@ -61,14 +61,6 @@ class ChatUser {
     else throw new Error(`bad message: ${msg.type}`);
   }
 
-  /** handle joke messages from icanhazdadjokes.com API  */
-
-  handleJoke(jsonData) {
-    let msg = JSON.parse(jsonData);
-
-    if (msg.type === 'get-joke') this.handleJoke(msg.text);
-    else throw new Error(`bad message: ${msg.type}`);
-  }
 
 
   /** Connection was closed: leave room, announce exit to others */

@@ -7,27 +7,6 @@ const ws = new WebSocket(`ws://localhost:3000/chat/${roomName}`);
 
 const name = prompt("Username?");
 
-/** Get jokes data from API  */
-
-async function getJoke() {
-  const res = await axios.get("https://icanhazdadjoke.com/", {
-    headers: { Accept: "application/json" },
-  });
-  return res.data.joke;
-}
-
-/** called when page is done loading. */
-
-async function main() {
-  // get joke from API and send to server
-  const joke = await getJoke();
-  let data = {type: "get-joke", text: joke};
-  ws.send(JSON.stringify(data));
-}
-
-main();
-
-
 /** called when connection opens, sends join info to server. */
 
 ws.onopen = function(evt) {
@@ -36,6 +15,7 @@ ws.onopen = function(evt) {
   let data = {type: "join", name: name};
   ws.send(JSON.stringify(data));
 };
+
 
 
 /** called when msg received from server; displays it. */
@@ -51,10 +31,6 @@ ws.onmessage = function(evt) {
   }
 
   else if (msg.type === "chat") {
-    item = $(`<li><b>${msg.name}: </b>${msg.text}</li>`);
-  }
-
-  else if (msg.type === "get-joke") {
     item = $(`<li><b>${msg.name}: </b>${msg.text}</li>`);
   }
 
@@ -90,4 +66,9 @@ $('form').submit(function (evt) {
 
   $('#m').val('');
 });
+
+
+
+
+
 
