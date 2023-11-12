@@ -16,6 +16,7 @@ class ChatUser {
     console.log(`created chat in ${this.room.name}`);
   }
 
+
   /** send msgs to this client using underlying connection-send-function */
 
   send(data) {
@@ -46,6 +47,7 @@ class ChatUser {
       text: text
     });
   }
+
 
   /** Handle messages from client:
    *

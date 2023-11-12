@@ -38,6 +38,8 @@ ws.onmessage = function(evt) {
     return console.error(`bad message: ${msg}`);
   }
 
+ 
+
   $('#messages').append(item);
 };
 
