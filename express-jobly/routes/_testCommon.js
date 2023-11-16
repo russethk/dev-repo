@@ -86,6 +86,6 @@ module.exports = {
   commonAfterEach,
   commonAfterAll,
   u1Token,
-  usToken,
+  u2Token,
   adminToken,
 };
