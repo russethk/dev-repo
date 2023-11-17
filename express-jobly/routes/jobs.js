@@ -3,17 +3,17 @@
 /** Routes for jobs. */
 
 const jsonschema = require("jsonschema");
-const express = require("express");
 
+const express = require("express");
 const { BadRequestError } = require("../expressError");
 const { ensureAdmin } = require("../middleware/auth");
-const Job = require("../models/job");
 
+const Job = require("../models/job");
 const jobNewSchema = require("../schemas/jobNew.json");
 const jobUpdateSchema = require("../schemas/jobUpdate.json");
 const jobSearchSchema = require("../schemas/jobSearch.json");
 
-const router = new express.Router();
+const router = new express.Router({ mergeParams: true });
 
 /** POST / { job } =>  { job }
  *  
@@ -54,7 +54,7 @@ router.get("/", async function (req, res, next) {
     const q = req.query;
     // arrive as strings from querystring, but we want as ints
     if (q.minSalary !== undefined) q.minSalary = +q.minSalary;
-    if (q.hasEquity !== undefined) q.hasEquity = q.hasEquity === "true";
+    q.hasEquity = q.hasEquity === "true";
     try {
         const validator = jsonschema.validate(q, jobSearchSchema);
         if (!validator.valid) {

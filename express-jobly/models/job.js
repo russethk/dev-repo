@@ -17,7 +17,6 @@ class Job {
      * */
     
     static async create(data) {
-    
         const result = await db.query(
             `INSERT INTO jobs
              (title, salary, equity, company_handle)
@@ -45,7 +44,7 @@ class Job {
      * Returns [{ id, title, salary, equity, companyHandle }, ...]
      * */
 
-    static async findAll(minSalary, hasEquity, title = {}) {
+    static async findAll( {minSalary, hasEquity, title } = {}) {
         let query = `SELECT j.id,
                     j.title,
                     j.salary,
