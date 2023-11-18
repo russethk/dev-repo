@@ -188,7 +188,7 @@ describe("GET /users", function () {
 /************************************** GET /users/:username */
 
 describe("GET /users/:username", function () {
-  test("works for users", async function () {
+  test("works for admin", async function () {
     const resp = await request(app)
         .get(`/users/u1`)
         .set("authorization", `Bearer ${adminToken}`);
@@ -199,6 +199,7 @@ describe("GET /users/:username", function () {
         lastName: "U1L",
         email: "user1@user.com",
         isAdmin: false,
+        applications: [testJobIds[0]],
       },
     });
   });
@@ -214,6 +215,7 @@ describe("GET /users/:username", function () {
         lastName: "U1L",
         email: "user1@user.com",
         isAdmin: false,
+        applications: [testJobIds[0]],
       },
     });
   });
