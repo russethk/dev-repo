@@ -238,8 +238,8 @@ static async applyJob(username, jobId) {
   if (!user) throw new NotFoundError(`No user: ${username}`);
 
   await db.query(
-    `INSERT INTO applications (username, job_id)
-    VALUES ($1, $2)`, [username, jobId]);
+    `INSERT INTO applications (job_id, username)
+    VALUES ($1, $2)`, [jobId, username]);
   }
 }
 
