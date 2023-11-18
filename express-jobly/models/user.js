@@ -147,7 +147,8 @@ class User {
            WHERE username = $1`,
         [username],
     );
-
+    
+    user.applications = userApplicationsRes.rows.map(a => a.job_id);
     return user;
   }
 
@@ -238,8 +239,8 @@ static async applyJob(username, jobId) {
   if (!user) throw new NotFoundError(`No user: ${username}`);
 
   await db.query(
-    `INSERT INTO applications (job_id, username)
-    VALUES ($1, $2)`, [jobId, username]);
+    `INSERT INTO applications (username, job_id)
+    VALUES ($1, $2)`, [username, jobId]);
   }
 }
 
