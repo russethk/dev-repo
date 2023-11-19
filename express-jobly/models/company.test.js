@@ -116,7 +116,7 @@ describe("get", function () {
           id: testJobIds[2],
           title: "Job3",
           salary: 300,
-          equity: "0.3",
+          equity: "0",
         },
         {
           id : testJobIds[3],
