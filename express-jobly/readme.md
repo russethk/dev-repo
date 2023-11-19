@@ -10,6 +10,7 @@
 - Install dependencies by running `npm install`
 - Create PostgreSQL database named `jobly` and seed the database schema from `data.sql` by running `psql jobly < data.sql`
 - Start the server by running `npm start`, it should be running on `localhost:3001`
+- Run the tests by running `npm test`
 
 # What Can I Do?
 
