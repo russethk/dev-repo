@@ -238,7 +238,7 @@ describe("applyJob", function () {
     await User.applyJob("u1", testJobIds[1]);
     
     const res = await db.query(
-        "SELECT * FROM applications WHERE job_id=1", [testJobIds[1]]);
+        "SELECT * FROM applications WHERE job_id=$1", [testJobIds[1]]);
     expect(res.rows).toEqual([{
       job_id: testJobIds[1],
       username: "u1"
