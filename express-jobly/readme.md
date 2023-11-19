@@ -1,5 +1,5 @@
 # Jobly
-**Jobly** is a Node Express REST API server for searching and connecting to jobs in a relational database. All the routes in Jobly require an auth token (provided on successful login).
+**Jobly** is a Node Express REST API for searching and connecting to jobs in a relational database. All the routes in Jobly require an auth token (provided on successful login).
 
 # Get Started
 
