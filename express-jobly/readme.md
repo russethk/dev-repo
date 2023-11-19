@@ -21,7 +21,7 @@ Here's some helpful routes to call while playing around with Jobly:
 
 **POST** `localhost:3000/users`<br>
 creates a new user.<br>
-data input: `username, password, first_name, last_name, email, photo_url`
+data input: `username, password, first_name, last_name, email`
 
 **GET** `localhost:3000/users`<br>
 returns username, first_name, last_name and email of all users
@@ -96,6 +96,3 @@ This route updates a job by its ID and returns an the newly updated job.
 *Must be an admin*<br>
 This route deletes a job and returns a message.
 
-# Contributors
-
-This project was created by @charleskantz and @ulejnar. The project was coded with paired programming, so contributions were equal across all aspects of the app. @charleskantz is now maintaining this project.
