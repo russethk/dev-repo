@@ -38,10 +38,6 @@ updates an existing user and returns the updated user excluding the password.
 *Must be the logged-in user or an admin*<br>
 removes an existing user and returns the message "User deleted".
 
-## Login Route
-
-**POST** `localhost:3001/login`<br>
-authenticates user and returns an auth token.
 
 ## Company Routes
 
@@ -60,7 +56,7 @@ This should create a new company and return the newly created company.<br>
 data input: `handle, name, num_employees, description, logo_url`
 
 **GET** `localhost:3001/companies/[handle]`<br>
-This should return a single company found by its id.
+This should return a single company found by its id. This returns all of the data associated with this company, including all jobs associated with this company. 
 
 **PATCH** `localhost:3001/companies/[handle]`<br>
 *Must be an admin*<br>
