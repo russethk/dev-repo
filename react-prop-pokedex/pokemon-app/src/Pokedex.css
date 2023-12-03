@@ -1,0 +1,23 @@
+.Pokedex {
+    text-align: center;
+}
+
+.Pokedex-title {
+    color: grey;
+    font-family: "Roboto", sans-serif;
+    font-weight:lighter;
+    font-size: 2rem;
+}
+
+.Pokedex-cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.Pokedex-winner {
+    font-weight: bold;
+    color: orangered;
+}
+
+/* Path: src/Pokecard.css */
