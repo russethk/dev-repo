@@ -1,0 +1,38 @@
+
+.EightBall-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.EightBall {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  margin: 50px;
+  border-radius: 50%;
+  border-color: 1px solid black;
+  color: white;
+  display: flex;
+  height: 150px;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+button {
+  background-color: lightblue;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+
