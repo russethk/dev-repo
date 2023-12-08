@@ -18,12 +18,8 @@ function Pokedex({ exp, isWinner, pokemon }) {
     : null;
 
   return (
-
-      
       <div className="Pokedex">
-
-      <h2 className="Pokedex-title">Pokédex</h2> 
-
+       
         <div className="Pokedex-cards">
           {pokemon.map(p => (
               <Pokecard

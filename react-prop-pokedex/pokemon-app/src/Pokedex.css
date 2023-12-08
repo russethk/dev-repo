@@ -3,10 +3,12 @@
 }
 
 .Pokedex-title {
+    display: flex;
     color: purple;
+    margin-left: 25px;
     font-family: "Roboto", sans-serif;
     font-weight:lighter;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 .Pokedex-cards {

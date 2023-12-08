@@ -1,6 +1,6 @@
 .Pokecard {
     background-color: grey;
-    background-image: linear-gradient(purple, yellow);
+    background-image: linear-gradient(grey, white);
     border-radius: 10px;
     border: 1px solid black;
     padding: 5px;
