@@ -37,7 +37,7 @@ import Card from "./Card";
     <div className="Carousel">
       <h1>{title}</h1>
       <div className="Carousel-main">
-        {currCardIdx !== 0 &&
+        {currCardIdx !== 0 && 
           <i className="bi bi-arrow-left-circle" onClick={goBackward}></i>
         }
         <Card caption={currCard.caption} 
