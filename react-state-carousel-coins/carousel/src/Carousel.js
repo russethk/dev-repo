@@ -11,6 +11,9 @@ import Card from "./Card";
  * 
  * State:
  * - currCardIdx: integer for current card index
+ * - currCard: object with src and caption for current card
+ * - total: integer for total number of cards
+ * - arrow left and right: icons to navigate through cards
  * 
  * App --> Carousel --> Card
  */
@@ -30,27 +33,48 @@ import Card from "./Card";
     setCurrCardIdx(currCardIdx - 1);
   }
 
-  return (
-    <div className="Carousel">
-      <h1>{title}</h1>
-      <div className="Carousel-main">
-        <i
-          className="bi bi-arrow-left-circle"
-          onClick={goForward}
-        />
-        <Card
-          caption={currCard.caption}
-          src={currCard.src}
-          currNum={currCardIdx}
-          totalNum={total}
-        />
-        <i
-          className="bi bi-arrow-right-circle"
-          onClick={goBackward}
-        />
+   // hide left arrow if currCardIdx is 0
+  if (currCardIdx === 0) {
+    return (
+      <div className="Carousel">
+        <h1>{title}</h1>
+        <div className="Carousel-main">
+          <Card
+            caption={currCard.caption}
+            src={currCard.src}
+            currNum={currCardIdx + 1}
+            totalNum={total}
+          />
+          <i
+            className="bi bi-arrow-right-circle"
+            onClick={goForward}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  // hide right arrow if currCardIdx is at last index
+  if (currCardIdx === total - 1) {
+    return (
+      <div className="Carousel">
+        <h1>{title}</h1>
+        <div className="Carousel-main">
+          <i
+            className="bi bi-arrow-left-circle"
+            onClick={goBackward}
+          />
+          <Card
+            caption={currCard.caption}
+            src={currCard.src}
+            currNum={currCardIdx + 1}
+            totalNum={total}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Carousel;
+
