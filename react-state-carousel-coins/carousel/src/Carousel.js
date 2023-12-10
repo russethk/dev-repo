@@ -33,47 +33,16 @@ import Card from "./Card";
     setCurrCardIdx(currCardIdx - 1);
   }
 
-   // hide left arrow if currCardIdx is 0
-  if (currCardIdx === 0) {
-    return (
-      <div className="Carousel">
-        <h1>{title}</h1>
-        <div className="Carousel-main">
-          <Card
-            caption={currCard.caption}
-            src={currCard.src}
-            currNum={currCardIdx + 1}
-            totalNum={total}
-          />
-          <i
-            className="bi bi-arrow-right-circle"
-            onClick={goForward}
-          />
-        </div>
+  return (
+    <div className="Carousel">
+      <h1>{title}</h1>
+      <div className="Carousel-main">
+        {currCardIdx !== 0 && <i className="bi bi-arrow-left-circle" onClick={goBackward}></i>}
+        <Card caption={currCard.caption} src={currCard.src} currNum={currCardIdx + 1} totalNum={total} />
+        {currCardIdx !== total - 1 && <i className="bi bi-arrow-right-circle" onClick={goForward}></i>}
       </div>
-    );
-  }
-
-  // hide right arrow if currCardIdx is at last index
-  if (currCardIdx === total - 1) {
-    return (
-      <div className="Carousel">
-        <h1>{title}</h1>
-        <div className="Carousel-main">
-          <i
-            className="bi bi-arrow-left-circle"
-            onClick={goBackward}
-          />
-          <Card
-            caption={currCard.caption}
-            src={currCard.src}
-            currNum={currCardIdx + 1}
-            totalNum={total}
-          />
-        </div>
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Carousel;
