@@ -1,0 +1,14 @@
+.Cell {
+  height: 100px;
+  width: 100px;
+  background-color: darkblue;
+  border: 2px solid lightblue;
+  cursor: pointer;
+}
+
+.Cell-lit {
+  background-color: yellow;
+  border: 2px solid white;
+  transition:cubic-bezier(1, 0, 0, 1) 0.5s;
+  border-radius: 50%;
+}

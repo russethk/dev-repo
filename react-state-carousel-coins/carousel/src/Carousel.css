@@ -1,13 +1,15 @@
 .Carousel-main {
   display: flex;
+  flex-direction:row;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .Carousel-main > i {
   cursor: pointer;
-  margin: 10px;
   color: #aaa;
+  z-index: 10;
 }
 
 .Carousel-main > i:hover {
@@ -15,5 +17,6 @@
 }
 
 .bi {
-  font-size: 35px
+  font-size: 35px;
 }
+

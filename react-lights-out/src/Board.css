@@ -1,0 +1,15 @@
+.Board {
+  margin: 0 auto;
+  border: 1px solid black;
+  background-color: darkblue;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  margin: 0.5em;
+  margin-top: 2.5em;
+  transition:ease-in 0.5s;
+}
