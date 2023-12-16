@@ -3,14 +3,14 @@
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="enterForm"
+    class="boxesForm"
   >
     <form>
       <div>
         <label
           for="height"
         >
-          Height: 
+          Height
         </label>
         <input
           id="height"
@@ -23,7 +23,7 @@ exports[`matches snapshot 1`] = `
         <label
           for="width"
         >
-          Width: 
+          Width
         </label>
         <input
           id="width"
@@ -36,7 +36,7 @@ exports[`matches snapshot 1`] = `
         <label
           for="backgroundColor"
         >
-          Background Color: 
+          Background Color
         </label>
         <input
           id="backgroundColor"

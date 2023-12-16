@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent, wait} from "@testing-library/react";
 import BoxList from "./BoxList";
 
-function addBox(boxList, height = "20", width = "20", color = "peachpuff") {
+function addBox(boxList, height = "200", width = "200", color = "peachpuff") {
     const heightInput = boxList.getByLabelText("Height");
     const widthInput = boxList.getByLabelText("Width");
     const backgroundInput = boxList.getByLabelText("Background Color");
@@ -21,37 +21,37 @@ function addBox(boxList, height = "20", width = "20", color = "peachpuff") {
     const { asFragment } = render(<BoxList />);
     expect(asFragment()).toMatchSnapshot();
   });
+
+    it("can add a new box", function() {
+        const boxList = render(<BoxList />);
+    
+        // no boxes yet
+        expect(boxList.queryByText("X")).not.toBeInTheDocument();
+    
+        addBox(boxList);
+    
+        // expect to see a box
+        const removeButton = boxList.getByText("X");
+        expect(removeButton).toBeInTheDocument();
+        expect(removeButton.previousSibling).toHaveStyle(`
+        width: 200px;
+        height: 200px;
+        background-color: peachpuff;
+        `);
+        // expect form to be empty
+        expect(boxList.getAllByDisplayValue("")).toHaveLength(3);
+    
+    });
+
+    it("can remove a box", function() {
+        const boxList = render(<BoxList />);
+        addBox(boxList);
+    
+        const removeButton = boxList.getByText("X");
+    
+        // click the remove button and the box should be gone
+        fireEvent.click(removeButton);
+        expect(removeButton).not.toBeInTheDocument();
+    });
   
-  it("can add a new box", function() {
-    const boxList = render(<BoxList />);
-  
-    // no boxes yet
-    expect(boxList.queryByText("X")).not.toBeInTheDocument();
-  
-    addBox(boxList);
-  
-    // expect to see a box
-    const removeButton = boxList.getByText("X");
-    expect(removeButton).toBeInTheDocument();
-    expect(removeButton.previousSibling).toHaveStyle(`
-      width: 20px;
-      height: 20px;
-      background-color: peachpuff;
-    `);
-    // expect form to be empty
-    expect(boxList.getAllByDisplayValue("")).toHaveLength(3);
-  
-    // expect(asFragment()).toMatchSnapshot();
-  });
-  
-  it("can remove a box", function() {
-    const boxList = render(<BoxList />);
-    addBox(boxList);
-  
-    const removeButton = boxList.getByText("Remove The Box!");
-  
-    // click the remove button and the box should be gone
-    fireEvent.click(removeButton);
-    expect(removeButton).not.toBeInTheDocument();
-  });
-  
+ 

@@ -44,10 +44,10 @@ function NewBoxForm({ createBox }) {
 
   /** render form */
   return (
-   <div className="enterForm">
+   <div className="boxesForm">
     <form onSubmit={handleSubmit}>
       <div>
-       <label htmlFor="height">Height</label>
+       <label for="height">Height</label>
           <input
             onChange={handleChange}
             type="text"
@@ -57,7 +57,7 @@ function NewBoxForm({ createBox }) {
           />
       </div>
       <div>
-        <label forHTML="width">Width</label>
+        <label for="width">Width</label>
         <input
           onChange={handleChange}
           type="text"
@@ -67,7 +67,7 @@ function NewBoxForm({ createBox }) {
         />
       </div>
       <div>
-        <label forHTML="backgroundColor">Background Color</label>
+        <label for="backgroundColor">Background Color</label>
         <input
           onChange={handleChange}
           type="text"
