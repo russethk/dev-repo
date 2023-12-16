@@ -21,8 +21,6 @@ function NewBoxForm({ createBox }) {
     backgroundColor: ""
   });
 
-  
-
   /** Send {height, width, backgroundColor} to parent
    *    & clear form. */
 
@@ -42,14 +40,14 @@ function NewBoxForm({ createBox }) {
     }));
   };
 
- 
+  
 
   /** render form */
   return (
    <div className="enterForm">
     <form onSubmit={handleSubmit}>
       <div>
-       <label htmlFor="height">Height:  </label>
+       <label htmlFor="height">Height: </label>
           <input
             onChange={handleChange}
             type="text"
