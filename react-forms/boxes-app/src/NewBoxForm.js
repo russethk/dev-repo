@@ -47,7 +47,7 @@ function NewBoxForm({ createBox }) {
    <div className="enterForm">
     <form onSubmit={handleSubmit}>
       <div>
-       <label forHTML="height">Height</label>
+       <label htmlFor="height">Height</label>
           <input
             onChange={handleChange}
             type="text"
