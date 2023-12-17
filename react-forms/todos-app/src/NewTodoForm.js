@@ -46,7 +46,7 @@ function NewTodoForm({ createTodo }) {
         <form onSubmit={handleSubmit}>
             <h4>ToDo List</h4>
             <div>
-            <label for='task'>Task</label>
+            <label htmlFor='task'>Task</label>
             <input
                 onChange={handleChange}
                 type='text'
