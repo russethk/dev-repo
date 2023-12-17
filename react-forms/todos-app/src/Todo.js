@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Todo.css';
 
 function Todo ({ task = 'default todo', id = '1', remove, update }) {
   const [editTask, setEditTask] = useState(task);
@@ -22,10 +23,10 @@ function Todo ({ task = 'default todo', id = '1', remove, update }) {
 
   // default todo view
   let jsx = (
-    <div>
+    <div className="todoItem">
       <li>{task}</li>
       <button onClick={toggleEdit}>Edit</button>
-      <button onClick={handleDelete}>X</button>
+      <button onClick={handleDelete}>x</button>
     </div>
   );
 

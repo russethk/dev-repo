@@ -1,0 +1,36 @@
+.NewTodoForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 1.5rem;
+}
+
+input {
+    font-size: 1rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 300px;
+    padding: 8px;
+    margin: 10px;
+    color: darkblue;
+}
+
+button {
+    display:inline-flex;
+    font-size: 1rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 6px;
+    margin: 4px;
+    background-color:dodgerblue;
+    color: white;
+    cursor: pointer;
+}
+
+h4 {
+    margin: 0 auto;
+    padding: 0;
+    color: darkblue;
+    text-align: center;
+}

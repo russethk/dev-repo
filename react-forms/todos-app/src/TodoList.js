@@ -51,10 +51,12 @@ function TodoList() {
     ));
     
     return (
+      <div className="TodosContainer">
         <div>
         <NewTodoForm createTodo={add} />
-        <section className="TodoList">{todoComponents}</section>
+        <section className="todos">{todoComponents}</section>
         </div>
+      </div>
     );
 }
 

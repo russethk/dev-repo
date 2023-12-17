@@ -1,0 +1,26 @@
+.TodosContainer {
+    display: flex;
+    width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    background-color: #f5f5f5;
+    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+}
+
+
+.todos {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  font-size: 1.5rem;
+}

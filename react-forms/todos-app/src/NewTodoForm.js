@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './NewTodoForm.css';
 import { v4 as uuid } from 'uuid';
+import './NewTodoForm.css';
 
 /** Form for creating a new todo to add to TodoList.
  * Renders a form with one text input for the task to be created. 
@@ -42,19 +42,21 @@ function NewTodoForm({ createTodo }) {
     
     /** render form */
     return (
-        <div className='NewTodoForm'>
+     <div className='NewTodoForm'>
         <form onSubmit={handleSubmit}>
+            <h4>ToDo List</h4>
             <div>
             <label for='task'>Task</label>
             <input
                 onChange={handleChange}
                 type='text'
                 name='task'
+                placeholder="Enter Task"
                 value={formData.task}
                 id='task'
             />
             </div>
-            <button>Add a Todo!</button>
+            <button>Add a ToDo!</button>
         </form>
         </div>
     );

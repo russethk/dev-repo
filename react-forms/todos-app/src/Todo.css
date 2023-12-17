@@ -1,0 +1,13 @@
+.todoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+    width: 300px;
+}
