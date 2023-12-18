@@ -1,0 +1,13 @@
+body {
+ background-color: green;
+}
+
+H1 {
+    color: white;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    -webkit-text-stroke: 1px black;
+    font-size: 3rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
