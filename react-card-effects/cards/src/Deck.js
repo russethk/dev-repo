@@ -3,6 +3,7 @@ import Card from "./Card";
 import axios from "axios";
 import "./Deck.css";
 
+
 /** Deck: uses deck API, allows drawing card at a time. 
  * 
  * Displays a deck of cards, one card at a time. 
@@ -112,7 +113,7 @@ function Deck() {
                 className="Deck-draw"
                 onClick={toggleDraw}
                 disabled={isShuffling}>
-             {isDrawing ? "STOP DRAWING" : "START DRAWING"}
+             {isDrawing ? "STOP DRAWING" : "DRAW CARDS"}
             </button>
         );    
     }
