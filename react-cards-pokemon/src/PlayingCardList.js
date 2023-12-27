@@ -1,5 +1,5 @@
 import React from "react";
-import {useAxios } from "./hooks";
+import { useAxios } from "./hooks";
 import PlayingCard from "./PlayingCard";
 import { formatCard } from "./helpers";
 import "./PlayingCardList.css";
