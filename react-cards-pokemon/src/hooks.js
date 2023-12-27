@@ -1,4 +1,4 @@
-import React { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function useFlip(initialFlipState = true) {
@@ -12,4 +12,4 @@ function useFlip(initialFlipState = true) {
 }
 
 
-export default useFlip;
+export { useFlip };
