@@ -3,7 +3,7 @@ import { useFlip } from "./hooks";
 import "./PokemonCard.css";
 
 /* Renders a single pokemon card. */
-/* Refactored to include logic from imported custom hook useFlip*/
+/* Part 2 - Refactored to include logic from imported custom hook useFlip*/
 function PokemonCard({ front, back, name, stats }) {
   const [isFacingUp, flip] = useFlip();
   return (
