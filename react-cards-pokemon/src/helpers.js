@@ -6,7 +6,7 @@ function choice(values) {
   return values[randIdx];
 }
 
-/* Part 3 - Format response data from the Deck of Cards API,
+/* Minimizing State - Format response data from the Deck of Cards API,
  * extracting just the image url. */
 function formatCard(data) {
   return {
@@ -15,7 +15,9 @@ function formatCard(data) {
   };
 }
 
-/* Part 4 - Format response data from the Pokemon API */
+/* Minimizing State - Format response data from the Pokemon API
+* extracting just the needed response data 
+* [{ id, front, back, name, stats: [{ name, value }, ...] }, ... ]  */
 
 function formatPokemon(data) {
   return {
