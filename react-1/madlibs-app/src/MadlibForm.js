@@ -1,6 +1,6 @@
-// MadlibForm.js
 import React, { useState } from 'react';
 import stories from './stories';
+import './madlibform.css';
 
 const MadlibForm = ({ onSubmit }) => {
   const [selectedStory, setSelectedStory] = useState('');
@@ -35,11 +35,11 @@ const MadlibForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='selectform' onSubmit={handleSubmit}>
       <label>
         Select a Story:
         <select value={selectedStory} onChange={(e) => setSelectedStory(e.target.value)}>
-          <option value="" disabled>Select a story</option>
+          <option value="" disabled>Story type</option>
           {stories.map((story) => (
             <option key={story.id} value={story.id}>
               {story.name}

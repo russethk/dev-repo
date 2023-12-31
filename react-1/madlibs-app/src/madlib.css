@@ -1,0 +1,14 @@
+body {
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+}
+
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin: 0 auto;
+}

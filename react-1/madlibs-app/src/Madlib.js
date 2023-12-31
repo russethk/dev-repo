@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import MadlibForm from './MadlibForm';
 import MadlibStory from './MadlibStory';
+import './madlib.css';
 
 const Madlib = () => {
   const [showForm, setShowForm] = useState(true);
@@ -37,6 +38,7 @@ const Madlib = () => {
 
   return (
     <div>
+      <h1 className='title'>Madlibs!</h1>
       {showForm ? (
         <MadlibForm onSubmit={handleFormSubmit} />
       ) : (
