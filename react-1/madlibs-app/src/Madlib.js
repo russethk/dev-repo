@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import MadlibForm from './MadlibForm';
 import MadlibStory from './MadlibStory';
 import './madlib.css';
+import logoImage from './images/madlibslogo.png';
+
 
 const Madlib = () => {
   const [showForm, setShowForm] = useState(true);
@@ -38,7 +40,9 @@ const Madlib = () => {
 
   return (
     <div>
-      <h1 className='title'>Madlibs!</h1>
+      <div className="imageDiv">
+          <img src={logoImage} alt="madlibs logo" width="150" height="100" />
+        </div>
       {showForm ? (
         <MadlibForm onSubmit={handleFormSubmit} />
       ) : (
