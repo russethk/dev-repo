@@ -1,24 +1,11 @@
 // MadlibForm.js
 import React, { useState } from 'react';
+import stories from './stories';
 
 const MadlibForm = ({ onSubmit }) => {
   const [selectedStory, setSelectedStory] = useState('');
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});
-
-  const stories = [
-    { id: 'story1', 
-    name: 'History', 
-    prompts: ['place', 'noun', 'adjective', 'verb', 'pluralNoun'],
-    template: 'Once upon a time in a long-ago {place}, there lived a large {adjective} {noun} that loved to {verb} {pluralNoun}.', 
-    },
-    { id: 'story2', 
-    name: 'Scary', 
-    prompts: ['place', 'noun', 'adjective', 'verb', 'pluralNoun'],
-    template: 'One dark night in {place}, a {adjective} {noun} crept up along side some {pluralNoun} to {verb} them.',
-    },
-    // Add more story templates as needed
-  ];
 
   const handleInputChange = (prompt, value) => {
     setFormData({ ...formData, [prompt]: value });
