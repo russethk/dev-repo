@@ -64,7 +64,7 @@ const MadlibForm = ({ onSubmit }) => {
               </label>
             </div>
           ))}
-          <button type="submit">Generate Story</button>
+          <button type="submit">Get Story</button>
         </div>
       )}
     </form>
