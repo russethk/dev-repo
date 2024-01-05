@@ -1,0 +1,21 @@
+.Soda {
+    width: 30vw;
+    height: 30vh;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .Soda .message {
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    text-transform: uppercase;
+    border-radius: 10px;
+  }
+  
+  .Soda .message h1 {
+    text-align: center;
+    color: white;
+  }

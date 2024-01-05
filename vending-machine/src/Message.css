@@ -1,0 +1,10 @@
+.Message {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .6rem;
+    border-radius: 10px;
+    text-align: center;
+  } 
