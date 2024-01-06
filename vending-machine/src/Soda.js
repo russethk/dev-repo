@@ -35,7 +35,7 @@ class Soda extends Component {
             <div className="Soda">
                 <img src={sodaImage} alt="bottle of soda" className="logo"/>
                 <h1>sodas drank: {this.state.bottles.length}</h1>
-                <button onClick={this.handleClick}>aaahhhh....</button>
+                <button onClick={this.handleClick}>Grab One</button>
                 <Link to="/">Go Back</Link>
                 {bottles}
             </div>
