@@ -22,7 +22,7 @@ class Candy extends Component {
     }
 
     render() {
-        const bags = this.state.candies.map((candy, i) => (
+        const candies = this.state.candies.map((candy, i) => (
             <img 
                 key={i} 
                 src={candyImage} 
@@ -33,10 +33,11 @@ class Candy extends Component {
         ));
         return (
             <div className="Candy">
+                <img src={candyImage} alt="nerds candy" className="logo"/>
                 <h1>candies eaten: {this.state.candies.length}</h1>
                 <button onClick={this.handleClick}>NOM NOM NOM</button>
                 <Link to="/">Go Back</Link>
-                {bags}
+                {candies}
             </div>
         );
     }

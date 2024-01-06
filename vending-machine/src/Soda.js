@@ -22,7 +22,7 @@ class Soda extends Component {
     }
 
     render() {
-        const bags = this.state.bottles.map((bottle, i) => (
+        const bottles = this.state.bottles.map((bottle, i) => (
             <img 
                 key={i} 
                 src={sodaImage} 
@@ -33,10 +33,11 @@ class Soda extends Component {
         ));
         return (
             <div className="Soda">
+                <img src={sodaImage} alt="bottle of soda" className="logo"/>
                 <h1>sodas drank: {this.state.bottles.length}</h1>
                 <button onClick={this.handleClick}>aaahhhh....</button>
                 <Link to="/">Go Back</Link>
-                {bags}
+                {bottles}
             </div>
         );
     }

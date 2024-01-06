@@ -33,6 +33,7 @@ class Chips extends Component {
         ));
         return (
             <div className="Chips">
+                <img src={chipsImage} alt="bag of chips" className="logo"/>
                 <h1>bags eaten: {this.state.bags.length}</h1>
                 <button onClick={this.handleClick}>nom nom nom</button>
                 <Link to="/">Go Back</Link>
