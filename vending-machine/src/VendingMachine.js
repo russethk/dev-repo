@@ -10,7 +10,7 @@ const VendingMachine = () => (
     style={{ backgroundImage: `url(${machine})` }}
   >
      <Message>
-        <h1>hello. what would you like to eat?</h1>
+        <h1>hello. what would you like to consume?</h1>
     </Message>
     <div className="VendingMachine-links">
     <Message>
