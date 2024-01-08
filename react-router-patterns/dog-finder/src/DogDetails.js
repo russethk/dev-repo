@@ -15,7 +15,7 @@ function DogDetails({dog}) {
                         <li key={i}>{fact}</li>
                     ))}
                 </ul>
-                <Link to="/dogs">Go Back</Link>
+                <Link className="link" to="/dogs">Go Back</Link>
             </div>
         </div>
     );

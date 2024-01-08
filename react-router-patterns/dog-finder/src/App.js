@@ -59,9 +59,9 @@ export const dogs = [
     age: 4,
     src: tubby,
     facts: [
-      "Tubby is really stupid.",
+      "Tubby is really clever.",
       "Tubby does not like walks.",
-      "Angelina used to hate Tubby, but claims not to anymore."
+      "Angelina used to dislike Tubby, but claims not to anymore."
     ]
   }
 ];

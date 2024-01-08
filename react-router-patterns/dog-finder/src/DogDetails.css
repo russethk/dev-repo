@@ -8,8 +8,13 @@
 }
 
 .DogDetails img {
-  width: 60%;
+  width: 30%;
   border-radius: 5%;
   margin-top: 1rem;
   padding: 5px;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
 }
