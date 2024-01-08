@@ -4,12 +4,12 @@ import "./DogList.css";
 
 function DogList({dogs}) {
     return (
-        <div className="DogList">
+     <div className="DogList">
         <div className="row mt-4">
             <div className="col">
-            <h1 className="text-center">
-                WE HAVE DOGS!! CLICK ON EACH BELOW FOR MORE INFO.
-            </h1>
+            <h2 className="text-center">
+                We have dogs! Click on a dog for more info.
+            </h2>
             </div>
         </div>
         <div className="row">
@@ -22,7 +22,7 @@ function DogList({dogs}) {
             </div>
             ))}
         </div>
-        </div>
+    </div>
     );
 }
 

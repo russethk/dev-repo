@@ -1,9 +1,26 @@
-.Doglist img{
+
+
+.DogList {
+  margin: 0 auto;
+  width: 80%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 75%;
-  border-radius: 100%;
-  border: 8px solid slateblue;
-  box-shadow: 0 0 10px #9e9e9e;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
 }
+
+.DogList img {
+  width: 250px;
+  border-radius: 5%;
+  margin-top: 1rem;
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 20px;
+}
+

@@ -5,16 +5,17 @@ import {
   Redirect
 } from 'react-router-dom';
 import DogList from './DogList';
+import FilterDogDetails from './FilterDogDetails';
 
 
 function Routes({dogs}) {
     return (
         <Switch>
           <Route exact path="/dogs" >
-            <DogList /> // what props will this need?
+            <DogList dogs={dogs}/> 
           </Route>
           <Route path="/dogs/:name" >
-            <DogDetails /> // what props will this need?
+            <FilterDogDetails dogs={dogs}/> 
           </Route>
           <Redirect to="/dogs" />
         </Switch>
