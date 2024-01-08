@@ -1,0 +1,22 @@
+.Color {
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 0.3em;
+    box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.15);
+    color: #fff;
+    display: inline-block;
+    font-family: monospace;
+    font-size: 0.8em;
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.Link {
+    color: #fff;
+    text-decoration: none;
+}
