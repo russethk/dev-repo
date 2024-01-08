@@ -1,6 +1,7 @@
 .Color {
     background-color: #fff;
     border: 1px solid #999;
+    width: 97%;
     border-radius: 0.3em;
     box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.15);
     color: #fff;
@@ -14,9 +15,4 @@
     transition: background-color 0.3s ease-in-out;
     vertical-align: middle;
     white-space: nowrap;
-}
-
-.Link {
-    color: #fff;
-    text-decoration: none;
 }
