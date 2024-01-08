@@ -1,7 +1,7 @@
 
 .row DogDetails {
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   align-items: center;
   padding: 5px;
   margin-left: 20px;

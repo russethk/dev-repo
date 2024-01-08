@@ -13,7 +13,7 @@ nav a {
 }
 
 nav a.active {
-  color: rgb(53, 53, 53);
+  color: gold;
   text-decoration: none;
 }
 
