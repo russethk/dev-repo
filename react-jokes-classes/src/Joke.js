@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Joke.css";
 
 /** A single joke, along with vote up/down buttons. 
  * Refactored to use functional components with hooks instead of class components
 */
 
-function Joke({ id, text, votes, vote }) {
+function Joke({ id, text, votes, vote, lock }) {
   function upVote(evt) { vote(id, +1); }
   function downVote(evt) { vote(id, -1); }
-
+  function lockVote(evt) { lock(id); }
+  
     return (
       <div className="Joke">
         <div className="Joke-votearea">
@@ -20,10 +21,17 @@ function Joke({ id, text, votes, vote }) {
             <i className="fas fa-thumbs-down" />
           </button>
 
+          <button onClick={lockVote}>
+            <i className="fas fa-lock" />
+          </button>
+
           {votes}
+
         </div>
 
         <div className="Joke-text">{text}</div>
+
+       
       </div>
     );
 }

@@ -12,22 +12,17 @@ import "./JokeList.css";
 
 function JokeList({ numJokesToGet = 5 }) {
   const [jokes, setJokes] = useLocalStorage("jokes", []);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  /* at mount, get jokes */
-  useEffect(function() {
+  /* retrieve jokes from API */
+
+  useEffect(function getJokes() {
     async function getJokes() {
       try {
         let j = [...jokes];
         let seenJokes = new Set();
-        let lockedJokes = [];
-        for (let joke of j) {
-          if (joke.locked) {
-              lockedJokes.push(joke);
-              seenJokes.add(joke.id);
-          }
-      }
-      while (j.length < numJokesToGet) {
+
+        while (j.length < numJokesToGet) {
           let res = await axios.get("https://icanhazdadjoke.com/", {
             headers: { Accept: "application/json" }
           });
@@ -36,7 +31,7 @@ function JokeList({ numJokesToGet = 5 }) {
 
           if (!seenJokes.has(jokeObj.id)) {
             seenJokes.add(jokeObj.id);
-            j.push({ ...jokeObj, votes: 0, locked: false});
+            j.push({ ...jokeObj, votes: 0 });
           } else {
             console.error("duplicate found!");
           }
@@ -44,36 +39,27 @@ function JokeList({ numJokesToGet = 5 }) {
 
         setJokes(j);
         setIsLoading(false);
-      } catch (err) {
-        console.error(err);
+      } catch (e) {
+        console.log(e);
       }
     }
 
     if (jokes.length === 0) getJokes();
-    else setIsLoading(false);
-  }, [jokes, numJokesToGet, setJokes]);
+  }
+  , [jokes, numJokesToGet, setJokes]);
 
-
-/* generateNewJokes that includes the locked jokes plus a new set of jokes  */
+/* empty joke list, set to loading state, and then call getJokes */
 
   function generateNewJokes() {
     setIsLoading(true);
     setJokes([]);
-}
-
+  }
 
   /* change vote for this id by delta (+1 or -1) */
 
   function vote(id, delta) {
     setJokes(allJokes =>
       allJokes.map(j => (j.id === id ? { ...j, votes: j.votes + delta } : j))
-    );
-  }
-
-  /* lock a joke in place */
-  function lock(id) {
-    setJokes(allJokes =>
-      allJokes.map(j => (j.id === id ? { ...j, locked: !j.locked } : j))
     );
   }
 
@@ -102,7 +88,6 @@ function JokeList({ numJokesToGet = 5 }) {
           id={j.id}
           votes={j.votes}
           vote={vote}
-          lock={lock}
         />
       ))}
     </div>
