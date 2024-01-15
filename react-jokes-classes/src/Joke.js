@@ -9,8 +9,8 @@ function Joke({ id, text, votes, vote, lock }) {
   function upVote(evt) { vote(id, +1); }
   function downVote(evt) { vote(id, -1); }
   function lockVote(evt) { lock(id); }
-  
-    return (
+
+  return (
       <div className="Joke">
         <div className="Joke-votearea">
           <button onClick={upVote}>

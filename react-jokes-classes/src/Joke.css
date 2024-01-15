@@ -26,7 +26,12 @@
   width: 500px;
 }
 
-.Joke-buttons a {
-  color: red
+
+.LockButton {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 
