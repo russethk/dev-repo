@@ -21,10 +21,6 @@ function Joke({ id, text, votes, vote, lock }) {
             <i className="fas fa-thumbs-down" />
           </button>
 
-          <button onClick={lockVote}>
-            <i className="fas fa-lock" />
-          </button>
-
           {votes}
 
         </div>

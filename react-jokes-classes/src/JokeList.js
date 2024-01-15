@@ -20,13 +20,7 @@ function JokeList({ numJokesToGet = 5 }) {
       try {
         let j = [...jokes];
         let seenJokes = new Set();
-        let lockedJokes = [];
-        for (let joke of j) {
-          if (joke.locked) {
-              lockedJokes.push(joke);
-              seenJokes.add(joke.id);
-          }
-      }
+        
       while (j.length < numJokesToGet) {
           let res = await axios.get("https://icanhazdadjoke.com/", {
             headers: { Accept: "application/json" }
@@ -36,7 +30,7 @@ function JokeList({ numJokesToGet = 5 }) {
 
           if (!seenJokes.has(jokeObj.id)) {
             seenJokes.add(jokeObj.id);
-            j.push({ ...jokeObj, votes: 0, locked: false});
+            j.push({ ...jokeObj, votes: 0});
           } else {
             console.error("duplicate found!");
           }
@@ -58,8 +52,8 @@ function JokeList({ numJokesToGet = 5 }) {
 
   function generateNewJokes() {
     setIsLoading(true);
-    setJokes([]);
-}
+    setJokes([]); 
+  }
 
 
   /* change vote for this id by delta (+1 or -1) */
