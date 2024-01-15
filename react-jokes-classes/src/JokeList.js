@@ -13,8 +13,13 @@ import "./JokeList.css";
 function JokeList({ numJokesToGet = 5 }) {
   const [jokes, setJokes] = useLocalStorage("jokes", []);
   const [isLoading, setIsLoading] = useState(true);
+ 
 
-  /* at mount, get jokes */
+  /* at mount, get jokes 
+  * if local storage is empty, get jokes from API
+  * if a joke is locked, it will stay in place when new jokes are generated
+  */
+  
   useEffect(function() {
     async function getJokes() {
       try {
@@ -30,7 +35,7 @@ function JokeList({ numJokesToGet = 5 }) {
 
           if (!seenJokes.has(jokeObj.id)) {
             seenJokes.add(jokeObj.id);
-            j.push({ ...jokeObj, votes: 0});
+            j.push({ ...jokeObj, votes: 0 });
           } else {
             console.error("duplicate found!");
           }
@@ -46,28 +51,28 @@ function JokeList({ numJokesToGet = 5 }) {
     if (jokes.length === 0) getJokes();
     else setIsLoading(false);
   }, [jokes, numJokesToGet, setJokes]);
+  
+  /* Get new jokes keeping lock jokes included with the new jokes */
 
-
-/* generateNewJokes that includes the locked jokes plus a new set of jokes  */
-
-  function generateNewJokes() {
+ function generateNewJokes() {
     setIsLoading(true);
-    setJokes([]); 
+    let newJokes = [...jokes].filter(j => j.locked);
+    setJokes(newJokes); 
   }
-
 
   /* change vote for this id by delta (+1 or -1) */
 
   function vote(id, delta) {
-    setJokes(allJokes =>
-      allJokes.map(j => (j.id === id ? { ...j, votes: j.votes + delta } : j))
+    setJokes(jokes =>
+      jokes.map(j => (j.id === id ? { ...j, votes: j.votes + delta } : j))
     );
   }
 
-  /* lock a joke in place */
+  /* toggle whether this joke is locked */
+
   function lock(id) {
-    setJokes(allJokes =>
-      allJokes.map(j => (j.id === id ? { ...j, locked: !j.locked } : j))
+    setJokes(jokes =>
+      jokes.map(j => (j.id === id ? { ...j, locked: !j.locked } : j))
     );
   }
 
@@ -77,6 +82,7 @@ function JokeList({ numJokesToGet = 5 }) {
     return (
       <div className="loading">
         <i className="fas fa-4x fa-spinner fa-spin" />
+        <h1 className="JokeList-title">Loading...</h1>
       </div>
       )
   }

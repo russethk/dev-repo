@@ -4,7 +4,11 @@
 }
 
 .Joke-locked {
-  background-color: #ccc;
+  background-color: red;
+}
+
+.Joke-unlocked {
+  background-color: green;
 }
 
 .Joke-votearea {
@@ -21,3 +25,8 @@
   display: inline-block;
   width: 500px;
 }
+
+.Joke-buttons a {
+  color: red
+}
+
