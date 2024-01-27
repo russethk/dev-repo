@@ -1,0 +1,17 @@
+.NotFound a {
+	padding: 15px;
+}
+
+.Links a {
+	color: #0069d9;
+	display: block;
+	padding: 1rem;
+	text-align: center;
+	border-radius: 0.25rem;
+	text-decoration: none;
+}
+
+.Links a:hover {
+	color: white;
+	font-size: 1.5rem;
+}

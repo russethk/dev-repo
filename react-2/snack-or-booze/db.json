@@ -1,0 +1,91 @@
+{
+  "drinks": [
+    {
+      "id": "martini",
+      "name": "Martini",
+      "description": "An ice-cold, refreshing classic.",
+      "recipe": "Mix 3 parts vodka & 1 part dry vermouth.",
+      "serve": "Serve very cold, straight up."
+    },
+    {
+      "id": "negroni",
+      "name": "Negroni",
+      "description": "A nice drink for a late night conversation.",
+      "recipe": "Mix equal parts of gin, Campari, and sweet vermouth.",
+      "serve": "Serve cold, either on the rocks or straight up."
+    },
+    {
+      "id": "gin-and-tonic",
+      "name": "Gin and Tonic",
+      "description": "Like regular tonic, but with gin.",
+      "recipe": "Mix 2 parts gin & 1 part tonic water.",
+      "serve": "Serve in a tall glass over ice, garnished with a lime wedge."
+    },
+    {
+      "id": "diet-coke",
+      "name": "Diet Coke",
+      "description": "Crisp!",
+      "recipe": "Open can.",
+      "serve": "Immediately."
+    },
+    {
+      "name": "Mint Julep",
+      "description": "Signature drink of the Kentucky Derby.  This refresher composed of bourbon, sugar, mint and crushed ice shouldn’t be reserved for only one day a year.",
+      "recipe": "Add bourbon and mint syrup,  then pack the glass tightly with crushed ice.  Stir until the cup is frosted on the outside.",
+      "serve": "Add a sprig of mint and enjoy!",
+      "type": "drink",
+      "id": "UL0H8NF"
+    },
+    {
+      "name": "Tequila Sunrise",
+      "description": "A tequila sunrise cocktail has a sunrise-like appearance making it a welcome option any day!",
+      "recipe": "Combine the juice and tequila in a cocktail shaker with a cup of ice. Shake and pour the mixture into a highball glass over ice. Pour in the grenadine and let it settle on the bottom.",
+      "serve": "Garnish with an orange slice and a cherry. ",
+      "id": "AFrA3em"
+    }
+  ],
+  "snacks": [
+    {
+      "id": "nachos",
+      "name": "Nachos",
+      "description": "An American classic!",
+      "recipe": "Cover expensive, organic tortilla chips with Cheez Whiz.",
+      "serve": "Serve in a hand-thrown ceramic bowl, garnished with canned black olives"
+    },
+    {
+      "id": "hummus",
+      "name": "Hummus",
+      "description": "Sure to impress your vegan friends!",
+      "recipe": "Purchase one container of hummus.",
+      "serve": "Place unceremoniously on the table, along with pita bread."
+    },
+    {
+      "id": "arugula-and-walnut-salad",
+      "name": "Arugula and Walnut Salad",
+      "description": "Tart and delicious.",
+      "recipe": "Mix arugula, toasted walnuts, and thinly-sliced Parmesan cheese. Dress with lemon and olive oil.",
+      "serve": "Place on tiny, precious little plates."
+    },
+    {
+      "id": "nachos-supreme",
+      "name": "Nachos Supreme",
+      "description": "Hole Mole! You'll need a box of tissues with these nachos!",
+      "recipe": "Put a ton of jalapenos all over the nachos, beef, cheese, and pico de gallo. ",
+      "serve": "Serve with a pitcher of water and tissues. "
+    },
+    {
+      "name": "Bagel Pizza",
+      "description": "A late-night munchies classic!",
+      "recipe": "Add pizza sauce and cheese to mini bagels. Bake on a cookie sheet at 350 degrees for 10 minutes.",
+      "serve": "Let cool and enjoy!",
+      "id": "zX5cPDW"
+    },
+    {
+      "name": "Bruschetta",
+      "description": "Easy to throw together and made up of simple, classic ingredients, bruschetta was made for chill warm weather snacking.",
+      "recipe": "Mix diced tomatoes, olive oil, crushed garlic and basil. Brush slices of french bread with olive oil and garlic, and toast until golden brown.",
+      "serve": "Spoon tomatoes mixture over toasted garlic bread and serve!",
+      "id": "dCPegFf"
+    }
+  ]
+}

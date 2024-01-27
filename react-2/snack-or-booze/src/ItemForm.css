@@ -1,0 +1,36 @@
+.ItemForm {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 400px;
+	margin-top: 1rem;
+	background-color: #101010d1;
+	padding: 1rem;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	align-items: center;
+	font-family: Arial, sans-serif;
+	margin: 20px;
+}
+
+.ItemForm input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.ItemForm button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.ItemForm button:hover {
+  background-color: #ddd;
+}
+
