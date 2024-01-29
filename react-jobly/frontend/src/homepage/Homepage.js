@@ -39,7 +39,7 @@ function Homepage() {
           )}
       </div>
       <div className="image-container">
-              <img src={`${process.env.BASE_URL}/home_hero.svg`} alt="home hero illustration" className="homepage-image" />
+              <img src={`${process.env.PUBLIC_URL}/home_hero.svg`} alt="home hero illustration" className="homepage-image" />
       </div>
     </div>
     </div>

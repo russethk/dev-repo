@@ -53,7 +53,7 @@ function NavBar ({logout}) {
     return (
         <nav className="NavBar navbar navbar-expand-md">
             <Link className="navbar-brand" to="/">
-            <img src={`${process.env.BASE_URL}/star_icon.png`} className="nav-logo" />Jobly
+            <img src={`${process.env.PUBLIC_URL}/star_icon.png`} className="nav-logo" />Jobly
             </Link>
             {currentUser ? loggedInNav() : loggedOutNav()}
         </nav>
