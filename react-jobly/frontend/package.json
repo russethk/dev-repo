@@ -5,7 +5,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^4.6.1",
-    "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^4.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
@@ -14,8 +13,8 @@
     "reactstrap": "^6.5.0"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
