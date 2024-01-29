@@ -5,7 +5,7 @@ import JoblyApi from './api/api';
 import LoadingSpinner from './common/LoadingSpinner';
 import { BrowserRouter } from 'react-router-dom';
 import UserContext from './auth/UserContext';
-import jwt from 'jsonwebtoken';
+import { jwtDecode } from "jwt-decode";
 import useLocalStorage from './hooks/useLocalStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -50,7 +50,7 @@ function App() {
     async function getCurrentUser() {
       if (token) {
         try {
-          let { username } = jwt.decode(token);
+          let { username } = jwtDecode(token);
           // put the token on the Api class so it can use it to call the API.
           JoblyApi.token = token;
           let currentUser = await JoblyApi.getCurrentUser(username);
@@ -138,14 +138,17 @@ function App() {
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
-    <BrowserRouter>
-      <UserContext.Provider value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}>
+    <BrowserRouter> 
+       <UserContext.Provider value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}>
+
         <div className="App">
           <NavBar logout={logout} />
           <Routes login={login} signup={signup} editProfile={editProfile} />
         </div>
-      </UserContext.Provider>
-    </BrowserRouter>
+
+        </UserContext.Provider>
+       </BrowserRouter>
+     
   );
 }
 
