@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^1.6.7",
     "bootstrap": "^4.6.1",
+    "fsevents": "^2.3.3",
     "jwt-decode": "^4.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.1",
-    "react-scripts": "2.0.5",
+    "react-scripts": "^5.0.1",
     "reactstrap": "^6.5.0"
   },
   "scripts": {
