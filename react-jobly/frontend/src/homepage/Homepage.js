@@ -33,7 +33,7 @@ function Homepage() {
               <Link to="/signup" className='ml-3'>
                  <Button color="primary" >Sign Up</Button>
               </Link>
-              <p className="mt-3">Demo Login: username: testuser password: password</p>
+              <h7 className="mt-3">Jobly is a demo site.  Demo Login  username: testuser password: password</h7>
 
             </div>
           )}
