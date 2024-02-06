@@ -50,6 +50,31 @@ Be careful that we don't "simplify" a set of matching mixed squares:
 def simplify(s):
     """Simplify a split square:"""
 
+    #START SOLUTION
+
+    # Base case: already a filled square, cannot be simplified
+
+    if type(s) == int:
+        return s
+    
+    # It's a split square.
+    # Simplify each of the four parts.
+    # If they're all the same, return that simple square.
+    # Otherwise, return the original split square.
+
+    # Recurse before simplify a split square, so that we can
+    # simplify nested split squares first.
+
+    s = [simplify(square) for square in s]
+
+    # Simplify to split square if possible
+
+    if (type(s[0]) == int and s[0] == s[1] == s[2] == s[3]):
+        return s[0]
+    else:
+        return s
+
+
 
 if __name__ == "__main__":
     import doctest
