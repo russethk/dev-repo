@@ -120,22 +120,19 @@ def find_from(board, word, y, x, seen):
     # Base case: this isn't the letter we're looking for.
 
     if board[y][x] != word[0]:
-        print("%-6s%d,%d  %-3s%-8s%-30s" % ("NO", y, x, board[y][x], word,
-                                            seen))
+        print("%-6s%d,%d  %-3s%-8s%-30s" % ("NO", y, x, board[y][x], word, seen))
         return False
 
     # Base case: we've used this letter before in this current path
 
     if (y, x) in seen:
-        print("%-6s%d,%d  %-3s%-8s%-30s" % ("SEEN", y, x, board[y][x], word,
-                                            seen))
+        print("%-6s%d,%d  %-3s%-8s%-30s" % ("SEEN", y, x, board[y][x], word, seen))
         return False
 
     # Base case: we are down to the last letter --- so we win!
 
     if len(word) == 1:
-        print("%-6s%d,%d  %-3s%-8s%-30s" % ("WIN", y, x, board[y][x], word,
-                                            seen))
+        print("%-6s%d,%d  %-3s%-8s%-30s" % ("WIN", y, x, board[y][x], word, seen))
         return True
 
     # Otherwise, this letter is good, so note that we've seen it,
