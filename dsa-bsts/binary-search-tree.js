@@ -16,7 +16,7 @@ class BinarySearchTree {
 
   insert(val) {
     // if the tree is empty, insert at the root
-    if (this.tree === null) {
+    if (this.root === null) {
       this.root = new Node(val);
       return this;
     }
@@ -179,6 +179,7 @@ class BinarySearchTree {
    * remove(val): Removes a node in the BST with the value val.
    * Returns the removed node. */
 
+  
   remove(val) {
     let nodeToRemove = this.root;
     let parent;
@@ -199,24 +200,24 @@ class BinarySearchTree {
         } else {
           parent.right = null;
         }
-      } else if (nodeToRemove.left !== null && nodeToRemove.right === null) {
-       let rightParent = nodeToRemove;
-       let right = nodeToRemove.right;
-       if (right.left === null) {
-         right.left = nodeToRemove.left;
-         if (parent.left === nodeToRemove) {
-           parent.left = right;
-         } else {
-           parent.right = right;
-         }
-       } else {
-         while (right.left !== null) {
-           rightParent = right;
-           right = right.left;
-         }
-         if (parent.left === nodeToRemove) {
-           parent.left.val = right.val;
-         } else {
+      } else if (nodeToRemove.left !== null && nodeToRemove.right !== null) {
+        let rightParent = nodeToRemove;
+        let right = nodeToRemove.right;
+        if (right.left === null) {
+          right.left = nodeToRemove.left;
+          if (parent.left === nodeToRemove) {
+            parent.left = right;
+          } else {
+            parent.right = right;
+          }
+        } else {
+          while (right.left !== null) {
+            rightParent = right;
+            right = right.left;
+          }
+          if (parent.left === nodeToRemove) {
+            parent.left.val = right.val;
+          } else {
             parent.right.val = right.val;
           }
           if (right.right !== null) {
@@ -224,7 +225,7 @@ class BinarySearchTree {
           } else {
             rightParent.left = null;
           }
-       }
+        }
       } else {
         if (parent.left === nodeToRemove) {
           if (nodeToRemove.right === null) {
@@ -291,7 +292,7 @@ class BinarySearchTree {
       stack.push(current);
       current = current.left;
     }
-    current() = stack.pop();
+    current = stack.pop();
     if (current) {
       dfs.push(current.val);
       current = current.right;
