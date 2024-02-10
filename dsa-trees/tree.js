@@ -60,6 +60,9 @@ class Tree {
       }
     }
 
+    countEvensHelper(this.root);
+    return count;
+
   }
 
   /** numGreater(lowerBound): return a count of the number of nodes
@@ -83,6 +86,9 @@ class Tree {
         }
       }
     }
+
+    numGreaterHelper(this.root);
+    return count;
 
   }
 }

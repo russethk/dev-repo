@@ -104,7 +104,7 @@ class BinaryTree {
     function findLevelandParent(
       nodeToFind,
       currentNode,
-      level=0;
+      level=0,
       data = { level: 0, parent: null }
     ) {
      if (data.parent) return data;
@@ -139,7 +139,7 @@ class BinaryTree {
    *  Where # represents # children with a pre-order traversal.
    * */
 
-  static serialize() {
+  static serialize(tree) {
     const values = [];
 
     function traverse(node) {
