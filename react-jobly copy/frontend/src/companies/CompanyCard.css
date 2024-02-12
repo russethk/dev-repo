@@ -1,0 +1,17 @@
+.CompanyCard {
+   max-height: 250px;
+   margin-bottom: 1rem;
+   color: inherit;
+   border-radius: 0;
+   border: none;
+   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05);
+   transition: box-shadow 0.1s ease-in-out; 
+}
+
+.CompanyCard:hover {
+   text-decoration: none;
+   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Path: frontend/src/companies/CompanyCard.js */
+
