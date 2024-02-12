@@ -7,7 +7,7 @@ const UserPage = () => {
     const [user, getUser, isLoading] = useData('user', id)
 
     useEffect(() => {
-        getData()
+        getUser()
     }, [])
 
     return (

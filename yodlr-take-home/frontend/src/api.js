@@ -1,16 +1,15 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:4000";
+const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 class Api {
    static async register(user) {
-        const userData = {...data,['state']: 'active'}
-        const response = await axios.post(`${BASE_URL}/users/`, user);
+        const response = await axios.post(`${BASE_URL}/users`, user);
         return response.data;
     }
 
     static async getAllUsers() {
-        const users = await axios.get(`${BASE_URL}/users/`);
+        const users = await axios.get(`${BASE_URL}/users`);
         console.log(users);
         console.log("called")
         return users.data;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Api from './api'
 
 const useData = (type,id) => {
@@ -15,4 +15,4 @@ const useData = (type,id) => {
     return [data,getData,isLoading]
 }
 
-export {useData};
+export { useData };
