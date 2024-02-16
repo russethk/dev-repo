@@ -29,6 +29,7 @@ const UserSignUp = () => {
         {!registered && <div>
         <div className="SignupForm">
         <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+        <h1 style={{textAlign:'center'}}>Sign Up</h1>
         <form>
             <div>
                 <label htmlFor="firstName">First Name: </label>

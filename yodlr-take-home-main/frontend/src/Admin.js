@@ -3,8 +3,6 @@ import { useData } from './hooks'
 import "./Admin.css"
 
 
-
-
 const Admin = () => {
     const [users,getUsers,isLoading] = useData('users')
 
@@ -26,7 +24,6 @@ const Admin = () => {
                     <p>Name: {user.firstName} {user.lastName}</p>
                     <p>Email: {user.email}</p>
                     <p>Status: {user.state}</p>
-                    <p>Type: {user.is_admin ? 'Admin' : 'User'}</p>
                     </li>
                     }
                 )}

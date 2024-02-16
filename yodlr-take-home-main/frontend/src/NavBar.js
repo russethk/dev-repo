@@ -14,7 +14,7 @@ import "./NavBar.css";
 function NavBar() {
 	return (
 		<div>
-			<Navbar expand="md">
+			<Navbar className="Navbar" expand="md">
 				<NavLink exact to="/" className="navbar-brand">
 					Yodlr
 				</NavLink>
