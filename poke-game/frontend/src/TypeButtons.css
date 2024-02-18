@@ -1,0 +1,161 @@
+.TypeButtons {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+button {
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #61dafb;
+  color: white;
+}
+
+button:active {
+  background-color: #61dafb;
+  color: white;
+}
+
+button:focus {
+  outline: none;
+}
+
+button.grass {
+  background-color: #78c850;
+  color: white;
+}
+
+button.fire {
+  background-color: #f08030;
+  color: white;
+}
+
+button.water {
+  background-color: #6890f0;
+  color: white;
+}
+
+button.electric {
+  background-color: #f8d030;
+  color: white;
+}
+
+button.psychic {
+  background-color: #f85888;
+  color: white;
+}
+
+button.ice {
+  background-color: #98d8d8;
+  color: white;
+}
+
+button.dragon {
+  background-color: #7038f8;
+  color: white;
+}
+
+button.dark {
+  background-color: #705848;
+  color: white;
+}
+
+button.fairy {
+  background-color: #ee99ac;
+  color: white;
+}
+
+button.normal {
+  background-color: #a8a878;
+  color: white;
+}
+
+button.fighting {
+  background-color: #c03028;
+  color: white;
+}
+
+button.flying {
+  background-color: #a890f0;
+  color: white;
+}
+
+button.poison {
+  background-color: #a040a0;
+  color: white;
+}
+
+button.ground {
+  background-color: #e0c068;
+  color: white;
+}
+
+button.rock {
+  background-color: #b8a038;
+  color: white;
+}
+
+button.bug {
+  background-color: #a8b820;
+  color: white;
+}
+
+button.ghost {
+  background-color: #705898;
+  color: white;
+}
+
+button.steel {
+  background-color: #b8b8d0;
+  color: white;
+}
+
+button.shadow {
+  background-color: #705898;
+  color: white;
+}
+
+button.unknown {
+  background-color: #68a090;
+  color: white;
+}
+
+button.dragon {
+  background-color: #7038f8;
+  color: white;
+}
+
+button.bug {
+  background-color: #a8b820;
+  color: white;
+}
+
+button.ghost {
+  background-color: #705898;
+  color: white;
+}
+
+button.steel {
+  background-color: #b8b8d0;
+  color: white;
+}
+
+button.shadow {
+  background-color: #705898;
+  color: white;
+}
+
+button.unknown {
+  background-color: #68a090;
+  color: white;
+}
+
+
+/* Path: src/TypeButtons.css */

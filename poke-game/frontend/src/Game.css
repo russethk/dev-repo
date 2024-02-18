@@ -1,0 +1,104 @@
+.Game {
+  text-align: center;
+  width: 100%;
+  display: flex;
+}
+
+.Game > main {
+  display: flex;
+  width: 100%;
+  flex: 1;
+}
+
+.game-container {
+  display: flex;
+  margin-top: 100px;  
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: rgba(225, 226, 228, 0.95);
+  margin-top: 20px;
+  width: 90%;
+  height: 80vh;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.homepage-image {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.column-left {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.column-right {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+}
+
+.CardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background-color: #ccc;
+  padding: 16px;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.Card {
+  cursor: pointer;
+  margin: 8px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.message {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 5px;
+  padding: 5px;
+  background-color: lightblue;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.scorecard {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+p {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+img {
+  width: 6rem;
+}
+
+/* Path: src/Board.css */
