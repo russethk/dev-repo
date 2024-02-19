@@ -44,7 +44,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
 });
 
 
-/** GET / => { users: [ {username, firstName, lastName, email }, ... ] }
+/** GET / => { users: [ {username, firstName, lastName, isAdmin }, ... ] }
  *
  * Returns list of all users.
  *
@@ -127,11 +127,11 @@ router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, 
  * Authorization required: admin or same-user-as-:username
  * */
 
-router.post("/:username/jobs/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.post("/:username/pokemon/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
-    const jobId = +req.params.id;
-    await User.applyToJob(req.params.username, jobId);
-    return res.json({ applied: jobId });
+    const id = +req.params.id;
+    await User.catchPokemon(req.params.username, id);
+    return res.json({ caught: id });
   } catch (err) {
     return next(err);
   }

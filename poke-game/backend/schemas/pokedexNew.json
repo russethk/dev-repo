@@ -1,24 +1,22 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://example.com/example.json",
+  "$id": "http://our.company.com/jobNew.schema.json",
   "type": "object",
   "properties": {
-    "password": {
-      "type": "string",
-      "minLength": 5,
-      "maxLength": 20
-    },
-    "firstName": {
+    "name": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 30
+      "maxLength": 50
     },
-    "lastName": {
+    "type": {
       "type": "string",
       "minLength": 1,
       "maxLength": 30
     }
   },
   "additionalProperties": false,
-  "required": []
+  "required": [
+    "name",
+    "type"
+  ]
 }

@@ -28,8 +28,6 @@ class User {
                   password,
                   first_name AS "firstName",
                   last_name AS "lastName",
-                  email,
-                  is_admin AS "isAdmin"
            FROM users
            WHERE username = $1`,
         [username],
@@ -51,13 +49,13 @@ class User {
 
   /** Register user with data.
    *
-   * Returns { username, firstName, lastName, email, isAdmin }
+   * Returns { username, firstName, lastName }
    *
    * Throws BadRequestError on duplicates.
    **/
 
   static async register(
-      { username, password, firstName, lastName, email, isAdmin }) {
+      { username, password, firstName, lastName }) {
     const duplicateCheck = await db.query(
           `SELECT username
            FROM users
@@ -76,18 +74,14 @@ class User {
            (username,
             password,
             first_name,
-            last_name,
-            email,
-            is_admin)
-           VALUES ($1, $2, $3, $4, $5, $6)
-           RETURNING username, first_name AS "firstName", last_name AS "lastName", email, is_admin AS "isAdmin"`,
+            last_name)
+           VALUES ($1, $2, $3, $4)
+           RETURNING username, first_name AS "firstName", last_name AS "lastName"`,
         [
           username,
           hashedPassword,
           firstName,
           lastName,
-          email,
-          isAdmin,
         ],
     );
 
@@ -98,16 +92,14 @@ class User {
 
   /** Find all users.
    *
-   * Returns [{ username, first_name, last_name, email, is_admin }, ...]
+   * Returns [{ username, first_name, last_name }, ...]
    **/
 
   static async findAll() {
     const result = await db.query(
           `SELECT username,
                   first_name AS "firstName",
-                  last_name AS "lastName",
-                  email,
-                  is_admin AS "isAdmin"
+                  last_name AS "lastName"
            FROM users
            ORDER BY username`,
     );
@@ -117,8 +109,8 @@ class User {
 
   /** Given a username, return data about user.
    *
-   * Returns { username, first_name, last_name, is_admin, jobs }
-   *   where jobs is { id, title, company_handle, company_name, state }
+   * Returns { username, firstName, lastName, pokemon: [id, ...]}
+   *   where pokemon is { id, name, type, img}
    *
    * Throws NotFoundError if user not found.
    **/
@@ -127,9 +119,7 @@ class User {
     const userRes = await db.query(
           `SELECT username,
                   first_name AS "firstName",
-                  last_name AS "lastName",
-                  email,
-                  is_admin AS "isAdmin"
+                  last_name AS "lastName"
            FROM users
            WHERE username = $1`,
         [username],
@@ -139,13 +129,15 @@ class User {
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
-    const userApplicationsRes = await db.query(
-          `SELECT a.job_id
-           FROM applications AS a
-           WHERE a.username = $1`, [username]);
+    const userPokemonRes = await db.query(
+          `SELECT id
+           FROM pokemon
+           WHERE username = $1
+           ORDER BY id`,
+        [username],
+    );
 
-    user.applications = userApplicationsRes.rows.map(a => a.job_id);
-    return user;
+    user.pokemon = userPokemonRes.rows.map(p => p.id);
   }
 
   /** Update user data with `data`.
@@ -154,9 +146,9 @@ class User {
    * all the fields; this only changes provided ones.
    *
    * Data can include:
-   *   { firstName, lastName, password, email, isAdmin }
+   *   { firstName, lastName, password}
    *
-   * Returns { username, firstName, lastName, email, isAdmin }
+   * Returns { username, firstName, lastName }
    *
    * Throws NotFoundError if not found.
    *
@@ -174,8 +166,7 @@ class User {
         data,
         {
           firstName: "first_name",
-          lastName: "last_name",
-          isAdmin: "is_admin",
+          lastName: "last_name"
         });
     const usernameVarIdx = "$" + (values.length + 1);
 
@@ -184,9 +175,7 @@ class User {
                       WHERE username = ${usernameVarIdx} 
                       RETURNING username,
                                 first_name AS "firstName",
-                                last_name AS "lastName",
-                                email,
-                                is_admin AS "isAdmin"`;
+                                last_name AS "lastName"`;
     const result = await db.query(querySql, [...values, username]);
     const user = result.rows[0];
 
@@ -211,20 +200,20 @@ class User {
     if (!user) throw new NotFoundError(`No user: ${username}`);
   }
 
-  /** Apply for job: update db, returns undefined.
+  /** Add captured pokemon: update db, returns undefined.
    *
-   * - username: username applying for job
-   * - jobId: job id
+   * - username: username that captured the pokemon
+   * - PokemonId: id of the pokemon to add
    **/
 
-  static async applyToJob(username, jobId) {
+  static async catchPokemon(username, id) {
     const preCheck = await db.query(
           `SELECT id
-           FROM jobs
-           WHERE id = $1`, [jobId]);
-    const job = preCheck.rows[0];
+           FROM pokemon
+           WHERE id = $1`, [id]);
+    const pokemon = preCheck.rows[0];
 
-    if (!job) throw new NotFoundError(`No job: ${jobId}`);
+    if (!pokemon) throw new NotFoundError(`No pokemon: ${id}`);
 
     const preCheck2 = await db.query(
           `SELECT username
@@ -235,9 +224,9 @@ class User {
     if (!user) throw new NotFoundError(`No username: ${username}`);
 
     await db.query(
-          `INSERT INTO applications (job_id, username)
+          `INSERT INTO pokemon (id, username)
            VALUES ($1, $2)`,
-        [jobId, username]);
+        [id, username]);
   }
 }
 

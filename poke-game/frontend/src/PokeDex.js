@@ -1,32 +1,37 @@
-import React from "react";
-import { useAxios } from "./hooks";
-import PokemonSelect from "./PokemonSelect";
-import PokemonCard from "./PokemonCard";
-import "./PokeDex.css";
+// components/Pokedex.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-/* Renders a list of pokemon cards.
- * Can also add a new card at random,
- * or from a dropdown of available pokemon. */
-function PokeDex() {
-  // Refactored to use custom hook useAxios
-  const [pokemon, addPokemon, clearPokemon] = useAxios(
-    "pokemon",
-    "https://pokeapi.co/api/v2/pokemon/"
-  );
+const Pokedex = () => {
+  const [pokedex, setPokedex] = useState([]);
+
+  useEffect(() => {
+    // Fetch the user's Pokedex from the database
+    // Update the pokedex state with the fetched data
+
+   
+
+  };
+
+    
+
+  const flipCard = (pokemon) => {
+    // Implement logic to flip the card and display details
+
+   
+      
+  };
+
   return (
-    <div className="PokeDex">
-      <div className="PokeDex-buttons">
-        <h3>Please select your pokemon:</h3>
-        <PokemonSelect add={addPokemon} />
-        <button onClick={clearPokemon}>Clear the Pokemon</button>
-      </div>
-      <div className="PokeDex-card-area">
-        {pokemon.map(card => (
-          <PokemonCard key={card.id} {...card}/>
-        ))}
-      </div>
+    <div>
+      <h1>Pokedex</h1>
+      {pokedex.map((pokemon) => (
+        <div key={pokemon.id} onClick={() => flipCard(pokemon)}>
+          {/* Display Pokemon card here */}
+        </div>
+      ))}
     </div>
   );
-}
+};
 
-export default PokeDex;
+export default Pokedex;

@@ -34,13 +34,8 @@ const Game = () => {
     }
 
     // Compare the value of the TypeButton against the drawn Pokemon type
-    // If the value of the TypeButtons matches the drawn Pokemon type, the user will catch the Pokemon
-    // Display a message to the user if they caught the Pokemon or not
-    // if the answer equals the pokemon type, add the pokemon name and type to the pokedex database
-    // if the answer equals the pokemon type, increment the score by 1 and add the score to the scorecard
-      
-    
-   
+    // If the value of the TypeButtons matches the drawn Pokemon type
+    // post the Pokemon name and pokemon type to a JSON database object
     const [score, setScore] = useState(0);
 
     const checkAnswer = () => {
@@ -48,6 +43,18 @@ const Game = () => {
             setMessage(`You caught ${pokemon.name}!`);
             setScore(score + 1);
             setAnswer('');
+
+            axios.post('http://localhost:5000/pokemon', {
+                name: pokemon.name,
+                type: pokemon.type
+            })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.error('Error posting Pokemon:', error);
+                });
+                
 
         } else {
             setMessage(`Sorry, ${pokemon.name} got away!`);

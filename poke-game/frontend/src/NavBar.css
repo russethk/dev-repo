@@ -1,13 +1,14 @@
 .Navbar {
     display: flex;
     align-items: center;
-    padding: 10px;
-    background-color: #282c34;
+    padding: 20px;
+    background-color: #161e2f;
     color: white;
 }
 
 .navbar-brand {
-    font-size: 1.5rem;
+    font-family: "Emilys Candy", cursive;
+    font-size: 2rem;
     font-weight: bold;
     text-decoration: none;
     color: white;
