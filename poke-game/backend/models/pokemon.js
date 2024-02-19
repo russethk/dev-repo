@@ -30,8 +30,25 @@ class Pokemon {
     return pokemon;
   }
 
+  /** Find all pokemon.
+   * 
+   * Returns [{ id, name, type }, ...]
+   * 
+   * */
 
-  
+  static async findAll() {
+    const pokemonRes = await db.query(
+          `SELECT id,
+                  name,
+                  type
+           FROM pokemon
+           ORDER BY id`);
+    const pokemon = pokemonRes.rows;
+    if (!pokemon) throw new NotFoundError(`No pokemon`);
+
+    return pokemon;
+  }
+
   /** Given a pokemon id, return data about pokemon.
    *
    * Returns { id, name, type, img }

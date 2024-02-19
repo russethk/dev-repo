@@ -35,33 +35,28 @@ const Game = () => {
 
     // Compare the value of the TypeButton against the drawn Pokemon type
     // If the value of the TypeButtons matches the drawn Pokemon type
-    // post the Pokemon name and pokemon type to a JSON database object
+    // Set the message to 'You caught the Pokemon!'
+    // Post the Pokemon name and type to the pokedex database
+
     const [score, setScore] = useState(0);
 
-    const checkAnswer = () => {
+    const checkAnswer = async () => {
         if (answer === pokemon.type) {
-            setMessage(`You caught ${pokemon.name}!`);
             setScore(score + 1);
-            setAnswer('');
-
-            axios.post('http://localhost:5000/pokemon', {
-                name: pokemon.name,
-                type: pokemon.type
-            })
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.error('Error posting Pokemon:', error);
+            setMessage('You caught the Pokemon!');
+            try {
+                const response = await axios.post('http://localhost:3001/pokedex', {
+                    name: pokemon.name,
+                    type: pokemon.type
                 });
-                
-
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error adding Pokemon to Pokedex:', error);
+            }
         } else {
-            setMessage(`Sorry, ${pokemon.name} got away!`);
-            setAnswer('');
+            setMessage('The Pokemon got away!');
         }
     }
-
 
     return (
         <div className='game-container'>

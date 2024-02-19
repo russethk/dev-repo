@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://our.company.com/jobNew.schema.json",
+  "$id": "http://example.com/pokemonUpdate.schema.json",
   "type": "object",
   "properties": {
     "name": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 50
+      "maxLength": 30
     },
     "type": {
       "type": "string",

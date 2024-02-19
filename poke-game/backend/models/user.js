@@ -129,15 +129,15 @@ class User {
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
-    const userPokemonRes = await db.query(
+    const userPokedexRes = await db.query(
           `SELECT id
-           FROM pokemon
+           FROM pokedex
            WHERE username = $1
            ORDER BY id`,
         [username],
     );
 
-    user.pokemon = userPokemonRes.rows.map(p => p.id);
+    user.pokedex = userPokedexRes.rows.map(p => p.id);
   }
 
   /** Update user data with `data`.
@@ -203,7 +203,7 @@ class User {
   /** Add captured pokemon: update db, returns undefined.
    *
    * - username: username that captured the pokemon
-   * - PokemonId: id of the pokemon to add
+   * - id: id of the pokemon to add
    **/
 
   static async catchPokemon(username, id) {
@@ -224,9 +224,9 @@ class User {
     if (!user) throw new NotFoundError(`No username: ${username}`);
 
     await db.query(
-          `INSERT INTO pokemon (id, username)
+          `INSERT INTO pokedex (username, id)
            VALUES ($1, $2)`,
-        [id, username]);
+        [username, id]);
   }
 }
 

@@ -8,8 +8,8 @@ const express = require("express");
 const { BadRequestError } = require("../expressError");
 const { ensureAdmin } = require("../middleware/auth");
 const Pokemon = require("../models/pokemon");
-const pokedexNewSchema = require("../schemas/pokedexNew.json");
-const pokedexUpdateSchema = require("../schemas/pokedexUpdate.json");
+const pokemonNewSchema = require("../schemas/pokemonNew.json");
+const pokemonUpdateSchema = require("../schemas/pokemonUpdate.json");
 
 const router = express.Router({ mergeParams: true });
 
@@ -24,7 +24,7 @@ const router = express.Router({ mergeParams: true });
 
 router.post("/", async function (req, res, next) {
   try {
-    const validator = jsonschema.validate(req.body, pokedexNewSchema);
+    const validator = jsonschema.validate(req.body, pokemonNewSchema);
     if (!validator.valid) {
       const errs = validator.errors.map(e => e.stack);
       throw new BadRequestError(errs);
@@ -37,6 +37,22 @@ router.post("/", async function (req, res, next) {
   }
 });
 
+
+/** GET / => { pokemon: [ { id, name, type }, ... ] }
+ *
+ * Returns list of all pokemon.
+ *
+ * Authorization required: admin
+ **/
+
+router.get("/", async function (req, res, next) {
+  try {
+    const pokemon = await Pokemon.findAll();
+    return res.json({ pokemon });
+  } catch (err) {
+    return next(err);
+  }
+});
 
 
 /** GET /[id] => { pokemon }
@@ -67,7 +83,7 @@ router.get("/:id", async function (req, res, next) {
 
 router.patch("/:id", ensureAdmin, async function (req, res, next) {
   try {
-    const validator = jsonschema.validate(req.body, pokedexUpdateSchema);
+    const validator = jsonschema.validate(req.body, pokemonUpdateSchema);
     if (!validator.valid) {
       const errs = validator.errors.map(e => e.stack);
       throw new BadRequestError(errs);

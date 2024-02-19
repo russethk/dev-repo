@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
-class JoblyApi {
+class PokedexApi {
 
   static token;
 
@@ -10,7 +10,7 @@ class JoblyApi {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
-    const headers = { Authorization: `Bearer ${JoblyApi.token}` };
+    const headers = { Authorization: `Bearer ${PokedexApi.token}` };
     const params = (method === "get")
         ? data
         : {};
@@ -33,47 +33,27 @@ class JoblyApi {
     return res.user;
   }
 
-  /** Get companies (filtered by name if not undefined) */
 
-  static async getCompanies(name) {
-    let res = await this.request("companies", { name });
-    return res.companies;
+  /** Get list of pokemon  */
+
+  static async getPokemon() {
+    let res = await this.request(`pokemon`);
+    return res.pokemon;
   }
 
-  /** Get details on a company by handle. */
+  /** Get details on a pokemon by id. */
 
-  static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
-    return res.company;
-  }
-
-  /** Get list of jobs (filtered by title if not undefined) */
-
-  static async getJobs(title) {
-    let res = await this.request("jobs", { title });
-    return res.jobs;
-  }
-
-  /** Get details on a job by id. */
-
-  static async getJobsByID(id) {
-    let res = await this.request(`jobs/${id}`);
-    return res.job;
+  static async getPokemonByID(id) {
+    let res = await this.request(`pokemon/${id}`);
+    return res.pokemon;
   }
   
 
 
-  /** Apply to a job */
+  /** Add pokemon to pokedex */
 
-  static async applyToJob(username, id) {
-    await this.request(`users/${username}/jobs/${id}`, {}, "post");
-  }
-
-  /** Get list of jobs user has applied to (filtered by title if not undefined) */
-
-  static async getJobsAppliedTo(username, title) {
-    let res = await this.request(`users/${username}/jobs`, { title });
-    return res.jobs;
+  static async catchPokemon(username, id) {
+    await this.request(`users/${username}/pokemon/${id}`, {}, "post");
   }
 
   /** Get token for login from username, password. */
@@ -99,7 +79,7 @@ class JoblyApi {
 }
 
           
-export default JoblyApi;
+export default PokedexApi;
           
 
 

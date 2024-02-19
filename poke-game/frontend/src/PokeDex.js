@@ -1,31 +1,33 @@
 // components/Pokedex.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PokemonCard from './PokemonCard';
 
 const Pokedex = () => {
-  const [pokedex, setPokedex] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
 
   useEffect(() => {
-    // Fetch the user's Pokedex from the database
-    // Update the pokedex state with the fetched data
+    // Fetch the pokemon in the postgresql database from backend
+    async function fetchPokemon() {
+      const res = await axios.get('http://localhost:3001/pokemon');
+      setPokemon(res.data.pokemon);
+    }
+    fetchPokemon();
+  }
+  , []);
 
-   
-
-  };
+  const flipCard = (pokemon) => {
+    // logic to flip the card and display details
 
     
 
-  const flipCard = (pokemon) => {
-    // Implement logic to flip the card and display details
 
-   
-      
   };
 
   return (
     <div>
       <h1>Pokedex</h1>
-      {pokedex.map((pokemon) => (
+      {pokemon.map((pokemon) => (
         <div key={pokemon.id} onClick={() => flipCard(pokemon)}>
           {/* Display Pokemon card here */}
         </div>
