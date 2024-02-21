@@ -8,21 +8,19 @@ import "./PokeDex.css";
     Refactored to use the useAxios hook to get the list of pokemon from the postgreSQL database.
 */
 
-  const PokeDex = () => {
-    // Get the list of pokemon from the postgreSQL database from the backend using the useAxios hook
-    
-    const [pokemon] = useAxios("pokemon", "get");
+const PokeDex = () => {
+  // Get the list of pokemon from the postgreSQL database using the useAxios hook
+  const [pokemon, addPokemon] = useAxios("pokemon", "https://pokeapi.co/api/v2/pokemon/");
 
-    return (
-     <div className="PokeDex">
-      <div className="PokeDex-card-area">
-        {pokemon.map(card => (
-          <PokemonCard {...card} key={card.id}
-          />
-        ))}
-      </div>
+  return (
+   <div className="PokeDex">
+    <div className="PokeDex-card-area">
+      {pokemon.map(card => (
+        <PokemonCard key={card.id} {...card}/>
+      ))}
     </div>
-  );
+  </div>
+);
 }
 
 export default PokeDex;
