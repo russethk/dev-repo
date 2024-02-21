@@ -44,10 +44,11 @@ const Game = () => {
         if (answer === pokemon.type) {
             setMessage('You caught the Pokemon!');
             setScore(score + 1);
-            const response = await axios.post('http://localhost:3001/pokemon', {
-                name: pokemon.name,
-                type: pokemon.type
-            });
+            try {
+                await axios.post('http://localhost:3001/pokemon', { id: pokemon.id, name: pokemon.name, type: pokemon.type });
+            } catch (error) {
+                console.error('Error adding Pokemon to Pokedex:', error);
+            }
         } else {
             setMessage('You missed the Pokemon!');
         }

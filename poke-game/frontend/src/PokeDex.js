@@ -1,5 +1,5 @@
 import React from "react";
-import { useAxios } from "./hooks";
+import useAxios from "./hooks";
 import PokemonCard from "./PokemonCard";
 import "./PokeDex.css";
 
@@ -10,13 +10,12 @@ import "./PokeDex.css";
 
 const PokeDex = () => {
   // Get the list of pokemon from the postgreSQL database using the useAxios hook
-  const [pokemon, loading, error] = useAxios("http://localhost:3001/pokemon");
 
-  if (loading) return <p>Loading &hellip;</p>;
-  if (error) return <p>Error! {error.message}</p>;
+ const [pokemon] = useAxios("pokemon");
 
   return (
    <div className="PokeDex">
+     <h1>PokeDex</h1>
     <div className="PokeDex-card-area">
       {pokemon.map(card => (
         <PokemonCard key={card.id} {...card}/>
