@@ -10,7 +10,10 @@ import "./PokeDex.css";
 
 const PokeDex = () => {
   // Get the list of pokemon from the postgreSQL database using the useAxios hook
-  const [pokemon, addPokemon] = useAxios("pokemon", "https://pokeapi.co/api/v2/pokemon/");
+  const [pokemon, loading, error] = useAxios("http://localhost:3001/pokemon");
+
+  if (loading) return <p>Loading &hellip;</p>;
+  if (error) return <p>Error! {error.message}</p>;
 
   return (
    <div className="PokeDex">
