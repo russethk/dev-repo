@@ -1,16 +1,18 @@
 .PokemonCard {
-  background-color: #ffcb05;
+  background-color: silver;
+  background-image: linear-gradient(silver, white);
   border-radius: 8px;
   border: 5px solid #3d7dca;
   box-sizing: border-box;
-  color: #003a70;
+  color: black;
   width: 40%;
   display: inline-block;
-  height: 106px;
+  height: 200px;
 }
 
 .PokemonCard img {
   align-self: start;
+  width: 200px;
 }
 
 .PokemonCard-front {
@@ -25,6 +27,7 @@
   margin: 0;
   font-weight: bold;
   font-style: italic;
+  font-size: 1.5em;
 }
 
 .PokemonCard-stats {

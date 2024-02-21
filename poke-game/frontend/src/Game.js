@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { Button, Card, CardBody, CardText } from 'reactstrap';
-import axios from 'axios';
+import axios from 'axios'; 
 import './Game.css';
 import TypeButtons from './TypeButtons';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -42,20 +42,16 @@ const Game = () => {
 
     const checkAnswer = async () => {
         if (answer === pokemon.type) {
-            setScore(score + 1);
             setMessage('You caught the Pokemon!');
-            try {
-                const response = await axios.post('http://localhost:3001/pokedex', {
-                    name: pokemon.name,
-                    type: pokemon.type
-                });
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error adding Pokemon to Pokedex:', error);
-            }
+            setScore(score + 1);
+            const response = await axios.post('http://localhost:3001/pokemon', {
+                name: pokemon.name,
+                type: pokemon.type
+            });
         } else {
-            setMessage('The Pokemon got away!');
+            setMessage('You missed the Pokemon!');
         }
+    
     }
 
     return (

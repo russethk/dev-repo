@@ -4,7 +4,7 @@ import "./PokemonCard.css";
 
 /* Renders a single pokemon card. */
 /* Part 2 - Refactored to include logic from imported custom hook useFlip*/
-function PokemonCard({ front, back, name, stats }) {
+function PokemonCard({ front, back, name, type, stats}) {
   const [isFacingUp, flip] = useFlip();
   return (
     <div onClick={flip} className="PokemonCard Card">
@@ -13,13 +13,10 @@ function PokemonCard({ front, back, name, stats }) {
           <img src={front} alt={`{name} front`} />
           <div>
             <p className="PokemonCard-name">Name: {name}</p>
-            <ul className="PokemonCard-stats">
-              {stats.map(stat => (
-                <li key={stat.name}>
-                  <em>{stat.name}</em>: {stat.value}
-                </li>
-              ))}
-            </ul>
+            <p className="PokemonCard-type">Type: {type}</p>
+            <p className="PokemonCard-stat">EXP: {stats.base_experience}</p>
+            <p className="PokemonCard-stat">Attack: {stats.attack}</p>
+            <p className="PokemonCard-stat">Defense: {stats.defense}</p>
           </div>
         </div>
       ) : (

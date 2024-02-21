@@ -1,39 +1,28 @@
-// components/Pokedex.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import PokemonCard from './PokemonCard';
+import React from "react";
+import { useAxios } from "./hooks";
+import PokemonCard from "./PokemonCard";
+import "./PokeDex.css";
 
-const Pokedex = () => {
-  const [pokemon, setPokemon] = useState([]);
+/* Renders a list of pokemon cards. 
+    This component uses the useAxios hook to get the list of pokemon from the postgreSQL database.
+    Refactored to use the useAxios hook to get the list of pokemon from the postgreSQL database.
+*/
 
-  useEffect(() => {
-    // Fetch the pokemon in the postgresql database from backend
-    async function fetchPokemon() {
-      const res = await axios.get('http://localhost:3001/pokemon');
-      setPokemon(res.data.pokemon);
-    }
-    fetchPokemon();
-  }
-  , []);
-
-  const flipCard = (pokemon) => {
-    // logic to flip the card and display details
-
+  const PokeDex = () => {
+    // Get the list of pokemon from the postgreSQL database from the backend using the useAxios hook
     
+    const [pokemon] = useAxios("pokemon", "get");
 
-
-  };
-
-  return (
-    <div>
-      <h1>Pokedex</h1>
-      {pokemon.map((pokemon) => (
-        <div key={pokemon.id} onClick={() => flipCard(pokemon)}>
-          {/* Display Pokemon card here */}
-        </div>
-      ))}
+    return (
+     <div className="PokeDex">
+      <div className="PokeDex-card-area">
+        {pokemon.map(card => (
+          <PokemonCard {...card} key={card.id}
+          />
+        ))}
+      </div>
     </div>
   );
-};
+}
 
-export default Pokedex;
+export default PokeDex;

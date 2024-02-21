@@ -3,6 +3,10 @@
   "$id": "http://example.com/pokemonNew.schema.json",
   "type": "object",
   "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
     "name": {
       "type": "string",
       "minLength": 1,
@@ -16,6 +20,7 @@
   },
   "additionalProperties": false,
   "required": [
+    "id",
     "name",
     "type"
   ]
