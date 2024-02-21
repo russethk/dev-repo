@@ -38,7 +38,7 @@ router.post("/", async function (req, res, next) {
 });
 
 
-/** GET / => { pokemon: [ { id, name, type }, ... ] }
+/** GET / => { pokemon: [ { id, name, type, img_url }, ... ] }
  *
  * Returns list of all pokemon.
  *

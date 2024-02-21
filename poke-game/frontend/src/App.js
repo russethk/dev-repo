@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router';
 import Game from './Game';
-import PokeDex from './PokeDex';
+import Pokemon from './Pokemon';
 import NavBar from './NavBar';
 import './App.css';
 
@@ -14,7 +14,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Game />} />
-          <Route path="/pokedex" element={<PokeDex />} />
+          <Route path="/pokemon" element={<Pokemon />} />
         </Routes>
       </BrowserRouter>
     </div>

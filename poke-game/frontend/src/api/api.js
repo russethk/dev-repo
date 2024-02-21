@@ -55,8 +55,8 @@ class PokedexApi {
    * add pokemon id, name, and type to pokemon table
   */
 
-  static async checkAnswer( name, type ) {
-    let res = await this.request(`pokemon`, { name, type }, "post");
+  static async addPokemonToPokedex(data) {
+    let res = await this.request(`pokemon`, data, "post");
     return res.pokemon;
   }
 

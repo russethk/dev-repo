@@ -17,13 +17,14 @@ class Pokemon {
 
   static async create(data) {
     const result = await db.query(
-          `INSERT INTO pokemon (id, name, type)
+          `INSERT INTO pokemon (id, name, type, image_url)
            VALUES ($1, $2, $3)
-           RETURNING id, name, type`,
+           RETURNING id, name, type, image_url`,
         [
           data.id,
           data.name,
-          data.type
+          data.type,
+          data.image_url
         ]);
     let pokemon = result.rows[0];
 
@@ -40,7 +41,8 @@ class Pokemon {
     const pokemonRes = await db.query(
           `SELECT id,
                   name,
-                  type
+                  type,
+                  image_url
            FROM pokemon
            ORDER BY id`);
     const pokemon = pokemonRes.rows;
@@ -60,7 +62,8 @@ class Pokemon {
     const pokemonRes = await db.query(
           `SELECT id,
                   name,
-                  type
+                  type,
+                  image_url
            FROM pokemon
            WHERE id = $1`, [id]);
 
@@ -94,7 +97,8 @@ class Pokemon {
                       WHERE id = ${idVarIdx} 
                       RETURNING id, 
                                 name, 
-                                type`;
+                                type
+                                image_url`;
     const result = await db.query(querySql, [...values, id]);
     const pokemon = result.rows[0];
 

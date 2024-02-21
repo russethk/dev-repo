@@ -1,7 +1,7 @@
 import React from "react";
 import useAxios from "./hooks";
 import PokemonCard from "./PokemonCard";
-import "./PokeDex.css";
+import "./Pokemon.css";
 
 /* Renders a list of pokemon cards. 
     This component uses the useAxios hook to get the list of pokemon from the postgreSQL database.

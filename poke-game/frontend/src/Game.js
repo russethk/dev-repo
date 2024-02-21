@@ -36,23 +36,35 @@ const Game = () => {
     // Compare the value of the TypeButton against the drawn Pokemon type
     // If the value of the TypeButtons matches the drawn Pokemon type
     // Set the message to 'You caught the Pokemon!'
-    // Post the Pokemon name and type to the pokedex database
+    // Call the addPokemonToPokedex function
 
     const [score, setScore] = useState(0);
 
-    const checkAnswer = async () => {
-        if (answer === pokemon.type) {
+    const checkAnswer = () => {
+        if (answer.toLowerCase() === pokemon.type) {
             setMessage('You caught the Pokemon!');
             setScore(score + 1);
-            try {
-                await axios.post('http://localhost:3001/pokemon', { id: pokemon.id, name: pokemon.name, type: pokemon.type });
-            } catch (error) {
-                console.error('Error adding Pokemon to Pokedex:', error);
-            }
+            addPokemonToPokedex();
         } else {
             setMessage('You missed the Pokemon!');
         }
-    
+    }
+
+    // Add the Pokemon to the Pokedex
+    // Include the name and type of the Pokemon
+    // Set the Pokemon to state
+
+    const addPokemonToPokedex = async () => {
+        try {
+            const response = await axios.post('http://localhost:3001/pokemon', {
+                id: pokemon.id,
+                name: pokemon.name,
+                type: pokemon.type
+            });
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error adding Pokemon to Pokedex:', error);
+        }
     }
 
     return (
