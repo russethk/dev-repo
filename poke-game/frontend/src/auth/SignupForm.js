@@ -19,6 +19,7 @@ function SignUpForm({ signup }) {
         password: "",
         firstName: "",
         lastName: "",
+        email: ""
     });
     const [formErrors, setFormErrors] = useState([]);
     
@@ -101,6 +102,18 @@ function SignUpForm({ signup }) {
                                 value={formData.lastName}
                                 onChange={handleChange}
                                 autoComplete="lastName"
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Email</label>
+                            <input
+                                name="email"
+                                placeholder="Email"
+                                className="form-control"
+                                value={formData.email}
+                                onChange={handleChange}
+                                autoComplete="email"
                                 required
                             />
                         </div>

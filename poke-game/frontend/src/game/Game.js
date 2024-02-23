@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { Button, Card, CardBody, CardText } from 'reactstrap';
 import axios from 'axios'; 
 import './Game.css';
-import TypeButtons from './TypeButtons';
+import TypeButtons from '../common/TypeButtons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -44,7 +44,7 @@ const Game = () => {
         if (answer.toLowerCase() === pokemon.type) {
             setMessage('You caught the Pokemon!');
             setScore(score + 1);
-            addPokemonToPokedex();
+            addPokemon();
         } else {
             setMessage('You missed the Pokemon!');
         }
@@ -54,7 +54,7 @@ const Game = () => {
     // Include the name and type of the Pokemon
     // Set the Pokemon to state
 
-    const addPokemonToPokedex = async () => {
+    const addPokemon = async () => {
         try {
             const response = await axios.post('http://localhost:3001/pokemon', {
                 id: pokemon.id,
@@ -73,12 +73,13 @@ const Game = () => {
             <h1>Catch 'Em All!</h1>
             <Button onClick={drawPokemon}>Draw a Pokemon</Button>
             {pokemon && (
-                <Card>
+                <Card className="Card">
                     <CardBody>
                         <p>What type of pokemon is {pokemon.name}?</p>
                         <img src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemon.name}.gif`} alt={pokemon.name} />
                         <CardText>
                             <TypeButtons add={setAnswer} />
+                            <br />
                             <p>Choose the Pokemon type and then click Catch Pokemon!</p>
                             <input type='text' value={answer} onChange={e => setAnswer(e.target.value)} />
                             <Button onClick={checkAnswer}>Catch Pokemon</Button>

@@ -23,10 +23,5 @@
     }
   },
   "additionalProperties": false,
-  "required": [
-    "id",
-    "name",
-    "type",
-    "image_url"
-  ]
+  "required": [] 
 }

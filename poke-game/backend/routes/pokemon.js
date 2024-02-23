@@ -38,7 +38,7 @@ router.post("/", async function (req, res, next) {
 });
 
 
-/** GET / => { pokemon: [ { id, name, type, img_url }, ... ] }
+/** GET / => { pokemon: [ { id, name, type, image_url }, ... ] }
  *
  * Returns list of all pokemon.
  *
@@ -55,11 +55,12 @@ router.get("/", async function (req, res, next) {
 });
 
 
-/** GET /[id] => { pokemon }
+/** GET /[pokemonId] => { pokemon }
  *
- * Returns { id, name, type}
- *  where type is { id, name, type }
- * Authorization required: none
+ * Returns { id, name, type, image_url}
+ *   where usermame is { username, id }
+ *
+ * Authorization required: none 
  */
 
 router.get("/:id", async function (req, res, next) {
@@ -72,6 +73,8 @@ router.get("/:id", async function (req, res, next) {
 });
 
 
+
+
 /** PATCH /[id]  { fld1, fld2, ... } => { pokemon }
  *
  * Data can include: { name, type }
@@ -81,7 +84,7 @@ router.get("/:id", async function (req, res, next) {
  * Authorization required: admin
  */
 
-router.patch("/:id", async function (req, res, next) {
+router.patch("/:id", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, pokemonUpdateSchema);
     if (!validator.valid) {
@@ -90,7 +93,7 @@ router.patch("/:id", async function (req, res, next) {
     }
 
     const job = await Pokemon.update(req.params.id, req.body);
-    return res.json({ Pokemon });
+    return res.json({ pokemon });
   } catch (err) {
     return next(err);
   }

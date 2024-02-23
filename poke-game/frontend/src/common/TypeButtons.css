@@ -1,11 +1,15 @@
 .TypeButtons {
   display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 60%;
 }
 
 button {
-  padding: 5px;
   font-size: 14px;
   font-weight: bold;
   border: 1px solid #000;

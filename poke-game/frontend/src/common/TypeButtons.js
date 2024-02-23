@@ -27,7 +27,7 @@ const TypeButtons = ({ add }) => {
     }, []);
 
     return (
-        <div>
+        <div className="wrapper">
             {types.map((type, idx) => (
                 <button key={idx} class={type.name} onClick={() => add(type.name)}>{type.name}</button>
             ))}

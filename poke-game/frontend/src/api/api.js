@@ -36,10 +36,19 @@ class PokedexApi {
 
   /** Get list of pokemon  */
 
-  static async getPokemon() {
-    let res = await this.request(`pokemon`);
+  static async getPokemon(name) {
+    let res = await this.request("pokemon", {name});
     return res.pokemon;
   }
+
+  /** Get list of pokemon by type. */
+
+  static async getPokemonByType(type) {
+    let res = await this.request("pokemon", {type});
+    return res.pokemon;
+  }
+  
+
 
   /** Get details on a pokemon by id. */
 
@@ -50,15 +59,14 @@ class PokedexApi {
   
 
 
-  /** Add pokemon to pokedex 
+/** Add pokemon to pokedex 
    * post request to add pokemon to pokedex
    * add pokemon id, name, and type to pokemon table
-  */
+*/
 
-  static async addPokemonToPokedex(data) {
-    let res = await this.request(`pokemon`, data, "post");
-    return res.pokemon;
-  }
+ static async addPokemon(username, id) {
+  await this.request(`users/${username}/pokemon/${id}`, {}, "post");
+}
 
   /** Get token for login from username, password. */
 

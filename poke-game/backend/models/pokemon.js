@@ -18,7 +18,7 @@ class Pokemon {
   static async create(data) {
     const result = await db.query(
           `INSERT INTO pokemon (id, name, type, image_url)
-           VALUES ($1, $2, $3)
+           VALUES ($1, $2, $3, $4)
            RETURNING id, name, type, image_url`,
         [
           data.id,
@@ -37,18 +37,32 @@ class Pokemon {
    * 
    * */
 
-  static async findAll() {
-    const pokemonRes = await db.query(
-          `SELECT id,
-                  name,
-                  type,
-                  image_url
-           FROM pokemon
-           ORDER BY id`);
-    const pokemon = pokemonRes.rows;
-    if (!pokemon) throw new NotFoundError(`No pokemon`);
+  static async findAll({ name, type } = {}) {
+    let query = `SELECT id,
+                        name,
+                        type,
+                        image_url
+                  FROM pokemon`;
+    let queryValues = [];
 
-    return pokemon;
+    // For each possible search term, add to whereExpressions and
+    // queryValues so we can generate the right SQL
+
+    if (name) {
+      queryValues.push(name);
+      query += ` WHERE name ILIKE $${queryValues.length}`;
+    }
+
+    if (type) {
+      queryValues.push(type);
+      query += ` WHERE type ILIKE $${queryValues.length}`;
+    }
+
+    // Finalize query and return results
+
+    query += " ORDER BY name, type";
+    const pokemonRes = await db.query(query, queryValues);
+    return pokemonRes.rows;
   }
 
   /** Given a pokemon id, return data about pokemon.

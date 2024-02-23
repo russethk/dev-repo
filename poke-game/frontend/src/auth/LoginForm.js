@@ -27,14 +27,14 @@ function LoginForm({ login }) {
     );
 
     /** Handle form submit:
-     * calls login func prop and, if successful, redirect to /game.
+     * calls login func prop and, if successful, redirect to /companies.
      */
 
     async function handleSubmit(evt) {
         evt.preventDefault();
         let result = await login(formData);
         if (result.success) {
-            history.push("/game");
+            history.push("/companies");
         } else {
             setFormErrors(result.errors);
         }
