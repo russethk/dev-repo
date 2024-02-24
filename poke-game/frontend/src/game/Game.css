@@ -3,14 +3,6 @@
   display: flex;
 }
 
-.Game main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .game-container {
   display: flex;
   margin-top: 100px;  
@@ -20,8 +12,7 @@
   padding: 10px;
   background-color: rgba(225, 226, 228, 0.95);
   margin-top: 20px;
-  width: 90vw;
-  height: 90vh;
+  width: 100vw;
   border: 1px solid #000;
   border-radius: 10px;
 }

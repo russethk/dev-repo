@@ -1,5 +1,14 @@
+.TypeSelect {
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(9, 1fr);
+    align-content: center;
+    align-items: center;
+}
+
 .wrapper {
-    margin: auto auto;
+    margin: 0 auto;
     display: grid;
     grid-gap: 5px;
     grid-template-columns: repeat(9, 1fr);

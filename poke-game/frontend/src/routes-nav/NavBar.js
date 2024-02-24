@@ -1,7 +1,6 @@
 import React,{ useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserContext from "../auth/UserContext";
-import * as Icon from 'react-bootstrap-icons';
 import "./NavBar.css";
 
 function NavBar ({logout}) {
@@ -23,12 +22,12 @@ function NavBar ({logout}) {
                 </li>
                 <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/profile">
-                        <Icon.PersonSquare /> Profile
+                        Profile
                     </NavLink>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="/" onClick={logout}>
-                        <Icon.BoxArrowRight /> Log Out  {currentUser.first_name || currentUser.username}
+                         Log Out  {currentUser.first_name || currentUser.username}
                     </Link>
                 </li>
             </ul>
@@ -38,14 +37,14 @@ function NavBar ({logout}) {
     function loggedOutNav() {
         return (
             <ul className="navbar-nav ml-auto">
-                <li className="nav-item mr-4">
+                <li className="nav-item mr-8">
                     <NavLink className="nav-link" to="/login">
-                        <Icon.BoxArrowLeft />  Login
+                        Login
                     </NavLink>
                 </li>
-                <li className="nav-item mr-4">
+                <li className="nav-item mr-8">
                     <NavLink className="nav-link" to="/signup">
-                        <Icon.People /> Sign Up
+                        Sign Up
                     </NavLink>
                 </li>
             </ul>

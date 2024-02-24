@@ -3,7 +3,8 @@ CREATE TABLE users (
   password TEXT NOT NULL,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
-  is_admin BOOLEAN NOT NULL DEFAULT FALSE
+  email TEXT NOT NULL,
+  is_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE pokemon (

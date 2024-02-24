@@ -6,7 +6,7 @@ import Alert from '../common/Alert';
  * Shows form and manages update to state on changes.
  * On submission:
  * - calls signup function prop
- * - redirects to /companies route
+ * - redirects to /game route
  * 
  * Routes -> SignupForm -> Alert
  * Routed as /signup
@@ -31,14 +31,14 @@ function SignUpForm({ signup }) {
     );
     
     /** Handle form submit:
-     * calls signup func prop and, if successful, redirect to /companies.
+     * calls signup func prop and, if successful, redirect to /game.
      */
     
     async function handleSubmit(evt) {
         evt.preventDefault();
         let result = await signup(formData);
         if (result.success) {
-        history.push("/companies");
+        history.push("/game");
         } else {
         setFormErrors(result.errors);
         }
