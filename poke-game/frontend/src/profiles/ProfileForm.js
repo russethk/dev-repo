@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import Alert from '../common/Alert';
 import PokedexApi from '../api/api';
 import UserContext from '../auth/UserContext';
-import useTimedMessage from '../hooks/hooks';
+import useTimedMessage from '../hooks/useTimedMessage';
 import { Card, CardBody } from 'reactstrap';
 
 /** Profile editing form.

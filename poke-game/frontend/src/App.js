@@ -6,7 +6,7 @@ import PokedexApi from './api/api';
 import LoadingSpinner from './common/LoadingSpinner';
 import UserContext from './auth/UserContext';
 import { jwtDecode } from "jwt-decode";
-import useLocalStorage from './hooks/hooks';
+import useLocalStorage from './hooks/useLocalStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -121,20 +121,22 @@ function App() {
   }
 
 
-    /* Handles getting caught pokemon from pokedex table. */
-
-    function caughtPokemon(id) {
-      return pokemonIds.has(id);
-    }
-  
   
   /* Handles posting pokemon id and username to pokedex table. */
 
   async function catchPokemon(id) {
-    if (caughtPokemon(id)) return;
-    await PokedexApi.catchPokemon(currentUser.username, id);
-    setPokemonIds(new Set([...pokemonIds, id]));
+     if (caughtPokemon(id)) return;
+      await PokedexApi.catchPokemon(currentUser.username, id);
+      setPokemonIds(new Set([...pokemonIds, id]));
+    }
+
+
+    /* Handles getting caught pokemon from pokedex table. */
+
+  function caughtPokemon(id) {
+    return pokemonIds.has(id);
   }
+  
 
 
 
@@ -142,8 +144,8 @@ function App() {
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
-    <BrowserRouter >
-       <UserContext.Provider value={{ currentUser, setCurrentUser, caughtPokemon, catchPokemon  }}>
+    <BrowserRouter>
+       <UserContext.Provider value={{ currentUser, setCurrentUser, caughtPokemon, catchPokemon }}>
 
         <div className="App">
           <NavBar logout={logout} />
