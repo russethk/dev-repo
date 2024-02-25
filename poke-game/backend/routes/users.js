@@ -120,9 +120,9 @@ router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, 
 });
 
 
-/** POST /[username]/pokemon/[id]  { state } => { pokedex }
+/** POST /[username]/jobs/[id]  { state } => { application }
  *
- * Returns {"caught": pokemonId}
+ * Returns {"applied": jobId}
  *
  * Authorization required: admin or same-user-as-:username
  * */

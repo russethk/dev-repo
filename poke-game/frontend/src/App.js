@@ -6,14 +6,14 @@ import LoadingSpinner from './common/LoadingSpinner';
 import { BrowserRouter } from 'react-router-dom';
 import UserContext from './auth/UserContext';
 import { jwtDecode } from "jwt-decode";
-import useLocalStorage from './hooks/useLocalStorage';
+import useLocalStorage from './hooks/useLocalStorage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-// Key name for storing token in localStorage for re-login
-export const TOKEN_STORAGE_ID = 'jobly-token';
+// Key name for storing token in localStorage for re-login'
+export const TOKEN_STORAGE_ID = 'pokedex-token';
 
-/** Pokedex application. 
+/** Jobly application. 
  * 
  * - infoLoaded: has user data been pulled from API?
  * 
@@ -29,8 +29,8 @@ export const TOKEN_STORAGE_ID = 'jobly-token';
 
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
-  const [pokedexIds, setPokedexIds] = useState(new Set([]));  // for tracking which pokemon user has caught
-  const [currentUser, setCurrentUser] = useState(null);
+  const [pokemonIds, setPokemonIds] = useState(new Set([]));  // for tracking which pokemon users have caught
+  const [currentUser, setCurrentUser] = useState(true);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);  // token is stored in localStorage for re-login
 
   console.debug(
@@ -55,7 +55,7 @@ function App() {
           PokedexApi.token = token;
           let currentUser = await PokedexApi.getCurrentUser(username);
           setCurrentUser(currentUser);
-          setPokedexIds(new Set(currentUser.pokedex));
+          setPokemonIds(new Set(currentUser.pokedex));
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
           setCurrentUser(null);
@@ -123,15 +123,15 @@ function App() {
   /** Checks if user has applied to this job. */
 
   function hasCaughtPokemon(id) {
-    return pokedexIds.has(id);
+    return pokemonIds.has(id);
   }
 
   /* Handles applying to a job. */
 
   async function catchPokemon(id) {
     if (hasCaughtPokemon(id)) return;
-    PokedexApi.catchPokemon(currentUser.username, id);
-    setPokedexIds(new Set([...pokedexIds, id]));
+   PokedexApi.catchPokemon(currentUser.username, id);
+    setPokemonIds(new Set([...pokemonIds, id]));
    
   }
 

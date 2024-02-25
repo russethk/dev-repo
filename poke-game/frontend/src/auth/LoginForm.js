@@ -27,7 +27,7 @@ function LoginForm({ login }) {
     );
 
     /** Handle form submit:
-     * calls login func prop and, if successful, redirect to /game.
+     * calls login func prop and, if successful, redirect to /companies.
      */
 
     async function handleSubmit(evt) {

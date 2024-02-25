@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "../homepage/Homepage";
 import Game from "../game/Game";
 import PokemonList from "../pokedex/PokemonList";
@@ -17,7 +17,8 @@ function Routes({ login, signup }) {
 
     return (
         <div className="pt-4">
-         <Switch>
+        <Switch>
+            
             <Route exact path="/">
                 <Home />
             </Route>
@@ -30,11 +31,11 @@ function Routes({ login, signup }) {
                 <SignupForm signup={signup} />
             </Route>
 
-            <Route path="/game">
+            <Route exact path="/game">
                 <Game />
             </Route>
 
-            <Route path="/pokedex">
+            <Route exact path="/pokedex">
                 <PokemonList />
             </Route>
             
@@ -42,7 +43,8 @@ function Routes({ login, signup }) {
                 <ProfileForm />
             </PrivateRoute>
 
-          </Switch>
+            <Redirect to="/" />
+        </Switch>
         </div>
     );
 }
