@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import "./NavBar.css";
 
-function NavBar ({ logout }) {
+function NavBar ({logout}) {
     const { currentUser } = useContext(UserContext);
     console.debug("NavBar", "currentUser=", currentUser);
 
@@ -12,12 +12,12 @@ function NavBar ({ logout }) {
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/game">
-                         Game
+                        Game
                     </NavLink>
                 </li>
                 <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/pokedex">
-                        PokeDex
+                        Pokedex
                     </NavLink>
                 </li>
                 <li className="nav-item mr-4">
@@ -27,7 +27,7 @@ function NavBar ({ logout }) {
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="/" onClick={logout}>
-                         Log Out  {currentUser.first_name || currentUser.username}
+                        Log Out! {currentUser.first_name || currentUser.username}
                     </Link>
                 </li>
             </ul>
@@ -37,12 +37,12 @@ function NavBar ({ logout }) {
     function loggedOutNav() {
         return (
             <ul className="navbar-nav ml-auto">
-                <li className="nav-item mr-8">
+                <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/login">
                         Login
                     </NavLink>
                 </li>
-                <li className="nav-item mr-8">
+                <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/signup">
                         Sign Up
                     </NavLink>
@@ -53,7 +53,7 @@ function NavBar ({ logout }) {
     return (
         <nav className="NavBar navbar navbar-expand-md">
             <Link className="navbar-brand" to="/">
-            <img src={`${process.env.PUBLIC_URL}/pokeball-icon.png`} alt="pokeball" className="homepage-image" />
+                Pokemon Challenge
             </Link>
             {currentUser ? loggedInNav() : loggedOutNav()}
         </nav>
