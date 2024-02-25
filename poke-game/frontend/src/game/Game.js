@@ -50,28 +50,20 @@ const Game = () => {
         }
     }
 
+    // Add the current user username and id to the pokedex table in the database
+    // If the user catches the Pokemon, the Pokemon will be added to the Pokedex
 
-    // function addPokemon adds the caught pokemon to the Pokedex
-
-    const addPokemon = () => {
-        catchPokemon(pokemon);
-    }
-
-    // function catchPokemon adds the caught pokemon to the Pokedex
-    // Include the pokemon id and the username of the current user
-   
-   const catchPokemon = async (pokemon) => {
+    const addPokemon = async () => {
         try {
-            const response = await axios.post('http://localhost:3001/pokedex', {
+            const response = await axios.post('/api/pokedex', {
                 username: localStorage.getItem('username'),
-                id: pokemon.id
+                pokemonId: pokemon.id
             });
-            console.log('Pokemon added to Pokedex:', response.data);
+            console.log(response);
         } catch (error) {
             console.error('Error adding Pokemon to Pokedex:', error);
         }
     }
-
 
     return (
         <div className='game-container'>

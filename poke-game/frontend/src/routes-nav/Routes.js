@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "../homepage/Homepage";
 import Game from "../game/Game";
 import PokemonList from "../pokedex/PokemonList";
@@ -30,19 +30,17 @@ function Routes({ login, signup }) {
                 <SignupForm signup={signup} />
             </Route>
 
-            <Route exact path="/game">
+            <Route path="/game">
                 <Game />
             </Route>
 
-            <Route exact path="/pokedex">
+            <Route path="/pokedex">
                 <PokemonList />
             </Route>
             
             <PrivateRoute path="/profile">
                 <ProfileForm />
             </PrivateRoute>
-
-            <Redirect to="/" />
 
           </Switch>
         </div>

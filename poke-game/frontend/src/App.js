@@ -30,8 +30,8 @@ export const TOKEN_STORAGE_ID = 'pokedex-token';
 
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
-  const [pokemonIds, setPokemonIds] = useState(new Set([]));  // for tracking which jobs user has applied to
   const [currentUser, setCurrentUser] = useState(null);
+  const [pokemonId, setPokemonId] = useState(new Set());
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);  // token is stored in localStorage for re-login
 
   console.debug(
@@ -56,7 +56,7 @@ function App() {
           PokedexApi.token = token;
           let currentUser = await PokedexApi.getCurrentUser(username);
           setCurrentUser(currentUser);
-          setPokemonIds(new Set(currentUser.applications));
+          setPokemonId(new Set(currentUser.pokedex));
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
           setCurrentUser(null);
@@ -120,32 +120,24 @@ function App() {
     }
   }
 
+  /** Add a pokemon to the pokedex. */
 
-  
-  /* Handles posting pokemon id and username to pokedex table. */
-
-  async function catchPokemon(id) {
-     if (caughtPokemon(id)) return;
-      await PokedexApi.catchPokemon(currentUser.username, id);
-      setPokemonIds(new Set([...pokemonIds, id]));
-    }
-
-
-    /* Handles getting caught pokemon from pokedex table. */
-
-  function caughtPokemon(id) {
-    return pokemonIds.has(id);
+  function hasPokemon(id) {
+    return pokemonId.has(id);
   }
-  
 
+  function addPokemon(id) {
+    if (hasPokemon(id)) return;
+    PokedexApi.addPokemon(currentUser.username, id);
+    setPokemonId(new Set([...pokemonId, id]));
+  }
 
-
-
+  // If the user data hasn't been loaded yet, show a loading spinner
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
     <BrowserRouter>
-       <UserContext.Provider value={{ currentUser, setCurrentUser, caughtPokemon, catchPokemon }}>
+       <UserContext.Provider value={{ currentUser, setCurrentUser, hasPokemon, addPokemon }}>
 
         <div className="App">
           <NavBar logout={logout} />
