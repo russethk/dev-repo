@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Routes from './routes-nav/Routes';
 import NavBar from './routes-nav/NavBar';
-import { BrowserRouter } from 'react-router-dom';
 import PokedexApi from './api/api';
 import LoadingSpinner from './common/LoadingSpinner';
+import { BrowserRouter } from 'react-router-dom';
 import UserContext from './auth/UserContext';
 import { jwtDecode } from "jwt-decode";
 import useLocalStorage from './hooks/useLocalStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 
 
 // Key name for storing token in localStorage for re-login
-export const TOKEN_STORAGE_ID = 'pokedex-token';
+export const TOKEN_STORAGE_ID = 'jobly-token';
 
 /** Pokedex application. 
  * 
@@ -30,8 +29,8 @@ export const TOKEN_STORAGE_ID = 'pokedex-token';
 
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
+  const [pokedexIds, setPokedexIds] = useState(new Set([]));  // for tracking which pokemon user has caught
   const [currentUser, setCurrentUser] = useState(null);
-  const [pokemonId, setPokemonId] = useState(new Set());
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);  // token is stored in localStorage for re-login
 
   console.debug(
@@ -56,7 +55,7 @@ function App() {
           PokedexApi.token = token;
           let currentUser = await PokedexApi.getCurrentUser(username);
           setCurrentUser(currentUser);
-          setPokemonId(new Set(currentUser.pokedex));
+          setPokedexIds(new Set(currentUser.pokedex));
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
           setCurrentUser(null);
@@ -119,25 +118,28 @@ function App() {
       return { success: false, errors };
     }
   }
+  
 
-  /** Add a pokemon to the pokedex. */
+  /** Checks if user has applied to this job. */
 
-  function hasPokemon(id) {
-    return pokemonId.has(id);
+  function hasCaughtPokemon(id) {
+    return pokedexIds.has(id);
   }
 
-  function addPokemon(id) {
-    if (hasPokemon(id)) return;
-    PokedexApi.addPokemon(currentUser.username, id);
-    setPokemonId(new Set([...pokemonId, id]));
+  /* Handles applying to a job. */
+
+  async function catchPokemon(id) {
+    if (hasCaughtPokemon(id)) return;
+    PokedexApi.catchPokemon(currentUser.username, id);
+    setPokedexIds(new Set([...pokedexIds, id]));
+   
   }
 
-  // If the user data hasn't been loaded yet, show a loading spinner
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
-    <BrowserRouter>
-       <UserContext.Provider value={{ currentUser, setCurrentUser, hasPokemon, addPokemon }}>
+    <BrowserRouter> 
+       <UserContext.Provider value={{ currentUser, setCurrentUser, hasCaughtPokemon, catchPokemon }}>
 
         <div className="App">
           <NavBar logout={logout} />
@@ -145,7 +147,8 @@ function App() {
         </div>
 
         </UserContext.Provider>
-    </BrowserRouter>
+       </BrowserRouter>
+     
   );
 }
 

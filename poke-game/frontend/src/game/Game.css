@@ -1,6 +1,7 @@
 .Game {
   text-align: center;
   display: flex;
+  justify-content: center;  
 }
 
 .game-container {
