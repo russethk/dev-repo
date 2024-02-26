@@ -1,13 +1,13 @@
 .Homepage {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100vw;
-    min-height: 100vh;
     margin-top: 50px;
   }
   
   .text-container {
-    max-width: 600px;
+    max-width: 90vw;
     margin-right: 50px;
     text-align: center;
   }

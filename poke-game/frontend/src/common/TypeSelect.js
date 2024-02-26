@@ -25,12 +25,11 @@ const Fairy = process.env.PUBLIC_URL + '/icons/fairy.svg';
 
 // This component returns a list of icons for each type of Pokemon
 // Get the icons for each type of Pokemon from the icons folder in public and set the value of the button to the type of Pokemon
-// on click, the value of the button is passed to get all the Pokemon of that type from the database
+// on click, the stype property is passed to get all the Pokemon of that type from the database
 // and display the list of Pokemon of that type
 
 
-const PokemonTypeSelect = ({ add }) => {
-
+function PokemonTypeSelect({ add }) {
     return (
       <div className="wrapper">
         <button className="icon normal" onClick={() => add('normal')}><img src={Normal} alt="Normal" /></button>
@@ -51,10 +50,8 @@ const PokemonTypeSelect = ({ add }) => {
         <button className="icon dragon" onClick={() => add('dragon')}><img src={Dragon} alt="Dragon" /></button>
         <button className="icon steel" onClick={() => add('steel')}><img src={Steel} alt="Steel" /></button>
         <button className="icon fairy" onClick={() => add('fairy')}><img src={Fairy} alt="Fairy" /></button>
-        </div>
+    </div>
     );
-}
-
+  }
 
 export default PokemonTypeSelect;
-

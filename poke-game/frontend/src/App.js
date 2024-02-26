@@ -55,7 +55,7 @@ function App() {
           PokedexApi.token = token;
           let currentUser = await PokedexApi.getCurrentUser(username);
           setCurrentUser(currentUser);
-          setPokemonIds(new Set(currentUser.pokedex));
+          setPokemonIds(new Set(currentUser.pokemonIds));
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
           setCurrentUser(null);

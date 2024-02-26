@@ -51,12 +51,20 @@ const Game = () => {
         }
     }
 
-    /* catchPokemon function to add the Pokemon to the Pokedex */
-    const catchPokemon = () => {
-        const pokedex = JSON.parse(localStorage.getItem('pokedex')) || [];
-        pokedex.push(pokemon.name);
-        localStorage.setItem('pokedex', JSON.stringify(pokedex));
+    /* function catchPokemon adds the username and pokemonID to the pokedex table in the pokedex database */
+
+    const catchPokemon = async () => {
+        try {
+            const response = await axios.post('/api/pokedex', {
+                username: 'testuser',
+                id: pokemon.id
+            });
+            console.log('Pokemon caught:', response.data);
+        } catch (error) {
+            console.error('Error catching Pokemon:', error);
+        }
     }
+
 
     return (
         <div className='game-container'>

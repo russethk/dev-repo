@@ -1,7 +1,8 @@
 .Game {
-  text-align: center;
   display: flex;
-  justify-content: center;  
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .game-container {
@@ -13,15 +14,16 @@
   padding: 10px;
   background-color: rgba(225, 226, 228, 0.95);
   margin-top: 20px;
-  width: 100vw;
   border: 1px solid #000;
   border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  width: 96%;
 }
 
 
 .homepage-image {
-  width: 70%;
-  margin: 0 auto;
+  width: 100%;
+  
 }
 
 .column-left {
@@ -44,19 +46,17 @@
 
 .Card {
   cursor: pointer;
-  width: 90%;
+  width: 95%;
 }
 
 .CardBody {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   flex: 1;
   background-color: #ccc;
   border: 1px solid #000;
   border-radius: 10px;
-  width: 100%;
 }
 
 
@@ -64,6 +64,7 @@
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 .message {
@@ -79,8 +80,8 @@
 .scorecard {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  justify-content: left;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   margin-top: 20px;
   font-family: "Emilys Candy", cursive;
@@ -94,16 +95,19 @@ h1 {
   font-weight: bold;
   font-family: "Emilys Candy", cursive;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 p {
   font-size: 30px;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
+  text-align: center;
 }
 
 img {
   width: 6rem;
+  align-items: center; 
 }
 
 /* Path: src/Board.css */

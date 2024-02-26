@@ -3,8 +3,8 @@ import PokedexApi from '../api/api';
 import PokemonCardList from './PokemonCardList';
 import LoadingSpinner from '../common/LoadingSpinner';
 import './PokemonList.css';
-import TypeSelect from '../common/TypeSelect';
 import '../common/TypeSelect.css'
+import TypeSelect from '../common/TypeSelect';
 
 /** Show page with list of pokemon.
  * 
@@ -25,19 +25,18 @@ function PokemonList() {
     }, []);
 
     /** Triggered by search form submit; reloads pokemon. */
-    async function search(name) {
-        let pokemon = await PokedexApi.getPokemon(name);
+    async function search() {
+        let pokemon = await PokedexApi.getPokemon();
         setPokemon(pokemon);
     }
 
     if (!pokemon) return <LoadingSpinner />;
 
+    /* Render list of pokemon from the database */
     return (
         <div className="PokemonList col-md">
           <div className="PokemonList-container">
             <div className="PokemonCardList-title"><h1>Pokedex</h1></div>
-            <TypeSelect />
-            <br />
             {pokemon.length
                 ? <PokemonCardList pokemon={pokemon}/>
                 : <p className="lead">Sorry, no results were found!</p>}

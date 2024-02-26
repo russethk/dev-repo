@@ -6,19 +6,18 @@
   border: 1px solid #000;
   border-radius: 10px;
   padding: 5px;
-  width: 95%;
-  margin: 0 auto;
+  width: 98%;
 }
 
 
 .PokeDex-card-area {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   justify-content: center;
   background-color: #f5f5f5;
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
+  width: 100%;
 }
 
 
