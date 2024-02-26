@@ -31,8 +31,10 @@
 }
 
 .PokemonCard-type {
+  margin-top: 10px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1em;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .PokemonCard-stats {
@@ -42,16 +44,6 @@
   text-align: left;
   margin: 0;
 }
-
-
-
-.normal {
-  background-color: #A8A77A;
-  color: white;
-}
-
-
-
 
 
 
