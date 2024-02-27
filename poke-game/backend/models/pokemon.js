@@ -79,7 +79,8 @@ class Pokemon {
           `SELECT id,
                   name,
                   type,
-                  image_url,type_url
+                  image_url,
+                  type_url
            FROM pokemon
            WHERE id = $1`, [id]);
 
@@ -114,7 +115,7 @@ class Pokemon {
                       RETURNING id, 
                                 name, 
                                 type,
-                                image_url
+                                image_url,
                                 type_url`;
     const result = await db.query(querySql, [...values, id]);
     const pokemon = result.rows[0];
