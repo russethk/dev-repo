@@ -4,7 +4,6 @@ import PokemonCardList from './PokemonCardList';
 import LoadingSpinner from '../common/LoadingSpinner';
 import './PokemonList.css';
 import '../common/TypeSelect.css'
-import TypeSelect from '../common/TypeSelect';
 
 /** Show page with list of pokemon.
  * 
