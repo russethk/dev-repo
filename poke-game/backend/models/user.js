@@ -139,12 +139,12 @@ class User {
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
-    const userApplicationsRes = await db.query(
-          `SELECT a.job_id
-           FROM applications AS a
-           WHERE a.username = $1`, [username]);
+    const userPokedexRes = await db.query(
+          `SELECT p.id
+           FROM pokedex AS p
+           WHERE p.username = $1`, [username]);
 
-    user.applications = userApplicationsRes.rows.map(a => a.job_id);
+    user.pokedex = userPokedexRes.rows.map(p => p.id);
     return user;
   }
 
@@ -217,14 +217,14 @@ class User {
    * - jobId: job id
    **/
 
-  static async applyToJob(username, jobId) {
+  static async catchPokemon(username, id) {
     const preCheck = await db.query(
           `SELECT id
-           FROM jobs
-           WHERE id = $1`, [jobId]);
-    const job = preCheck.rows[0];
+           FROM pokemon
+           WHERE id = $1`, [id]);
+    const pokemon = preCheck.rows[0];
 
-    if (!job) throw new NotFoundError(`No job: ${jobId}`);
+    if (!pokemon) throw new NotFoundError(`No pokemon: ${id}`);
 
     const preCheck2 = await db.query(
           `SELECT username
@@ -235,7 +235,7 @@ class User {
     if (!user) throw new NotFoundError(`No username: ${username}`);
 
     await db.query(
-          `INSERT INTO applications (job_id, username)
+          `INSERT INTO pokedex (id, username)
            VALUES ($1, $2)`,
         [jobId, username]);
   }

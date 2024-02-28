@@ -129,9 +129,9 @@ router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, 
 
 router.post("/:username/pokemon/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
-    const pokemonId = +req.params.id;
-    await User.catchPokemon(req.params.username, pokemonId);
-    return res.json({ caught: pokemonId });
+    const id = +req.params.id;
+    await User.catchPokemon(req.params.username, id);
+    return res.json({ caught: id });
   } catch (err) {
     return next(err);
   }

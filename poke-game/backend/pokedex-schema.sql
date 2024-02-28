@@ -12,7 +12,6 @@ CREATE TABLE pokemon (
   name TEXT NOT NULL,
   type TEXT NOT NULL,
   image_url TEXT NOT NULL,
-  type_url TEXT NOT NULL,
   UNIQUE (name)
 );
 

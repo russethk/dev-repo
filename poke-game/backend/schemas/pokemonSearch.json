@@ -20,10 +20,6 @@
     "image_url": {
       "type": "string",
       "format": "uri"
-    },
-    "type_url": {
-      "type": "string",
-      "format": "uri"
     }
   },
   "additionalProperties": false,

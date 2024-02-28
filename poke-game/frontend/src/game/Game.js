@@ -75,7 +75,7 @@ const Game = () => {
                 <Card className="Card">
                     <CardBody>
                         <p>What type of pokemon is {pokemon.name}?</p>
-                        <img src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemon.name}.gif`} alt={pokemon.name} />
+                        <img className="game-img" src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemon.name}.gif`} alt={pokemon.name} />
                         <CardText>
                             <TypeButtons add={setAnswer} />
                             <br />

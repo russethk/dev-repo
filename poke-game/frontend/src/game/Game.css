@@ -1,5 +1,7 @@
 .Game {
+  margin: 0 auto;
   display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -8,7 +10,6 @@
 .game-container {
   display: flex;
   margin-top: 100px;  
-  margin: 0 auto;
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -23,7 +24,6 @@
 
 .homepage-image {
   width: 100%;
-  
 }
 
 .column-left {
@@ -47,9 +47,12 @@
 .Card {
   cursor: pointer;
   width: 95%;
+  align-items: center;
+  justify-content: center;
 }
 
 .CardBody {
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,9 +108,12 @@ p {
   text-align: center;
 }
 
-img {
+.game-img {
   width: 6rem;
-  align-items: center; 
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Path: src/Board.css */
