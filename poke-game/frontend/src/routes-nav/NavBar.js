@@ -13,12 +13,12 @@ function NavBar ({logout}) {
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/game">
-                         <Icon.Building /> Game
+                         <Icon.Controller /> Game
                     </NavLink>
                 </li>
                 <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/pokedex">
-                        <Icon.Briefcase /> Pokedex
+                        <Icon.CardList /> Pokedex
                     </NavLink>
                 </li>
                 <li className="nav-item mr-4">
@@ -38,16 +38,6 @@ function NavBar ({logout}) {
     function loggedOutNav() {
         return (
             <ul className="navbar-nav ml-auto">
-                        <li className="nav-item mr-4">
-                    <NavLink className="nav-link" to="/game">
-                         <Icon.Controller /> Game
-                    </NavLink>
-                </li>
-                <li className="nav-item mr-4">
-                    <NavLink className="nav-link" to="/pokedex">
-                        <Icon.CardList /> Pokedex
-                    </NavLink>
-                </li>
                 <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/login">
                         <Icon.BoxArrowLeft />  Login
