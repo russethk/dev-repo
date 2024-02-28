@@ -15,7 +15,7 @@ VALUES ('testuser',
         TRUE);
 
 
-INSERT INTO pokemon (id, name, type, image_url, type_url)
+INSERT INTO pokemon (id, name, type, image_url)
 VALUES (1, 'Bulbasaur', 'Grass', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'),
         (2, 'Ivysaur', 'Grass', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'),
         (3, 'Venusaur', 'Grass', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png'),
