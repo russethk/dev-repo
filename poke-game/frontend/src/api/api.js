@@ -64,7 +64,7 @@ class PokedexApi {
    * add pokemon id, name, and type to pokemon table
 */
 
- static async addPokemon(username, id) {
+ static async catchPokemon(username, id) {
   await this.request(`users/${username}/pokemon/${id}`, {}, "post");
 }
 
