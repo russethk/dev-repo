@@ -18,7 +18,7 @@ class Pokemon {
   static async create(data) {
     const result = await db.query(
           `INSERT INTO pokemon (id, name, type, image_url)
-           VALUES ($1, $2, $3, $4, $5)
+           VALUES ($1, $2, $3, $4)
            RETURNING id, name, type, image_url`,
         [
           data.id,
@@ -77,8 +77,7 @@ class Pokemon {
           `SELECT id,
                   name,
                   type,
-                  image_url,
-                  type_url
+                  image_url
            FROM pokemon
            WHERE id = $1`, [id]);
 

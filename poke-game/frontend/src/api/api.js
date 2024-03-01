@@ -64,11 +64,11 @@ class PokedexApi {
    * add pokemon id, name, and type to pokemon table
 */
 
-  static async addPokemonToPokedex(username, data) {
-    let res = await this.request(`pokedex/${username}`, data, "post");
+  static async addPokemonToPokedex(data) {
+    let res = await this.request(`pokedex`, data, "post");
     return res.pokemon;
   }
-  
+
   /** Get token for login from username, password. */
 
   static async login(data) {

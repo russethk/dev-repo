@@ -140,12 +140,12 @@ class User {
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
     const userPokedexRes = await db.query(
-          `SELECT p.id
-           FROM pokedex AS p
-           WHERE p.username = $1`, [username]);
+      `SELECT p.id
+       FROM pokedex AS p
+       WHERE p.username = $1`, [username]);
 
-    user.pokedex = userPokedexRes.rows.map(p => p.id);
-    return user;
+user.pokedex = userPokedexRes.rows.map(p => p.id);
+return user;
   }
 
   /** Update user data with `data`.
@@ -217,7 +217,7 @@ class User {
    * - jobId: job id
    **/
 
-  static async addPokemonToPokedex(username, id) {
+  static async catchPokemon(username, id) {
     const preCheck = await db.query(
           `SELECT id
            FROM pokemon

@@ -56,15 +56,29 @@ const Game = () => {
     */
 
 
-    const addPokemonToPokedex = async () => {
+    const catchPokemon = async (username, id) => {
         try {
-            const response = await axios.post('http://localhost:3001/pokedex', {
-                username: 'testuser',
-                id: pokemon.id
-            });
-            console.log(response);
+            await axios.post('http://localhost:5000/pokedex', { username, id });
         } catch (error) {
             console.error('Error adding Pokemon to Pokedex:', error);
+        }
+    }
+    
+    // Add the Pokemon to the Pokedex
+    // Call the catchPokemon function with the username and the Pokemon id
+    // If the Pokemon is added to the Pokedex, set the message to 'Pokemon added to Pokedex!'
+    // If the Pokemon is not added to the Pokedex, set the message to 'Pokemon not added to Pokedex!'
+    // If there is an error, set the message to 'Error adding Pokemon to Pokedex!'
+
+    const addPokemonToPokedex = async () => {
+        try {
+            const username = 'testuser';
+            const id = 1;
+            await catchPokemon(username, id);
+            setMessage('Pokemon added to Pokedex!');
+        } catch (error) {
+            console.error('Error adding Pokemon to Pokedex:', error);
+            setMessage('Pokemon not added to Pokedex!');
         }
     }
 
