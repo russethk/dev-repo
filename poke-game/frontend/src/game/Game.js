@@ -41,11 +41,11 @@ const Game = () => {
 
     const [score, setScore] = useState(0);
 
-    const checkAnswer = () => {
-        if (answer.toLowerCase() === pokemon.type) {
+    const catchPokemon = () => {
+        if (answer === pokemon.type) {
             setMessage('You caught the Pokemon!');
-            setScore(score + 1);
             addPokemonToPokedex();
+            setScore(score + 1);
         } else {
             setMessage('You missed the Pokemon!');
         }
@@ -91,7 +91,7 @@ const Game = () => {
                             <br />
                             <p>Choose the Pokemon type and then click Catch Pokemon!</p>
                             <input type='text' value={answer} onChange={e => setAnswer(e.target.value)} />
-                            <Button onClick={checkAnswer}>Catch Pokemon</Button>
+                            <Button onClick={catchPokemon}>Catch Pokemon</Button>
                         </CardText>
                     </CardBody>
                 </Card>
