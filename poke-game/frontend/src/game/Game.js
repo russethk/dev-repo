@@ -45,26 +45,28 @@ const Game = () => {
         if (answer.toLowerCase() === pokemon.type) {
             setMessage('You caught the Pokemon!');
             setScore(score + 1);
-            catchPokemon();
+            addPokemonToPokedex();
         } else {
             setMessage('You missed the Pokemon!');
         }
     }
 
-    /* function catchPokemon adds the username and pokemonID to the pokedex table in the pokedex database */
+    /* function catchPokemon adds the username and the pokemon id to the pokedex table in the database
+    * Props: username, id  
+    */
 
-    const catchPokemon = async () => {
+
+    const addPokemonToPokedex = async () => {
         try {
-            const response = await axios.post('/api/pokedex', {
+            const response = await axios.post('http://localhost:3001/pokedex', {
                 username: 'testuser',
                 id: pokemon.id
             });
-            console.log('Pokemon caught:', response.data);
+            console.log(response);
         } catch (error) {
-            console.error('Error catching Pokemon:', error);
+            console.error('Error adding Pokemon to Pokedex:', error);
         }
     }
-
 
     return (
         <div className='game-container'>

@@ -217,7 +217,7 @@ class User {
    * - jobId: job id
    **/
 
-  static async catchPokemon(username, id) {
+  static async addPokemonToPokedex(username, id) {
     const preCheck = await db.query(
           `SELECT id
            FROM pokemon
@@ -235,9 +235,9 @@ class User {
     if (!user) throw new NotFoundError(`No username: ${username}`);
 
     await db.query(
-          `INSERT INTO pokedex (id, username)
+          `INSERT INTO pokedex (username, id)
            VALUES ($1, $2)`,
-        [jobId, username]);
+        [username, id]);
   }
 }
 

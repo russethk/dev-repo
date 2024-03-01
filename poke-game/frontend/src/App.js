@@ -120,26 +120,28 @@ function App() {
   }
   
 
-  /** Checks if user has applied to this job. */
+  /** Checks if user has caught pokemon. */
 
   function hasCaughtPokemon(id) {
     return pokemonIds.has(id);
   }
+  /* Handles catching pokemon. */
 
-  /* Handles applying to a job. */
-
-  async function catchPokemon(id) {
+  async function addPokemonToPokedex(id) {
     if (hasCaughtPokemon(id)) return;
-   PokedexApi.catchPokemon(currentUser.username, id);
-    setPokemonIds(new Set([...pokemonIds, id]));
-   
+    try {
+      await PokedexApi.addPokemonToPokedex(currentUser.username, id);
+      setPokemonIds(new Set([...pokemonIds, id]));
+    } catch (err) {
+      console.error("addPokemonToPokedex failed", err);
+    }
   }
 
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
     <BrowserRouter> 
-       <UserContext.Provider value={{ currentUser, setCurrentUser, hasCaughtPokemon, catchPokemon }}>
+       <UserContext.Provider value={{ currentUser, setCurrentUser, hasCaughtPokemon, addPokemonToPokedex }}>
 
         <div className="App">
           <NavBar logout={logout} />
