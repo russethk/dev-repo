@@ -235,7 +235,7 @@ return user;
     if (!user) throw new NotFoundError(`No username: ${username}`);
 
     await db.query(
-          `INSERT INTO pokedex (username, id)
+          `INSERT INTO caughtpokemon (username, id)
            VALUES ($1, $2)`,
         [username, id]);
   }

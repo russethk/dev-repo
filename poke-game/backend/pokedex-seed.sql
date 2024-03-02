@@ -168,3 +168,10 @@ VALUES (1, 'Bulbasaur', 'Grass', 'https://raw.githubusercontent.com/PokeAPI/spri
         (150, 'Mewtwo', 'Psychic', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png'),
         (151, 'Mew', 'Psychic', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png');
 
+INSERT INTO caughtpokemon (username, id)
+VALUES ('testuser', 1),
+       ('testuser', 2),
+       ('testuser', 3),
+       ('testuser', 4),
+       ('testuser', 4);
+      

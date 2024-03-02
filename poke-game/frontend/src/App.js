@@ -127,13 +127,13 @@ function App() {
   }
   /* Handles catching pokemon. */
 
-  async function addPokemonToPokedex(id) {
+  async function catchPokemon(id) {
     if (hasCaughtPokemon(id)) return;
     try {
-      await PokedexApi.addPokemonToPokedex(currentUser.username, id);
+      await PokedexApi.catchPokemon(currentUser.username, id);
       setPokemonIds(new Set([...pokemonIds, id]));
     } catch (err) {
-      console.error("addPokemonToPokedex failed", err);
+      console.error("catchPokemon failed", err);
     }
   }
 
@@ -141,7 +141,7 @@ function App() {
 
   return (
     <BrowserRouter> 
-       <UserContext.Provider value={{ currentUser, setCurrentUser, hasCaughtPokemon, addPokemonToPokedex }}>
+       <UserContext.Provider value={{ currentUser, setCurrentUser, hasCaughtPokemon, catchPokemon }}>
 
         <div className="App">
           <NavBar logout={logout} />

@@ -15,7 +15,7 @@ CREATE TABLE pokemon (
   UNIQUE (name)
 );
 
-CREATE TABLE pokedex (
+CREATE TABLE caughtpokemon (
   username VARCHAR(25)
     REFERENCES users ON DELETE CASCADE,
   id INTEGER
