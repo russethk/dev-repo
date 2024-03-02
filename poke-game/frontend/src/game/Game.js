@@ -14,8 +14,10 @@ const Game = () => {
     const [pokemon, setPokemon] = useState(null);
     const [answer, setAnswer] = useState('');
     const [message, setMessage] = useState('');
-    const [username, setUsername] = useState('');
-    const [id, setId] = useState('');
+    const [formData, setFormData] = useState({
+        username: "",
+        id: ""
+    });
 
 
     // Draw a random Pokemon from the pokeapi
@@ -47,8 +49,6 @@ const Game = () => {
         if (answer.toLowerCase() === pokemon.type) {
             setMessage('You caught the Pokemon!');
             setScore(score + 1);
-            setUsername({username});
-            setId({id});
             addPokemonToPokedex(username, id);
         } else {
             setMessage('The Pokemon got away!');
@@ -57,14 +57,15 @@ const Game = () => {
 
     const handleChange = (evt) => {
         setAnswer(evt.target.value);
+        const { name, value } = evt.target;
+        setFormData(data => ({ ...data, [name]: value }));
     }
 
     async function addPokemonToPokedex(username, id) {
-            let res = await this.request(`users/${username}/pokemon/${id}`, data, "post");
-            return res.pokemon;
+        let res = await this.request(`users/${username}/pokedex`, data, "post");
+        return res.pokemon;
     }
     
-
     return (
         <div className='game-container'>
           <div className='column-left'>
