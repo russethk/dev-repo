@@ -14,10 +14,6 @@ const Game = () => {
     const [pokemon, setPokemon] = useState(null);
     const [answer, setAnswer] = useState('');
     const [message, setMessage] = useState('');
-    const [formData, setFormData] = useState({
-        username: "",
-        id: ""
-    });
 
 
     // Draw a random Pokemon from the pokeapi
@@ -30,8 +26,8 @@ const Game = () => {
             const response = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=151');
             const randomPokemon = Math.floor(Math.random() * response.data.results.length);
             const pokemonData = await axios.get(response.data.results[randomPokemon].url);
-            const { name, types } = pokemonData.data;
-            setPokemon({ name, type: types[0].type.name });
+            const { id, name, types } = pokemonData.data;
+            setPokemon({ id, name, type: types[0].type.name});
             setMessage('');
         } catch (error) {
             console.error('Error drawing Pokemon:', error);
@@ -39,31 +35,35 @@ const Game = () => {
     }
 
     // Compare the value of the TypeButton against the drawn Pokemon type
-    // If the answer is correct, display a message and increment the score
-    // Post username, id to the api
+    // If the value of the TypeButtons matches the drawn Pokemon type
+    // Set the message to 'You caught the Pokemon!'
+    // Call the addPokemonToPokedex function
 
     const [score, setScore] = useState(0);
 
-    const handleSubmit = async (evt) => {
-        evt.preventDefault();
+    const checkAnswer = () => {
         if (answer.toLowerCase() === pokemon.type) {
             setMessage('You caught the Pokemon!');
             setScore(score + 1);
-            addPokemonToPokedex(username, id);
+            catchPokemon();
         } else {
-            setMessage('The Pokemon got away!');
+            setMessage('You missed the Pokemon!');
         }
     }
 
-    const handleChange = (evt) => {
-        setAnswer(evt.target.value);
-        const { name, value } = evt.target;
-        setFormData(data => ({ ...data, [name]: value }));
-    }
-
-    async function addPokemonToPokedex(username, id) {
-        let res = await this.request(`users/${username}/pokedex`, data, "post");
-        return res.pokemon;
+    /* function catchPokemon adds the username and the pokemon id to the pokedex table in the database
+    * Props: username, id  
+    */
+    function catchPokemon() {
+        const username = localStorage.getItem('username');
+        const id = pokemon.id;
+        axios.post('/api/pokedex', {username, id})
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.error('Error adding Pokemon to Pokedex:', error);
+            });
     }
     
     return (
@@ -77,20 +77,11 @@ const Game = () => {
                         <p>What type of pokemon is {pokemon.name}?</p>
                         <img className="game-img" src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemon.name}.gif`} alt={pokemon.name} />
                         <CardText>
-                            <TypeButtons />
+                            <TypeButtons add={setAnswer} />
                             <br />
                             <p>Choose the Pokemon type and then click Catch Pokemon!</p>
-                            <form onSubmit={handleSubmit}>
-                                <input
-                                    type="text"
-                                    name="answer"
-                                    value={answer}
-                                    onChange={handleChange}
-                                    placeholder="Type"
-                                    required
-                                />
-                                <Button type="submit">Catch Pokemon</Button>
-                            </form>
+                            <input type='text' value={answer} onChange={e => setAnswer(e.target.value)} />
+                            <Button onClick={checkAnswer}>Catch Pokemon</Button>
                         </CardText>
                     </CardBody>
                 </Card>
