@@ -41,22 +41,29 @@ const Game = () => {
 
     const [score, setScore] = useState(0);
 
-    const { hasCaught, catchPokemon } = useContext(UserContext);
-    const [caught, setCaught] = useState();
+    const checkAnswer = () => {
+        if (answer.toLowerCase() === pokemon.type) {
+            setMessage('You caught the Pokemon!');
+            setScore(score + 1);
+            catchPokemon();
+        } else {
+            setMessage('You missed the Pokemon!');
+        }
+    }
 
-    React.useEffect(function updateCaughtStatus() {
-        console.debug("Game useEffect updateCaughtStatus", "id=", id);
-
-        setCaught(hasCaught(id));
-    }, [id, hasCaught]);
-
-    /** Apply for a job */
-    async function handleCatch(evt) {
-        if (hasCaught(id)) return;
-        catchPokemon(id);
-        setMessage('You caught the Pokemon!');
-        setScore(score + 1);
-        setCaught(true);
+    /* function catchPokemon adds the username and the pokemon id to the pokedex table in the database
+    * Props: username, id  
+    */
+    function catchPokemon() {
+        const username = localStorage.getItem('username');
+        const id = pokemon.id;
+        axios.post('/api/caughtpokemon', {username, id})
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.error('Error adding Pokemon to Pokedex:', error);
+            });
     }
     
     return (
@@ -74,13 +81,7 @@ const Game = () => {
                             <br />
                             <p>Choose the Pokemon type and then click Catch Pokemon!</p>
                             <input type='text' value={answer} onChange={e => setAnswer(e.target.value)} />
-                            <button
-                                className="btn btn-danger font-weight-bold text-uppercase float-right"
-                                onClick={handleCatch}
-                                disabled={caught}
-                            >
-                            {caught ? "Caught" : "Catch"}
-                            </button>
+                            <Button onClick={checkAnswer}>Catch Pokemon</Button>
                         </CardText>
                     </CardBody>
                 </Card>

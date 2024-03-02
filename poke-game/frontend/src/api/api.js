@@ -66,8 +66,8 @@ static async catchPokemon(username, id) {
 
 /** Get list of pokemon user has caught */
 
-static async getPokemonCaught(username, name) {
-  let res = await this.request(`users/${username}/pokemon`, { name });
+static async getPokemonCaught(username) {
+  let res = await this.request(`users/${username}/pokemon`);
   return res.pokemon;
 }
 

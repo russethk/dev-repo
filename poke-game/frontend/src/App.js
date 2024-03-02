@@ -4,9 +4,9 @@ import NavBar from './routes-nav/NavBar';
 import PokedexApi from './api/api';
 import LoadingSpinner from './common/LoadingSpinner';
 import { BrowserRouter } from 'react-router-dom';
-import UserContext from './auth/UserContext';
+import UserContext from '../auth/userContext';
 import { jwtDecode } from "jwt-decode";
-import useLocalStorage from './hooks/useLocalStorage'
+import useLocalStorage from './hooks/useLocalStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -129,12 +129,8 @@ function App() {
 
   async function catchPokemon(id) {
     if (hasCaughtPokemon(id)) return;
-    try {
-      await PokedexApi.catchPokemon(currentUser.username, id);
-      setPokemonIds(new Set([...pokemonIds, id]));
-    } catch (err) {
-      console.error("catchPokemon failed", err);
-    }
+    await PokedexApi.catchPokemon(currentUser.username, id);
+    setPokemonIds(new Set([...pokemonIds, id]));
   }
 
   if (!infoLoaded) return <LoadingSpinner />;
