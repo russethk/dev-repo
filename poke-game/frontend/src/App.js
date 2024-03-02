@@ -5,7 +5,6 @@ import PokedexApi from './api/api';
 import LoadingSpinner from './common/LoadingSpinner';
 import { BrowserRouter } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
-import UserContext from './auth/UserContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
