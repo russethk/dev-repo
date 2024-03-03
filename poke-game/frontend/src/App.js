@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import UserContext from './auth/UserContext';
 import Routes from './routes-nav/Routes';
 import NavBar from './routes-nav/NavBar';
 import PokedexApi from './api/api';

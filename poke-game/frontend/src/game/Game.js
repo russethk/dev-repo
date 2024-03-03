@@ -14,7 +14,8 @@ const Game = () => {
     const [pokemon, setPokemon] = useState(null);
     const [answer, setAnswer] = useState('');
     const [message, setMessage] = useState('');
-
+    const [score, setScore] = useState(0);
+   
 
     // Draw a random Pokemon from the pokeapi
     // Get all the data from the pokeapi and select a random Pokemon
@@ -34,38 +35,29 @@ const Game = () => {
         }
     }
 
-    // Compare the value of the TypeButton against the drawn Pokemon type
-    // If the value of the TypeButtons matches the drawn Pokemon type
-    // Set the message to 'You caught the Pokemon!'
-    // Call the addPokemonToPokedex function
+    const username = localStorage.getItem('username');
+    const id = localStorage.getItem('id');
 
-    const [score, setScore] = useState(0);
+    // Catch Pokemon
+    // Add the Pokemon to the caughtpokemon table in the pokedex database
+    // Set the message to state
+    // Set the score to state
+    
+    async function catchPokemon(username, id) {
+        await this.request(`users/${username}/pokemon/${id}`, {}, "post");
+    }
 
-    const checkAnswer = () => {
-        if (answer.toLowerCase() === pokemon.type) {
+    /** Catch pokemon for user and update the caughtpokemon table in the pokedex database */
+    async function handleCatch(evt) {
+        if (answer === pokemon.type) {
             setMessage('You caught the Pokemon!');
             setScore(score + 1);
-            catchPokemon();
-        } else {
+            catchPokemon(username, id);
+        }
+        else {
             setMessage('You missed the Pokemon!');
         }
     }
-
-    /* function catchPokemon adds the username and the pokemon id to the pokedex table in the database
-    * Props: username, id  
-    */
-    function catchPokemon() {
-        const username = localStorage.getItem('username');
-        const id = pokemon.id;
-        axios.post('/api/caughtpokemon', {username, id})
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.error('Error adding Pokemon to Pokedex:', error);
-            });
-    }
-    
     return (
         <div className='game-container'>
           <div className='column-left'>
@@ -80,8 +72,13 @@ const Game = () => {
                             <TypeButtons add={setAnswer} />
                             <br />
                             <p>Choose the Pokemon type and then click Catch Pokemon!</p>
-                            <input type='text' value={answer} onChange={e => setAnswer(e.target.value)} />
-                            <Button onClick={checkAnswer}>Catch Pokemon</Button>
+                                <input type='text' value={answer} onChange={e => setAnswer(e.target.value)} />
+                                <button
+                                    className="btn btn-danger font-weight-bold text-uppercase float-right"
+                                    onClick={handleCatch}
+                                     >
+                                    CatchPokemon
+                                     </button>
                         </CardText>
                     </CardBody>
                 </Card>

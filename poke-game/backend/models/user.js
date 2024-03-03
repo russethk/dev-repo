@@ -141,10 +141,10 @@ class User {
 
     const userPokedexRes = await db.query(
       `SELECT p.id
-       FROM pokedex AS p
+       FROM caughtpokemon AS p
        WHERE p.username = $1`, [username]);
 
-user.pokedex = userPokedexRes.rows.map(p => p.id);
+user.caughtpokemon = userPokedexRes.rows.map(p => p.id);
 return user;
   }
 
