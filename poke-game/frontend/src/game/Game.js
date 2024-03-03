@@ -42,10 +42,17 @@ const Game = () => {
     // Add the Pokemon to the caughtpokemon table in the pokedex database
     // Set the message to state
     // Set the score to state
-    
-    async function catchPokemon(username, id) {
-        await this.request(`users/${username}/pokemon/${id}`, {}, "post");
+
+    function catchPokemon(username, id) {
+        axios.post('/api/pokedex/caughtpokemon', { username, id })
+        .then((response) => {
+            setMessage(response.data.message);
+        })
+        .catch((error) => {
+            console.error('Error catching Pokemon:', error);
+        });
     }
+    
 
     /** Catch pokemon for user and update the caughtpokemon table in the pokedex database */
     async function handleCatch(evt) {
@@ -74,10 +81,10 @@ const Game = () => {
                             <p>Choose the Pokemon type and then click Catch Pokemon!</p>
                                 <input type='text' value={answer} onChange={e => setAnswer(e.target.value)} />
                                 <button
-                                    className="btn btn-danger font-weight-bold text-uppercase float-right"
+                                    className="btn btn-info font-weight-bold text-uppercase float-right"
                                     onClick={handleCatch}
                                      >
-                                    CatchPokemon
+                                    Catch Pokemon!
                                      </button>
                         </CardText>
                     </CardBody>
