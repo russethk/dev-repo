@@ -61,7 +61,8 @@ class PokedexApi {
 /** Catch Pokemon */
 
 static async catchPokemon(username, id) {
-  await this.request(`users/${username}/pokemon/${id}`, {}, "post");
+ let res = await this.request(`users/${username}/pokemon/${id}`, {}, "post");
+ return res.caughtpokemon;
 }
 
 /** Get list of pokemon user has caught */
