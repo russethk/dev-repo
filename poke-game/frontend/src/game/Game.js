@@ -15,6 +15,7 @@ const Game = () => {
     const [answer, setAnswer] = useState('');
     const [message, setMessage] = useState('');
     const [score, setScore] = useState(0);
+    const [caughtPokemon, setCaughtPokemon] = useState([]);
    
 
     // Draw a random Pokemon from the pokeapi
@@ -44,15 +45,14 @@ const Game = () => {
     // Set the score to state
 
     function catchPokemon(username, id) {
-        axios.post('/api/pokedex/caughtpokemon', { username, id })
+        axios.post(`http://localhost:3001/users/${username}/pokemon/${id}`)
         .then((response) => {
-            setMessage(response.data.message);
+            setCaughtPokemon(response.data.caughtpokemon);
         })
         .catch((error) => {
             console.error('Error catching Pokemon:', error);
         });
     }
-    
 
     /** Catch pokemon for user and update the caughtpokemon table in the pokedex database */
     async function handleCatch(evt) {

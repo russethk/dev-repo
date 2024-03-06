@@ -61,18 +61,19 @@ class PokedexApi {
 /** Catch Pokemon */
 
 static async catchPokemon(username, id) {
- let res = await this.request(`users/${username}/pokemon/${id}`, {}, "post");
- return res.caughtpokemon;
+  let res = await this.request(`users/${username}/pokemon/${id}`, {}, "post");
+  return res.caughtpokemon;
 }
 
 /** Get list of pokemon user has caught */
 
-static async getPokemonCaught(username) {
-  let res = await this.request(`users/${username}/pokemon`);
-  return res.pokemon;
+static async getCaughtPokemon(username, id) {
+  let res = await this.request(`users/${username}/pokemon/${id}`);
+return res.caughtpokemon;
 }
+  
 
-  /** Get token for login from username, password. */
+/** Get token for login from username, password. */
 
   static async login(data) {
     let res = await this.request(`auth/token`, data, "post");

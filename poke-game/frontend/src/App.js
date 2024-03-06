@@ -119,18 +119,24 @@ function App() {
     }
   }
   
+  /* Handles catching pokemon. */
+
+  async function catchPokemon(username, id) {
+    try {
+      let username = currentUser.username; 
+      let caughtpokemon = await PokedexApi.catchPokemon(username, id);
+      setPokemonIds(new Set(caughtpokemon));
+      return { success: true };
+    } catch (errors) {
+      console.error("catch pokemon failed", errors);
+    }
+  }
+
 
   /** Checks if user has caught pokemon. */
 
   function hasCaughtPokemon(id) {
     return pokemonIds.has(id);
-  }
-  /* Handles catching pokemon. */
-
-  async function catchPokemon(id) {
-    if (hasCaughtPokemon(id)) return;
-    await PokedexApi.catchPokemon(currentUser.username, id);
-    setPokemonIds(new Set([...pokemonIds, id]));
   }
 
   if (!infoLoaded) return <LoadingSpinner />;
